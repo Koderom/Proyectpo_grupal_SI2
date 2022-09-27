@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('fecha_nacimiento');
             $table->unsignedInteger('telefono');
             $table->text('direccion');
+            $table->char('tipo',1);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
