@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::create('medicamento_recetas');
+        Schema::drop('medicamento_recetas');
     }
 };
