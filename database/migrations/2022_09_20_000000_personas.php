@@ -15,17 +15,19 @@ return new class extends Migration
     {
         Schema::create('personas', function(Blueprint $table){
             $table->id();
-            $table->string('nombre',120);
-            $table->string('apellido_paterno',120);
-            $table->string('apellido_materno',120);
-            $table->char('sexo',1);
+            $table->String('ci')->unique();
+            $table->string('nombre');
+            $table->string('apellido_paterno');
+            $table->string('apellido_materno');
+            $table->char('sexo');
             $table->unsignedInteger('edad');
             $table->date('fecha_nacimiento');
             $table->unsignedInteger('telefono');
             $table->text('direccion');
+            $table->char('tipo');
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

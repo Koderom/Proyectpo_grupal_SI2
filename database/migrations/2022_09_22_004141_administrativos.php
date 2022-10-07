@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('administrativos', function(Blueprint $table){
             $table->id();
+            $table->unsignedInteger('persona_id');
             $table->text('cargo');
 
-            $table->unsignedInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');
             $table->timestamps();
         });
