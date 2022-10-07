@@ -1425,11 +1425,11 @@ pre code {
         max-width: 50%;
         background-color: #050420;
     }
-
-    .col-lg-7 {
+/*Ancho del formulario*/
+    /*.col-lg-7 { 
         flex     : 0 0 58.33333%;
-        max-width: 58.33333%
-    }
+        max-width: 58.33333%;
+    }*/
 
     .col-lg-8 {
         flex     : 0 0 66.66667%;
@@ -2310,9 +2310,13 @@ textarea.form-control {
 }
 
 .form-check-input {
-    position   : absolute;
+    /*por defecto*/
+ /*   position   : absolute;
     margin-top : .3rem;
-    margin-left: -1.25rem
+    margin-left: -1.25rem*/
+        text-align: center;
+        margin-top: 0.3rem;
+        margin-left: 2.75rem
 }
 
 .form-check-input:disabled~.form-check-label,
