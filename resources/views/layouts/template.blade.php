@@ -108,6 +108,7 @@
                         <h6 class="collapse-header">Gestionar:</h6>
                         <a class="collapse-item" href="{{asset('/Cita')}}">Cita</a>
                         <a class="collapse-item" href="{{asset('/Horario')}}">Horarios</a>
+                        <a class="collapse-item" href="{{route('turno.index')}}">Turnos</a>
                         <a class="collapse-item" href="{{asset('/consulta')}}">Especialidades</a>
                     </div>
                 </div>

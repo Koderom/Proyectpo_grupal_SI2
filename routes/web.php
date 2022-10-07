@@ -4,6 +4,7 @@ use App\Http\Controllers\RolesPermisosController;
 
 use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\pacienteController;
+use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,15 @@ Route::controller(RolesPermisosController::class)->group(function(){
     Route::get('/roles/edit/{rol}','edit')->name('roles.edit');
     Route::post('/roles/update/{rol}','update')->name('roles.update');
     Route::delete('/roles/destroy/{rol}','destroy')->name('roles.destroy');
+});
+Route::controller(TurnoController::class)->group(function(){
+    Route::get('/turno/index','index')->name('turno.index');
+    Route::get('/turno/create','create')->name('turno.create');
+    Route::post('/turno/store','store')->name('turno.store');
+    Route::get('/turno/show/{turno}','show')->name('turno.show');
+    Route::get('/turno/edit/{turno}','edit')->name('turno.edit');
+    Route::post('/turno/update/{turno}','update')->name('turno.update');
+    Route::delete('/turno/destroy/{turno}','destroy')->name('turno.destroy');
 });
 /*---------------------------------------------------------------------------- */
 Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
