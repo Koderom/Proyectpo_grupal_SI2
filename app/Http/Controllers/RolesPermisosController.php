@@ -41,7 +41,8 @@ class RolesPermisosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'rol_nombre'=>'required'
+            'rol_nombre'=>'required',
+            'permisos'=>'required'
         ]);
         $permisos = $request->input('permisos');
         $rol = Role::create(['name' => $request->input('rol_nombre')]);

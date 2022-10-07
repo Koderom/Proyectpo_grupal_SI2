@@ -32,7 +32,7 @@ Route::controller(RolesPermisosController::class)->group(function(){
     Route::post('/roles/store-asignar-rol','storeAsignarRol')->name('roles.store-asignar-rol');
     Route::get('/roles/edit/{rol}','edit')->name('roles.edit');
     Route::post('/roles/update/{rol}','update')->name('roles.update');
-    Route::get('/roles/destroy/{rol}','destroy')->name('roles.destroy');
+    Route::delete('/roles/destroy/{rol}','destroy')->name('roles.destroy');
 });
 /*---------------------------------------------------------------------------- */
 Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');

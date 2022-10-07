@@ -69,7 +69,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
                         <a class="collapse-item" href="{{asset('/usuario')}}">Usuario</a>
-                        <a class="collapse-item" href="{{asset('/roles')}}">Roles y permiso</a>
+                        <a class="collapse-item" href="{{route('roles.index')}}">Roles y permiso</a>
                         <a class="collapse-item" href="{{asset('/administrativo')}}">Personal Administrativo</a>
                         <a class="collapse-item" href="{{asset('/medico')}}">Medico</a>
                         <a class="collapse-item" href="{{asset('/paciente')}}">Paciente</a>
