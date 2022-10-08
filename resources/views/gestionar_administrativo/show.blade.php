@@ -13,7 +13,7 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Registrar administrativo</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Detalles administrativo</h1>
                             </div>
                             {{ csrf_field() }}
                             @if ($errors->any())
@@ -24,30 +24,34 @@
                                         @endforeach
                                     </ul>
                                 </div>
+                                
                             @endif
-                            <!-- personas.create=stores-->
-                            <form class="user" action="{{ route('administrativo.store') }}"  method="POST"
+                            <!-- formulario para editar-->
+                            
+                            <form class="user" action="#"  method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
+                                
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="ci" placeholder="Ci" value="{{ old('ci') }}">
+                                        name="ci" placeholder="Ci" value="{{$persona->ci}}" readonly>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            name="nombre" placeholder="Nombres" value="{{ old('nombre') }}">
+                                            name="nombre" placeholder="Nombres" value="{{$persona->nombre}}" readonly>
                                     </div>   
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            name="apellido_paterno" placeholder="Apellido Paterno" value="{{ old('apellido_paterno') }}">
+                                        <input type="text" readonly class="form-control form-control-user" id="exampleFirstName"
+                                            name="apellido_paterno" placeholder="Apellido Paterno" value="{{$persona->apellido_paterno}}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            name="apellido_materno" placeholder="Apellido Materno" value="{{ old('apellido_materno') }}">
+                                        <input type="text" readonly class="form-control form-control-user" id="exampleLastName"
+                                            name="apellido_materno" placeholder="Apellido Materno" value="{{$persona->apellido_materno}}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -68,20 +72,20 @@
                                           
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-user" id="exampleInputCargo"
-                                            name="cargo" placeholder="Cargo" value="{{ old('cargo') }}">
+                                            <input type="text" readonly class="form-control form-control-user" id="exampleInputCargo"
+                                            name="cargo" placeholder="Cargo" value="{{ $persona->administrativo->cargo }}">
                                             
                                         </div>
                                     
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="date" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="fecha_nacimiento" placeholder="Fecha de nacimiento" value="{{ old('fecha_naci') }}">
+                                        <input type="date" readonly class="form-control form-control-user" id="exampleInputEmail"
+                                        name="fecha_nacimiento" placeholder="Fecha de nacimiento" value="{{ $persona->fecha_nacimiento}}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                        name="edad" placeholder="Edad" value="{{ old('edad') }}">
+                                        <input type="text" readonly class="form-control form-control-user" id="exampleLastName"
+                                        name="edad" placeholder="Edad" value="{{$persona->edad}}">
                                         
                                         </div>
                                     
@@ -89,43 +93,46 @@
                                 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="tel" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="telefono" placeholder="Telefono" value="{{ old('telefono') }}">
+                                        <input type="tel" readonly class="form-control form-control-user" id="exampleInputEmail"
+                                        name="telefono" placeholder="Telefono" value="{{  $persona->telefono }}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                            name="direccion" placeholder="Direccion" value="{{ old('direccion') }}">
+                                        <input type="text" readonly class="form-control form-control-user" id="exampleInputEmail"
+                                            name="direccion" placeholder="Direccion" value="{{  $persona->direccion }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                    name="email" placeholder="Correo" value="{{ old('correo') }}">
+                                    <input type="email" readonly class="form-control form-control-user" id="exampleInputEmail"
+                                    name="email" placeholder="Correo" value="{{  $persona->user->email }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control form-control-user" id="exampleInputEmail"
+                                    <input type="hidden" readonly class="form-control form-control-user" id="exampleInputEmail"
                                         name="tipo" value="A">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="name" placeholder="Usuario" value="{{ old('usuario') }}">
+                                    <input type="text" readonly class="form-control form-control-user" id="exampleInputEmail"
+                                        name="name" placeholder="Usuario" value="{{ $persona->user->name }}">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="password" placeholder="password" value="{{ old('password') }}">
+                                    <input type="password" readonly class="form-control form-control-user" id="exampleInputEmail"
+                                        name="password" placeholder="password" value="{{ $persona->user->password }}">
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+
+                                <div class="form-group">
+                                    <!--div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="submit" class="btn btn-facebook btn-user btn-block" value="Aceptar">
-                                    </div>
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    </div-->
+
+                                    <div class="mb-3 mb-sm-0 centrar-gp">
                                         <a href="{{ route('administrativo.index') }}"
                                             class="btn btn-primary btn-user btn-block">
-                                            Cancelar
+                                            Volver
                                         </a>
                                     </div>
+
                                 </div>
                             </form>
                             <hr>

@@ -44,7 +44,7 @@
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <th>{{$usuario->name}}</th>
-                                                <th>{{$usuario->email}}</th><!--nullable-->
+                                                <th>{{$usuario->name}}</th><!--nullable-->
                                                 <td>
                                                     <form action="{{ route('administrativo.destroy', [$usuario->id]) }}" method="post">
                                                         @csrf
