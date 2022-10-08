@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\doctor;
 use App\Models\especialidad;
+use App\Models\paciente;
 use App\Models\persona;
 use App\Models\User;
 use Database\Factories\UserFactory;
@@ -22,6 +23,10 @@ class RoleSeeder extends Seeder
     public function run()
     {
         doctor::factory()
+        ->has(persona::factory())
+        ->count(25)
+        ->create();
+        paciente::factory()
         ->has(persona::factory())
         ->count(25)
         ->create();
