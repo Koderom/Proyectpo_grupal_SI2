@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\doctor;
 use App\Models\Turno;
+use App\Models\turnoDoctor;
 use Illuminate\Http\Request;
 use Symfony\Contracts\Service\Attribute\Required;
 
@@ -10,7 +12,9 @@ class TurnoController extends Controller
 {
     public function index(){
         $Turnos = Turno::all();
-        return view('Turno.index',['Turnos'=>$Turnos]);
+        //$TurnoDoctors = turnoDoctor::all();
+        $Doctores = doctor::all();
+        return view('Turno.index',['Turnos'=>$Turnos, 'Doctores'=>$Doctores]);
     }
     public function create(){
         return view('Turno.create');

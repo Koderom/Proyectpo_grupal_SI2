@@ -9,9 +9,12 @@ class turnoDoctor extends Model
 {
     use HasFactory;
 
-    protected $table = 'turno_dortors';
+    protected $table = 'turno_doctors';
 
     public function doctor(){
         return $this->belongsTo(doctor::class);
+    }
+    public function turno(){
+        return $this->belongsTo(Turno::class);
     }
 }

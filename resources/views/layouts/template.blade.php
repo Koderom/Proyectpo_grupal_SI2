@@ -20,7 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('/adminTemplate/css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+    <script src="https://kit.fontawesome.com/871fc34738.js" crossorigin="anonymous"></script>
 </head>
 
 <body id="page-top">
@@ -288,7 +288,7 @@
                                 class="fas fa-download fa-sm text-white-50"></i> Generar reporte</a>
                     </div>
                     <!-- content Row-->
-                    <div class="row">
+                    <div class="row" >
 
                         @yield('content')
 

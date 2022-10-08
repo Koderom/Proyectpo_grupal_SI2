@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        schema::create('turno_doctor', function(Blueprint $table){
+        schema::create('turno_doctors', function(Blueprint $table){
             $table->id();
             //atributos
             $table->string('dia_atencion',50);
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        schema::drop('turno_especialidads');
+        schema::drop('turno_doctors');
     }
 };

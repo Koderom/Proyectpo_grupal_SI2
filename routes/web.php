@@ -47,11 +47,11 @@ Route::controller(TurnoController::class)->group(function(){
 });
 Route::controller(turnoDoctorController::class)->group(function(){
     //Route::get('/turno-doctor/index','index')->name('turno-doctor.index');
-    Route::get('/turno-doctor/create','create')->name('turno-doctor.create');
-    Route::post('/turno-doctor/store','store')->name('turno-doctor.store');
-    Route::get('/turno-doctor/show/{turno_doctor}','show')->name('turno-doctor.show');
-    Route::get('/turno-doctor/edit/{turno_doctor}','edit')->name('turno-doctor.edit');
-    Route::post('/turno-doctor/update/{turno_doctor}','update')->name('turno-doctor.update');
+    Route::get('/turno-doctor/asigna/{doctor}r','asignar')->name('turno-doctor.asignar');
+    Route::post('/turno-doctor/store/{doctor}','store')->name('turno-doctor.store');
+    Route::get('/turno-doctor/show/{doctor}','show')->name('turno-doctor.show');
+    //Route::get('/turno-doctor/edit/{turno}/{doctor}','edit')->name('turno-doctor.edit');
+    //Route::post('/turno-doctor/update/{turno_doctor}','update')->name('turno-doctor.update');
     Route::delete('/turno-doctor/destroy/{turno_doctor}','destroy')->name('turno-doctor.destroy');
 });
 /*---------------------------------------------------------------------------- */

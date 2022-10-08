@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="p-5">
-                            <h1>Asignar turno</h1>
+                            <h1>Asignar turno a: {{$doctor->persona->nombre}}</h1>
                                 {{ csrf_field() }}
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -20,18 +20,8 @@
                                         </ul>
                                     </div>
                                 @endif
-                            <form class="user" action="{{ route('turno-doctor.store') }}" method="POST">
+                            <form class="user" action="{{ route('turno-doctor.store',['doctor'=>$doctor]) }}" method="POST">
                                 @csrf
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                      <label class="input-group-text" for="inputGroupSelect01">Doctores</label>
-                                    </div>
-                                    <select name="doctor" id="doctor" class="custom-select">
-                                        @foreach ($Doctores as $doctor)
-                                        <option value="{{$doctor->id}}">{{$doctor->persona->nombre}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                       <label class="input-group-text" for="inputGroupSelect01">Turnos</label>
@@ -60,7 +50,7 @@
                                         <input type="submit" class="btn btn-facebook btn-user btn-block" value="Aceptar">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <a href="{{ route('turno.index') }}"
+                                        <a href="{{ url()->previous() }}"
                                             class="btn btn-primary btn-user btn-block">
                                             Cancelar
                                         </a>

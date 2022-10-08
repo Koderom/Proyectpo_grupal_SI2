@@ -19,6 +19,6 @@ class doctor extends Model
         return $this->belongsTo(especialidad::class);
     }
     public function turnoDoctor(){
-        $this->hasMany(turnoDoctor::class);
+        return $this->hasMany(turnoDoctor::class);
     }
 }
