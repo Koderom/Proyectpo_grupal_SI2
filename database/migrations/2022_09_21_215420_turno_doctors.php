@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        schema::create('turno_especialidads', function(Blueprint $table){
+        schema::create('turno_doctors', function(Blueprint $table){
             $table->id();
             //atributos
+            $table->string('dia_atencion',50);
             $table->unsignedBigInteger('turno_id');
             $table->foreign('turno_id')->references('id')->on('turnos');
             $table->unsignedBigInteger('doctor_id');
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        schema::drop('turno_especialidads');
+        schema::drop('turno_doctors');
     }
 };

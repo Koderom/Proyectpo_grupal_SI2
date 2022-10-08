@@ -9,5 +9,9 @@ class Turno extends Model
 {
     use HasFactory;
 
-    
+    protected $table = 'turnos';
+
+    public function turnoDoctor(){
+        return $this->hasMany(turnoDoctor::class);
+    }
 }

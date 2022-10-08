@@ -33,5 +33,12 @@ class persona extends Model
     {
         return $this->hasOne(administrativo::class, 'persona_id', 'id');
     }
-    
+    public function doctor()
+    {
+        return $this->hasOne(doctor::class, 'persona_id', 'id');
+    }
+    public function paciente()
+    {
+        return $this->hasOne(paciente::class);
+    }
 }
