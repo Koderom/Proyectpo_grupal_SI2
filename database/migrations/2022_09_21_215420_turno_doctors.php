@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        schema::create('turno_especialidads', function(Blueprint $table){
+        schema::create('turno_doctor', function(Blueprint $table){
             $table->id();
             //atributos
+            $table->string('dia_atencion',50);
             $table->unsignedBigInteger('turno_id');
             $table->foreign('turno_id')->references('id')->on('turnos');
             $table->unsignedBigInteger('doctor_id');

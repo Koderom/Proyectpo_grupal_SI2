@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Turno extends Model
+class turnoDoctor extends Model
 {
     use HasFactory;
 
-    protected $table = 'turnos';
+    protected $table = 'turno_dortors';
 
-    public function turnoDoctor(){
-        return $this->hasMany(turnoDoctor::class);
+    public function doctor(){
+        return $this->belongsTo(doctor::class);
     }
 }

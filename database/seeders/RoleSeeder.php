@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\doctor;
+use App\Models\especialidad;
 use App\Models\persona;
 use App\Models\User;
 use Database\Factories\UserFactory;
@@ -19,7 +21,10 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        persona::factory()->count(50)->create();
+        doctor::factory()
+        ->has(persona::factory())
+        ->count(25)
+        ->create();
         //User::factory()->count(5)->create();
         $role1 = Role::create(['name'=>'administrador']);
         $role2 = Role::create(['name'=>'doctor']);

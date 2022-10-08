@@ -18,9 +18,9 @@ return new class extends Migration
             $table->text('formacion');
 
 
-            $table->unsignedBigInteger('sala_id');
+            $table->unsignedBigInteger('sala_id')->nullable();//desbloquear luego
             $table->foreign('sala_id')->references('id')->on('salas');
-            $table->unsignedBigInteger('especialidad_id');
+            $table->unsignedBigInteger('especialidad_id')->nullable();//desbloquear luego
             $table->foreign('especialidad_id')->references('id')->on('especialidads');
             $table->unsignedInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');

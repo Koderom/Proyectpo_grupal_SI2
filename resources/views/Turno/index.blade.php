@@ -5,6 +5,7 @@
 @section('content')
 <div class="container-fluid">
     <a href="{{route('turno.create')}}" class="btn btn-success btn-icon-split"> <span class="text">Crear nuevo turno</span> </a>
+    <a href="#" class="btn btn-success btn-icon-split"> <span class="text">Asignar turno a medico</span> </a>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Lista de roles disponibles</h6>

@@ -5,8 +5,9 @@ use App\Http\Controllers\RolesPermisosController;
 use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\pacienteController;
 use App\Http\Controllers\TurnoController;
+use App\Http\Controllers\turnoDoctorController;
 use App\Http\Controllers\UserController;
-
+use App\Models\turnoDoctor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,15 @@ Route::controller(TurnoController::class)->group(function(){
     Route::get('/turno/edit/{turno}','edit')->name('turno.edit');
     Route::post('/turno/update/{turno}','update')->name('turno.update');
     Route::delete('/turno/destroy/{turno}','destroy')->name('turno.destroy');
+});
+Route::controller(turnoDoctorController::class)->group(function(){
+    //Route::get('/turno-doctor/index','index')->name('turno-doctor.index');
+    Route::get('/turno-doctor/create','create')->name('turno-doctor.create');
+    Route::post('/turno-doctor/store','store')->name('turno-doctor.store');
+    Route::get('/turno-doctor/show/{turno_doctor}','show')->name('turno-doctor.show');
+    Route::get('/turno-doctor/edit/{turno_doctor}','edit')->name('turno-doctor.edit');
+    Route::post('/turno-doctor/update/{turno_doctor}','update')->name('turno-doctor.update');
+    Route::delete('/turno-doctor/destroy/{turno_doctor}','destroy')->name('turno-doctor.destroy');
 });
 /*---------------------------------------------------------------------------- */
 Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
