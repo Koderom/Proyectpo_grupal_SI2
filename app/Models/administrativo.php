@@ -19,8 +19,8 @@ class administrativo extends Model
 
     public function persona()
     {
-       //return $this->belongsTo(persona::class,'persona_id','id');
-       return $this->hasMany(persona::class,'persona_id','id');
+       return $this->belongsTo(persona::class,'persona_id','id');
+       //return $this->hasOne(persona::class,'persona_id','id');
     }
 
 }

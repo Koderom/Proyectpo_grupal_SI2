@@ -53,23 +53,23 @@
                                             $i = 1;
                                         @endphp
 
-                                        @foreach ($persona as $personas)
+                                        @foreach ($administrativos as $administrativo)
                                          
                                             <tr>
                                                 <td>{{ $i++ }}</td>
-                                                <th>{{$personas->ci}}</th>
-                                                <th>{{$personas->nombre}}</th>
-                                                <th>{{$personas->apellido_paterno . " " . $personas->apellido_materno}}</th>
-                                                <th>{{$personas->administrativo->cargo}}</th>
-                                                <th>{{$personas->telefono}}</th>
-                                                <th>{{$personas->direccion}}</th>
-                                                <th>{{$personas->user->email}}</th>
-                                                <th>{{$personas->user->name}}</th>
+                                                <th>{{$administrativo->persona->ci}}</th>
+                                                <th>{{$administrativo->persona->nombre}}</th>
+                                                <th>{{$administrativo->persona->apellido_paterno . " " . $administrativo->persona->apellido_materno}}</th>
+                                                <th>{{$administrativo->persona->administrativo->cargo}}</th>
+                                                <th>{{$administrativo->persona->telefono}}</th>
+                                                <th>{{$administrativo->persona->direccion}}</th>
+                                                <th>{{$administrativo->persona->user->email}}</th>
+                                                <th>{{$administrativo->persona->user->name}}</th>
                                                 <td>
-                                                    <form action="{{ route('administrativo.destroy', [$personas->id]) }}" method="post">
+                                                    <form action="#" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <a href="{{ route('administrativo.edit', [$personas->id]) }}"
+                                                        <a href="#"
                                                             class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
                                                         <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
                                                             onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar">

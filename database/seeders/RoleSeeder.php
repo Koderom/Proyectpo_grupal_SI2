@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\persona;
 use App\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,6 +19,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+        persona::factory()->count(50)->create();
         //User::factory()->count(5)->create();
         $role1 = Role::create(['name'=>'administrador']);
         $role2 = Role::create(['name'=>'doctor']);

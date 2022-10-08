@@ -11,12 +11,15 @@ class administrativoController extends Controller
 {
     public function index()
     { 
-        $persona = persona::where('tipo','A')->get();
+        /*$persona = persona::where('tipo','A')->get();
         $administrativo = administrativo::all();
         $user = User::all();
         $persona->load('administrativo');
         $persona->load('user');
         return view('gestionar_administrativo.index', compact('persona'));
+        */
+        $administrativos = administrativo::all();
+        return view('gestionar_administrativo.index',['administrativos'=>$administrativos]);
     }
 
     //crear
