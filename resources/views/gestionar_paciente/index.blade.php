@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')paciente @endsection
+@section('header')Paciente @endsection
 
 @section('content')
                 <!-- Begin Page Content -->
@@ -26,7 +26,6 @@
                                             <th>CI</th>
                                             <th>Nombre</th>
                                             <th>Apellidos</th>
-                                            <th>Tutor</th>
                                             <th>Usuario</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -37,7 +36,6 @@
                                             <th>CI</th>
                                             <th>Nombre</th>
                                             <th>Apellidos</th>
-                                            <th>Tutor</th>
                                             <th>Usuario</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -45,13 +43,7 @@
                                     <tbody>
                                         @php
                                             $i = 1;
-                                            foreach ($pacientes as $paciente) {
-                                                # code...
-                                                echo ($paciente);
-                                                exit;
-                                            }
-                                            
-                                            
+         
                                         @endphp
 
                                         @foreach ($pacientes as $paciente)
@@ -61,8 +53,7 @@
                                                 <th>{{$paciente->persona->ci}}</th>
                                                 <th>{{$paciente->persona->nombre}}</th>
                                                 <th>{{$paciente->persona->apellido_paterno . " " . $paciente->persona->apellido_materno}}</th>
-                                                <th>{{$paciente->nombre_tutor}}</th>
-                                                <th>{{$paciente->User->name}}</th>
+                                                <th>{{$paciente->persona->User->name}}</th>
                                                 <td>
                                                     <form action="{{route('paciente.destroy',$paciente->persona_id)}}" method="post">
                                                         @csrf
