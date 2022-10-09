@@ -21,4 +21,7 @@ class doctor extends Model
     public function turnoDoctor(){
         return $this->hasMany(turnoDoctor::class);
     }
+    public function agenda(){
+        return $this->hasMany(agenda::class);
+    }
 }

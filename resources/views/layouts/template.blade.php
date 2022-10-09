@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+ 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,7 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('/adminTemplate/css/sb-admin-2.min.css')}}" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/871fc34738.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body id="page-top">

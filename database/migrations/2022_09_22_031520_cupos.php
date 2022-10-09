@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        schema::create('agendas', function(Blueprint $table){
+        Schema::create('cupos', function(Blueprint $table){
             $table->id();
-            $table->date('fecha');
-            $table->unsignedBigInteger('doctor_id');
-            $table->foreign('doctor_id')->references('id')->on('doctors');
-            $table->timestamps();
+            $table->time('hora_inicio');
+            $table->time('hora_fin');
+
+            $table->unsignedBigInteger('agenda_id');
+            $table->foreign('agenda_id')->references('id')->on('agendas');
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agendas');
+        Schema::dropIfExists('cupos');
     }
 };

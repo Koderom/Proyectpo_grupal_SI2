@@ -3,6 +3,7 @@
 use App\Http\Controllers\RolesPermisosController;
 
 use App\Http\Controllers\administrativoController;
+use App\Http\Controllers\agendaController;
 use App\Http\Controllers\pacienteController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\turnoDoctorController;
@@ -53,6 +54,12 @@ Route::controller(turnoDoctorController::class)->group(function(){
     //Route::get('/turno-doctor/edit/{turno}/{doctor}','edit')->name('turno-doctor.edit');
     //Route::post('/turno-doctor/update/{turno_doctor}','update')->name('turno-doctor.update');
     Route::delete('/turno-doctor/destroy/{turno_doctor}','destroy')->name('turno-doctor.destroy');
+});
+
+Route::controller(agendaController::class)->group(function(){
+    Route::get('/agenda/index','index')->name('agenda.index');
+    Route::get('/agenda/show/{doctor}','show')->name('agenda.show');
+    
 });
 /*---------------------------------------------------------------------------- */
 Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');

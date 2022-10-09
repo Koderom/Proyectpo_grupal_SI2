@@ -4,7 +4,7 @@
 
 @section('content')
     
-<div class="card rounded-sm o-hidden border-0 shadow-lg m-3 p-3 container" >
+<div class="card  o-hidden border-0 shadow-lg m-3 p-3 container" >
     <div class="card-body">
         <div class="row p-3">
             <h4 class="col-md-9">Turnos asignados a: <strong>{{$doctor->persona->nombre}}</strong></h4>
@@ -45,8 +45,8 @@
         </div>
     </div>
     <div class="form-group row m-5" >
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <a href="{{route('turno.index')}}"
+        <div class="col-sm-6 mb-3 mb-sm-0 centrar-gp" >
+            <a href="{{route('turno.index')}} "
                 class="btn btn-primary btn-user btn-block">
                 Volver
             </a>
