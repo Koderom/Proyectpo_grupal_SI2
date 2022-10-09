@@ -24,11 +24,12 @@ class DatabaseSeeder extends Seeder
         
 
         $this->call([
-            especialidadSeeder::class,
-            RoleSeeder::class,
             personaSeeder::class,
             UserSeeder::class,
             administrativoSeeder::class,
+            especialidadSeeder::class,
+            RoleSeeder::class,
+            
         ]);
 
     }

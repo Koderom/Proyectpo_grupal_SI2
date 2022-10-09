@@ -22,11 +22,11 @@ return new class extends Migration
             $table->date('hora_cita');
             $table->boolean('cita_confirmada');
 
-            $table->unsignedBigInteger('agenda_id');
-            $table->foreign('agenda_id')->references('id')->on('agendas');
+            $table->unsignedBigInteger('cupo_id');
+            $table->foreign('cupo_id')->references('id')->on('cupos');
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id')->references('id')->on('pacientes');
-            $table->unsignedBigInteger('administrativo_id');
+            $table->unsignedBigInteger('administrativo_id')->nullable();
             $table->foreign('administrativo_id')->references('id')->on('administrativos');
             $table->unsignedBigInteger('especialidad_id');
             $table->foreign('especialidad_id')->references('id')->on('especialidads');

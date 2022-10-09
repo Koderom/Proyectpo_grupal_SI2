@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\agenda;
 use App\Models\doctor;
 use App\Models\especialidad;
 use App\Models\paciente;
@@ -22,14 +23,31 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        doctor::factory()
-        ->has(persona::factory())
-        ->count(25)
-        ->create();
-        paciente::factory()
-        ->has(persona::factory())
-        ->count(25)
-        ->create();
+        for ($cant=0; $cant < 20; $cant++) { 
+            $persona = persona::factory()->create();
+            $doctor = doctor::factory()->create([
+                'persona_id'=>$persona->id
+            ]);
+            $user = User::factory()->create([
+                'persona_id'=>$persona->id
+            ]);
+            agenda::factory()
+            ->count(5)
+            ->create([
+                'doctor_id'=>$doctor,
+            ]);
+        
+        }
+        for ($cant=0; $cant < 20; $cant++) { 
+            $persona = persona::factory()->create();
+            $doctor = paciente::factory()->create([
+                'persona_id'=>$persona->id
+            ]);
+            $user = User::factory()->create([
+                'persona_id'=>$persona->id
+            ]);
+        }
+        
         //User::factory()->count(5)->create();
         $role1 = Role::create(['name'=>'administrador']);
         $role2 = Role::create(['name'=>'doctor']);
