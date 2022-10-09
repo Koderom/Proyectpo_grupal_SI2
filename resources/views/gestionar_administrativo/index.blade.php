@@ -54,7 +54,7 @@
                                                 <th>{{$administrativo->persona->ci}}</th>
                                                 <th>{{$administrativo->persona->nombre}}</th>
                                                 <th>{{$administrativo->persona->apellido_paterno . " " . $administrativo->persona->apellido_materno}}</th>
-                                                <th>{{$administrativo->persona->administrativo->cargo}}</th>
+                                                <th>{{$administrativo->cargo}}</th>
                                                 <th>{{$administrativo->persona->user->name}}</th>
                                                 <td>
                                                     <form action="{{route('administrativo.destroy',$administrativo->persona_id)}}" method="post">

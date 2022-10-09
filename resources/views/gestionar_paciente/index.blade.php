@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Administrativo @endsection
+@section('header')Paciente @endsection
 
 @section('content')
                 <!-- Begin Page Content -->
@@ -8,14 +8,14 @@
                     <!-- Page Heading -->
                     
                     <p class="mb-4"></p>       
-                    <a href="{{asset('/administrativo.create')}}" class="btn btn-success btn-icon-split">
-                        <span class="text">Registrar Administrativo</span>
+                    <a href="{{asset('/paciente.create')}}" class="btn btn-success btn-icon-split">
+                        <span class="text">Registrar Paciente</span>
                     </a>
                     <div class="my-2"></div>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Lista de administrativo</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Lista de Paciente</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -25,12 +25,9 @@
                                             <th>Nrº</th>
                                             <th>CI</th>
                                             <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Telefono</th>
-                                            <th>Direccion</th>
-                                            <th>Correo</th><!--nullable-->
-                                            <th>Usuario</th><!--unique-->
-                                            <th>Acciones</th><!--unique-->
+                                            <th>Apellidos</th>
+                                            <th>Usuario</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -38,38 +35,35 @@
                                             <th>Nrº</th>
                                             <th>CI</th>
                                             <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Telefono</th>
-                                            <th>Direccion</th>
-                                            <th>Correo</th><!--nullable-->
-                                            <th>Usuario</th><!--unique-->
+                                            <th>Apellidos</th>
+                                            <th>Usuario</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         @php
                                             $i = 1;
+         
                                         @endphp
 
-                                        @foreach ($persona as $personas)
+                                        @foreach ($pacientes as $paciente)
                                          
                                             <tr>
                                                 <td>{{ $i++ }}</td>
-                                                <th>{{$personas->ci}}</th>
-                                                <th>{{$personas->nombre}}</th>
-                                                <th>{{$personas->apellido}}</th>
-                                                <th>{{$personas->telefono}}</th>
-                                                <th>{{$personas->direccion}}</th>
-                                                <th>{{$personas->correo}}</th><!--nullable-->
-                                                <th>{{$personas->encargado->usuario}}</th><!--unique-->
+                                                <th>{{$paciente->persona->ci}}</th>
+                                                <th>{{$paciente->persona->nombre}}</th>
+                                                <th>{{$paciente->persona->apellido_paterno . " " . $paciente->persona->apellido_materno}}</th>
+                                                <th>{{$paciente->persona->User->name}}</th>
                                                 <td>
-                                                    <form action="{{ route('administrativo.destroy', [$personas->id]) }}" method="post">
+                                                    <form action="{{route('paciente.destroy',$paciente->persona_id)}}" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <a href="{{ route('administrativo.edit', [$personas->id]) }}"
+                                                        <a href="{{route('paciente.show',$paciente->persona_id)}}" class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
+                                                        <a href="{{route('paciente.edit',$paciente->persona_id)}}"
                                                             class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
                                                         <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
-                                                            onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar"> </button>
+                                                            onclick="return confirm('¿ESTA SEGURO QUE DESEA ELIMINAR?')" value="Borrar">
+                                                        </button>
                                                     </form>
                                                 </td>
                                             </tr>

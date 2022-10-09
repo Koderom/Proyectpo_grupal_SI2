@@ -58,25 +58,25 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         Género:
                                         <div class="form-check">
+                                            @if($persona->sexo[0]=='M')
                                             <input class="form-check-input" type="radio" name="sexo" id="flexRadioDefault1" value="{{'M'}}" checked>
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                              Masculino
-                                            </label>
-                                          <!--/div>
-                                          <div class="form-check"-->
+                                            <label class="form-check-label" for="flexRadioDefault1">Masculino</label>
                                             <input class="form-check-input" type="radio" name="sexo" id="flexRadioDefault2" value="{{'F'}}">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                              Femenino
-                                            </label>
-                                          </div>
+                                            <label class="form-check-label" for="flexRadioDefault2">Femenino</label>
+                                            @endif
+                                            @if($persona->sexo[0]=='F')
+                                            <input class="form-check-input" type="radio" name="sexo" id="flexRadioDefault1" value="{{'M'}}">
+                                            <label class="form-check-label" for="flexRadioDefault1">Masculino</label>
+                                            <input class="form-check-input" type="radio" name="sexo" id="flexRadioDefault2" value="{{'F'}}"checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">Femenino</label>
+                                            @endif
+                                        </div>
                                           
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-user" id="exampleInputCargo"
-                                            name="cargo" placeholder="Cargo" value="{{ $persona->administrativo->cargo }}">
-                                            
-                                        </div>
-                                    
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="exampleInputCargo"
+                                        name="cargo" placeholder="Cargo" value="{{ $persona->administrativo->cargo }}">
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
