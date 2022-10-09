@@ -15,12 +15,12 @@ return new class extends Migration
     {
         schema::create('pacientes', function(Blueprint $table){
             $table->id();
-            $table->string('nombre_tutor',150);
-            $table->unsignedInteger('numero_telefono_tutor');
-
-            $table->unsignedBigInteger('sala_id')->nullable();//duda
-            $table->foreign('sala_id')->references('id')->on('salas');//
             $table->unsignedInteger('persona_id');
+            $table->string('nombre_tutor');
+            $table->unsignedInteger('numero_telefono_tutor');
+            $table->unsignedBigInteger('sala_id')->nullable();//duda
+
+            $table->foreign('sala_id')->references('id')->on('salas');//
             $table->foreign('persona_id')->references('id')->on('personas');
             $table->timestamps();
         });

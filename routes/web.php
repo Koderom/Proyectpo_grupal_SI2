@@ -9,6 +9,7 @@ use App\Http\Controllers\turnoDoctorController;
 use App\Http\Controllers\UserController;
 use App\Models\turnoDoctor;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,20 +84,13 @@ Route::middleware('auth:admin')->group(function(){
     Route::get('administrativo.edit/{administrativo}', [administrativoController::class, 'edit'])->name('administrativo.edit');
     Route::put('administrativo.update/{administrativo}', [administrativoController::class, 'update'])->name('administrativo.update');
     Route::delete('administrativo.destroy/{administrativo}', [administrativoController::class, 'destroy'])->name('administrativo.destroy');
-
-
+  
     //Gestionar paciente
-    Route::get('/paciente', [pacienteController::class, 'index'])
-    ->name('paciente.index');
-    Route::get('paciente.create', [pacienteController::class, 'create'])
-    ->name('paciente.create');   
-    route::get('paciente.edit/{id_persona}', [pacienteController::class, 'edit'])
-    ->name('paciente.edit');
-    route::post('paciente.store', [pacienteController::class, 'store'])
-    ->name('paciente.store');
-    route::delete('paciente.destroy/{id_persona}', [pacienteController::class, 'destroy'])
-    ->name('paciente.destroy');
-    route::put('paciente.update/{id_persona}', [pacienteController::class, 'update'])
-    ->name('paciente.update'); 
-    
+    Route::get('/paciente', [pacienteController::class, 'index'])->name('paciente.index');
+    Route::get('paciente.create', [pacienteController::class, 'create'])->name('paciente.create');   
+    Route::post('paciente.store', [pacienteController::class, 'store'])->name('paciente.store');
+    Route::get('paciente.show/{paciente}', [pacienteController::class, 'show'])->name('paciente.show');
+    Route::get('paciente.edit/{paciente}', [pacienteController::class, 'edit'])->name('paciente.edit');
+    Route::put('paciente.update/{paciente}', [pacienteController::class, 'update'])->name('paciente.update'); 
+    Route::delete('paciente.destroy/{paciente}', [pacienteController::class, 'destroy'])->name('paciente.destroy');
 });
