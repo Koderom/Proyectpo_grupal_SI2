@@ -79,6 +79,12 @@ body {
     text-align      : left;
     background-color: #fff
 }
+/*parogua*/
+.centrar-gp{
+    width: 52%;
+    margin: auto;
+}
+/**/
 
 [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important

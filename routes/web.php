@@ -83,18 +83,14 @@ Route::middleware('auth:admin')->group(function(){
     ->name('usuario.update');
 
     //Personal administrativo
-    Route::get('/administrativo', [administrativoController::class, 'index'])
-    ->name('administrativo.index');
-    Route::get('administrativo.create', [administrativoController::class, 'create'])
-    ->name('administrativo.create');   
-    route::get('administrativo.edit/{id_persona}', [administrativoController::class, 'edit'])
-    ->name('administrativo.edit');
-    route::post('administrativo.store', [administrativoController::class, 'store'])
-    ->name('administrativo.store');
-    route::delete('administrativo.destroy/{id_persona}', [administrativoController::class, 'destroy'])
-    ->name('administrativo.destroy');
-    route::put('administrativo.update/{id_persona}', [administrativoController::class, 'update'])
-    ->name('administrativo.update');
+    Route::get('/administrativo', [administrativoController::class, 'index'])->name('administrativo.index');
+    Route::get('administrativo.create', [administrativoController::class, 'create'])->name('administrativo.create');   
+    Route::post('administrativo.store', [administrativoController::class, 'store'])->name('administrativo.store');
+    Route::get('administrativo.show/{administrativo}', [administrativoController::class, 'show'])->name('administrativo.show');
+    Route::get('administrativo.edit/{administrativo}', [administrativoController::class, 'edit'])->name('administrativo.edit');
+    Route::put('administrativo.update/{administrativo}', [administrativoController::class, 'update'])->name('administrativo.update');
+    Route::delete('administrativo.destroy/{administrativo}', [administrativoController::class, 'destroy'])->name('administrativo.destroy');
+
 
     //Gestionar paciente
     Route::get('/paciente', [pacienteController::class, 'index'])
