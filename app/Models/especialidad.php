@@ -14,4 +14,7 @@ class especialidad extends Model
     public function doctor(){
         return $this->hasMany(doctor::class);
     }
+    public function cita(){
+        return $this->hasMany(cita::class);
+    }
 }

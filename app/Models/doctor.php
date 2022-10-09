@@ -24,4 +24,7 @@ class doctor extends Model
     public function agenda(){
         return $this->hasMany(agenda::class);
     }
+    public function cita(){
+        return $this->hasMany(cita::class);
+    }
 }

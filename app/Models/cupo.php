@@ -14,4 +14,7 @@ class cupo extends Model
     public function agenda(){
         return $this->belongsTo(agenda::class);
     }
+    public function cita(){
+        return $this->hasOne(cita::class);
+    }
 }
