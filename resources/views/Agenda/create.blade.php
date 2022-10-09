@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Registrar nuevo Turno @endsection
+@section('header')Registrar en la Agenda @endsection
 
 @section('content')
     <div class="container">
@@ -22,28 +22,28 @@
                     <div class="form-row p-3">
                         <div class="form-group col-6 ">
                             <label for="fecha_agendar">Ingrese una fecha a agendar:</label>
-                            <input class="form-control form-control-user"  type="date" name="fecha_agendar" id="fecha_agendar" value="{{old('fecha_agendar')}}">
+                            <input class="form-control "  type="date" name="fecha_agendar" id="fecha_agendar" value="{{old('fecha_agendar')}}">
                         </div>
                         <div class="form-group col md-6">
                             <label for="cantidad_cupos">Ingresar la catidad de cupos habilitados:</label>
-                            <input class="form-control form-control-user"  type="number" name="cantidad_cupos" id="cantidad_cupos" value="{{old('cantidad_cupos')}}">
+                            <input class="form-control "  type="number" name="cantidad_cupos" id="cantidad_cupos" value="{{old('cantidad_cupos')}}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="hora_inicio">Integrese la hora de principio de atencion:</label>
-                            <input class="form-control form-control-user"  type="time" name="hora_inicio" id="hora_inicio" value="{{old('hora_inicio')}}">
+                            <input class="form-control "  type="time" name="hora_inicio" id="hora_inicio" value="{{old('hora_inicio')}}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="hora_fin">Integrese la hora de finalizacion de atencion</label>
-                            <input class="form-control form-control-user"  type="time" name="hora_fin" id="hora_fin" value="{{old('hora_fin')}}">
+                            <input class="form-control "  type="time" name="hora_fin" id="hora_fin" value="{{old('hora_fin')}}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="minutos">Intese la catidad de minutos dedicados al paciente:</label>
-                            <input class="form-control form-control-user"  type="number" name="minutos" id="minutos" value="{{old('minutos')}}">
+                            <input class="form-control "  type="number" name="minutos" id="minutos" value="{{old('minutos')}}">
                         </div>
-                        <div class="form-group col-md-6">
+                        {{-- <div class="form-group col-md-6">
                             <label for="cantidad_dia">cantidad de dias a agendar a partir de la fecha: (opcional) </label>
-                            <input class="form-control form-control-user"  type="number" name="cantidad_dia" id="cantidad_dia" value="{{old('cantidad_dia')}}">
-                        </div>
+                            <input class="form-control"  type="number" name="cantidad_dia" id="cantidad_dia" value="{{old('cantidad_dia')}}">
+                        </div> --}}
                     </div>
                     <div class="form-group row m-5" >
                         <div class="col-sm-6 mb-3 mb-sm-0">

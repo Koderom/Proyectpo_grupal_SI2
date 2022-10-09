@@ -96,6 +96,9 @@ class RolesPermisosController extends Controller
      */
     public function update(Request $request,Role $rol)
     {
+        $request->validate([
+            'permisos'=>'required'
+        ]);
         //Rebocar permisos
         $permisos = Permission::all();
         foreach($permisos as $permiso)

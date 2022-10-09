@@ -8,6 +8,7 @@ use App\Models\cupo;
 use App\Models\doctor;
 use App\Models\especialidad;
 use App\Models\paciente;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\FuncCall;
@@ -79,9 +80,15 @@ class citaController extends Controller
         return redirect()->route('menu');
         
     }
-    public function verAgendaMedico($fecha = null){
-        $doctor = doctor::find('2');
-        $agenda = agenda::where('fecha','=','2022-11-11')->first();
+    public function verAgendaMedico(){
+        if(request()->input('fecha')!=null) $fecha = request()->input('fecha');
+        else {
+            $mytime= Carbon::now('America/La_Paz'); 
+            $fecha = $mytime->toDateString();
+        }
+        $doctor = doctor::find('1');
+        $agenda = agenda::where('fecha','=',$fecha)->where('doctor_id','=',$doctor->id)->first();
+        if($agenda == null) $agenda = agenda::where('doctor_id','=',$doctor->id)->first();
         $Cupos = cupo::where('agenda_id','=',$agenda->id)->orderBy('id')->get();
         return view('CitaDoctor.verAgenda',['doctor'=>$doctor, 'agenda'=>$agenda, 'Cupos'=>$Cupos]);
     }

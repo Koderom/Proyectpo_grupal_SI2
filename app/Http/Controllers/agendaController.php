@@ -29,6 +29,13 @@ class agendaController extends Controller
         return view('Agenda.create',['doctor'=>$doctor]);
     }
     public function store(Request $request,doctor $doctor){
+        $request->validate([
+            'fecha_agendar'=>'required',
+            'cantidad_cupos'=>'required',
+            'hora_inicio'=>'required',
+            'hora_fin'=>'required',
+            'minutos'=>'required',
+        ]);
         $agenda = new agenda();
         $agenda->fecha = $request->input('fecha_agendar');
         $agenda->doctor_id = $doctor->id;

@@ -10,6 +10,18 @@
                 <h3 class="col-auto col-md-7">Agenda de: <strong>{{$doctor->persona->nombre}}</strong></h3>
                 <h4 class="col-auto">Para la fecha: <strong>{{$agenda->fecha}}</strong></h4>
             </div>
+            <form action="#" method="GET" class="form-inline">
+                @csrf
+                    <div class="form-group">
+                        <label for="fecha">Seleccione una fecha</label>
+                        <select class="form-control" name="fecha" id="fecha">
+                            @foreach ($doctor->agenda as $agenda)
+                                <option value="{{$agenda->fecha}}"> {{$agenda->fecha}}</option>
+                            @endforeach
+                        </select>
+                    </div>                    
+                    <input class="btn btn-primary col-2" type="submit" value="Buscar">
+            </form>
         </div>
         <div class="card-body">
             <div class="row p-3">
@@ -27,7 +39,7 @@
                                     <p class="card-text">Paciente: {{$cupo->cita->paciente->persona->nombre}}</p>
                                     <div>
                                         <span class="text-secondary">Reservado</span>
-                                        <a href="{{route('cita.create',['cupo'=>$cupo])}}" class="col">Confirma</a>    
+                                        <a href="{{route('cita.create',['cupo'=>$cupo])}}" class="col">Confirmar</a>    
                                     </div>
                                 </div>
                             </div>
@@ -62,13 +74,6 @@
                 </div>    
                 @endforeach
             </div>
-            <div class="col-sm-6 mb-3 mb-sm-0">
-                <a href="{{ route('agenda.show',['doctor'=>$doctor]) }}"
-                    class="btn btn-primary btn-user btn-block">
-                    Atras
-                </a>
-            </div>
-            
         </div>
     </div>    
 </div>
