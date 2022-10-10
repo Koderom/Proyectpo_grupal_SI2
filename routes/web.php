@@ -66,6 +66,7 @@ Route::controller(agendaController::class)->group(function(){
     Route::get('/agenda/ver-cupos/{doctor}/{agenda}','verCupos')->name('agenda.ver-cupos');
     
 });
+/*-----------------------GP----------------------------------------------------- */
 Route::controller(citaController::class)->group(function(){
     //rutas para administrativos
     Route::get('/cita/index/{cupo}','index')->name('cita.index');
@@ -86,7 +87,7 @@ Route::controller(citaController::class)->group(function(){
 
     Route::get('/cita/medico/ver-agenda/{fecha?}','verAgendaMedico')->name('cita.medico.verAgenda');
 });
-/*---------------------------------------------------------------------------- */
+/*-----------------------GP----------------------------------------------------- */
 Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
 Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('guest:admin');
 
@@ -96,16 +97,12 @@ Route::middleware('auth:admin')->group(function(){
     Route::get('/menu', [UserController::class, 'menu'])->name("menu");
 
     // Gestionar Usuario
-    Route::get('/usuario', [UserController::class, 'index'])
-    ->name('usuario.index');  
-    route::get('usuario.edit/{id_persona}', [UserController::class, 'edit'])
-    ->name('usuario.edit');
-    route::post('usuario.store', [UserController::class, 'store'])
-    ->name('usuario.store');
-    route::delete('usuario.destroy/{id_persona}', [UserController::class, 'destroy'])
-    ->name('usuario.destroy');
-    route::put('usuario.update/{id_persona}', [UserController::class, 'update'])
-    ->name('usuario.update');
+    Route::get('/usuario', [UserController::class, 'index'])->name('usuario.index');  
+    //Route::post('usuario.store', [UserController::class, 'store'])->name('usuario.store');
+    Route::get('usuario.show/{usuario}',[UserController::class,'show'])->name('usuario.show');
+    Route::get('usuario.edit/{usuario}', [UserController::class, 'edit'])->name('usuario.edit');
+    Route::put('usuario.update/{usuario}', [UserController::class, 'update'])->name('usuario.update');
+    route::delete('usuario.destroy/{usuario}', [UserController::class, 'destroy'])->name('usuario.destroy');
 
     //Personal administrativo
     Route::get('/administrativo', [administrativoController::class, 'index'])->name('administrativo.index');

@@ -12,22 +12,22 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             @if($persona->tipo[0]=='A')
-                            <a href="{{route('administrativo.edit',$persona->user->persona_id)}}" class="btn btn-success btn-icon-split">
+                            <a href="{{route('administrativo.show',$persona->user->persona_id)}}" class="btn btn-success btn-icon-split">
                                 <span class="text">Modificar Administrativo</span>
                             </a>
                             @endif
                             @if($persona->tipo[0]=='P')
-                            <a href="{{route('paciente.edit',$persona->user->persona_id)}}" class="btn btn-success btn-icon-split">
+                            <a href="{{route('paciente.show',$persona->user->persona_id)}}" class="btn btn-success btn-icon-split">
                                 <span class="text">Modificar Paciente</span>
                             </a>
                             @endif
                             @if($persona->tipo[0]=='D')
-                            <a href="{{route('paciente.edit',$persona->user->persona_id)}}" class="btn btn-success btn-icon-split">
+                            <a href="{{route('paciente.show',$persona->user->persona_id)}}" class="btn btn-success btn-icon-split">
                                 <span class="text">Modificar Doctor</span>
                             </a>
                             @endif
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Modificar Usuario</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Detalle Usuario</h1>
                             </div>
 
                             {{ csrf_field() }}
@@ -43,7 +43,7 @@
                             @endif
                             <!-- formulario para editar-->
                             
-                            <form class="user" action="{{ route('usuario.update',[$persona->id]) }}"  method="POST"
+                            <form class="user" action="#"  method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -60,21 +60,18 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="name" placeholder="Usuario" value="{{ $persona->user->name }}">
+                                        name="name" placeholder="Usuario" value="{{ $persona->user->name }}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="password" placeholder="password" value="{{ $persona->user->password }}">
+                                        name="password" placeholder="password" value="{{ $persona->user->password }}" readonly>
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="submit" class="btn btn-facebook btn-user btn-block" value="Aceptar">
-                                    </div>
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="mb-3 mb-sm-0 centrar-gp">
                                         <a href="{{ route('usuario.index') }}"
                                             class="btn btn-primary btn-user btn-block">
-                                            Cancelar
+                                            Volver
                                         </a>
                                     </div>
                                 </div>
