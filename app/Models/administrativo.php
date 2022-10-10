@@ -22,5 +22,7 @@ class administrativo extends Model
        return $this->belongsTo(persona::class,'persona_id','id');
        //return $this->hasOne(persona::class,'persona_id','id');
     }
-
+    public function cita(){
+        return $this->hasMany(cita::class);
+    }
 }

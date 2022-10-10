@@ -17,10 +17,10 @@ return new class extends Migration
     {
         Schema::create('citas', function(Blueprint $table){
             $table->id();
-            $table->text('motivo');
+            $table->text('motivo')->nullable();
             $table->date('fecha_cita');
-            $table->date('hora_cita');
-            $table->boolean('cita_confirmada');
+            $table->time('hora_cita');
+            $table->boolean('confirmado');
 
             $table->unsignedBigInteger('cupo_id');
             $table->foreign('cupo_id')->references('id')->on('cupos');

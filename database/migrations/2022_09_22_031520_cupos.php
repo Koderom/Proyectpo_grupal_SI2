@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('cupos', function(Blueprint $table){
             $table->id();
+            $table->char('estado',1);//D:disponible R:reservado
             $table->time('hora_inicio');
             $table->time('hora_fin');
+            $table->timestamps();
 
             $table->unsignedBigInteger('agenda_id');
             $table->foreign('agenda_id')->references('id')->on('agendas');

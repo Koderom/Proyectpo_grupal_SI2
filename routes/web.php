@@ -4,6 +4,7 @@ use App\Http\Controllers\RolesPermisosController;
 
 use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\agendaController;
+use App\Http\Controllers\citaController;
 use App\Http\Controllers\pacienteController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\turnoDoctorController;
@@ -60,7 +61,29 @@ Route::controller(turnoDoctorController::class)->group(function(){
 Route::controller(agendaController::class)->group(function(){
     Route::get('/agenda/index','index')->name('agenda.index');
     Route::get('/agenda/show/{doctor}','show')->name('agenda.show');
+    Route::get('/agenda/create/{doctor}','create')->name('agenda.create');
+    Route::post('/agenda/store/{doctor}','store')->name('agenda.store');
+    Route::get('/agenda/ver-cupos/{doctor}/{agenda}','verCupos')->name('agenda.ver-cupos');
     
+});
+/*-----------------------GP----------------------------------------------------- */
+Route::controller(citaController::class)->group(function(){
+    //rutas para administrativos
+    Route::get('/cita/index/{cupo}','index')->name('cita.index');
+    Route::get('/cita/create/{cupo}','create')->name('cita.create');
+    Route::post('/cita/store/{cupo}','store')->name('cita.store');
+    Route::get('/cita/create-confirmar/{cupo}','confirmarCita')->name('cita.create-confirmar');
+    Route::post('/cita/store-confirmar/{cupo}','storeConfirmarCita')->name('cita.store-confirmar');
+    // rutas para pacientes
+    Route::get('/cita/paciente/reservar','reservarCitaPaciente')->name('cita.paciente.reservar');
+    Route::post('/cita/paciente/reservar/store','seleccionarEspecialidad')->name('cita.paciente.reservar.store');
+    Route::get('/cita/paciente/reservar/doctor/{especialidad}','verDoctorEspecialidad')->name('cita.paciente.reservar.doctor');
+    Route::get('/cita/paciente/reservar/ver-agenda','verAgenda')->name('cita.paciente.reservar.agenda');
+    Route::get('/cita/paciente/reservar/ver-cupo','verCupo')->name('cita.paciente.reservar.cupo');
+    Route::post('/cita/paciente/reservar/confirmar','confirmarReserva')->name('cita.paciente.reservar.confirmar');
+    //rutas para medico
+
+    Route::get('/cita/medico/ver-agenda/{fecha?}','verAgendaMedico')->name('cita.medico.verAgenda');
 });
 /*-----------------------GP----------------------------------------------------- */
 Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
