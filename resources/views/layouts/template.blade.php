@@ -68,12 +68,14 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
+
                         <a class="collapse-item" href="{{asset('/usuario')}}">Usuario</a>
                         <a class="collapse-item" href="{{route('roles.index')}}">Roles y permiso</a>
                         <a class="collapse-item" href="{{asset('/administrativo')}}">Personal Administrativo</a>
                         <a class="collapse-item" href="{{asset('/medico')}}">Medico</a>
                         <a class="collapse-item" href="{{asset('/paciente')}}">Paciente</a>
                         <a class="collapse-item" href="{{asset('/bitacora')}}">Bitacora</a>
+                        
                     </div>
                 </div>
             </li>
@@ -93,6 +95,7 @@
                         <a class="collapse-item" href="{{asset('/historial;')}}">Historial Clinico</a>
                         <a class="collapse-item" href="{{asset('/consulta')}}">Hoja de consulta</a>
                         <a class="collapse-item" href="{{asset('/recetas')}}">Recetas</a>
+                        
                     </div>
                 </div>
             </li>
@@ -106,12 +109,16 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
+                        
                         <a class="collapse-item" href="{{route('agenda.index')}}">Agenda</a>
                         <a class="collapse-item" href="{{route('cita.paciente.reservar')}}">Resevar Cita</a>
+                        <a class="collapse-item" href="{{route('cita.paciente.verCitas')}}">Mis citas</a>
                         <a class="collapse-item" href="{{route('cita.medico.verAgenda')}}">Mi agenda</a>
                         <a class="collapse-item" href="{{asset('/Horario')}}">Horarios</a>
                         <a class="collapse-item" href="{{route('turno.index')}}">Turnos</a>
                         <a class="collapse-item" href="{{asset('/consulta')}}">Especialidades</a>
+                        
+                        
                     </div>
                 </div>
             </li>
@@ -150,9 +157,12 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
+                        @can('ver.reportes')
                         <a class="collapse-item" href="{{asset('/reporte_personal')}}">Reportes del personal</a>
+                        @endcan
+                        @can('ver.reportes')
                         <a class="collapse-item" href="{{asset('/reporte_atencion')}}">Reportes de atencion</a>
-
+                        @endcan
                         <form action="{{asset('logout')}}" method="POST">
                             {{ csrf_field() }}
                         <button class="dropdown-item" href="#">

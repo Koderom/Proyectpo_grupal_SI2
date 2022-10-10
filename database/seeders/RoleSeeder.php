@@ -49,26 +49,39 @@ class RoleSeeder extends Seeder
         }
         
         //User::factory()->count(5)->create();
+        
         $role1 = Role::create(['name'=>'administrador']);
         $role2 = Role::create(['name'=>'doctor']);
         $role3 = Role::create(['name'=>'paciente']);
 
-        Permission::create(['name'=>'permiso de prueba 1']);
-        Permission::create(['name'=>'permiso de prueba 2']);
-        Permission::create(['name'=>'permiso de prueba 3']);
-        Permission::create(['name'=>'permiso de prueba 4']);
-        Permission::create(['name'=>'permiso de prueba 5']);
-        Permission::create(['name'=>'permiso de prueba 6']);
-        Permission::create(['name'=>'permiso de prueba 7']);
-        Permission::create(['name'=>'permiso de prueba 8']);
-        Permission::create(['name'=>'permiso de prueba 9']);
-        Permission::create(['name'=>'permiso de prueba 10']);
-        Permission::create(['name'=>'permiso de prueba 11']);
-        Permission::create(['name'=>'permiso de prueba 12']);
-        Permission::create(['name'=>'permiso de prueba 13']);
-        Permission::create(['name'=>'permiso de prueba 14']);
-        Permission::create(['name'=>'permiso de prueba 15']);
-        Permission::create(['name'=>'permiso de prueba 16']);
+        Permission::create(['name'=>'ver.usuario'])->syncRoles([$role1]);
+        Permission::create(['name'=>'ver.roles'])->syncRoles([$role1]);
+        Permission::create(['name'=>'ver.administrativo']);
+        Permission::create(['name'=>'ver.medico']);
+        Permission::create(['name'=>'ver.paciente']);
+        Permission::create(['name'=>'ver.bitacora']);
 
+        Permission::create(['name'=>'ver.documentacion']);
+        Permission::create(['name'=>'ver.historial-clinico']);
+        Permission::create(['name'=>'ver.hoja-de-consulta']);
+        Permission::create(['name'=>'ver.receta']);
+
+        Permission::create(['name'=>'ver.agenda']);
+        Permission::create(['name'=>'ver.recervar cita']);
+        Permission::create(['name'=>'ver.mis-citas']);
+        Permission::create(['name'=>'ver.mis-agendas']);
+        Permission::create(['name'=>'ver.horarios']);
+        Permission::create(['name'=>'ver.turnos']);
+        Permission::create(['name'=>'ver.especialidades']);
+
+        Permission::create(['name'=>'ver.sectores']);
+        Permission::create(['name'=>'ver.quirofano']);
+        Permission::create(['name'=>'ver.consultario']);
+        Permission::create(['name'=>'ver.internacion']);
+
+        Permission::create(['name'=>'ver.reportes']);
+        
+        $user = User::find(1);
+        $user->assignRole('administrador');
     }
 }

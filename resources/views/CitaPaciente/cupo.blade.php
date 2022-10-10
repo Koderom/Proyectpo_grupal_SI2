@@ -26,7 +26,13 @@
                             @endforeach
                         </select>
                     </div>
-                      <button type="submit" class="btn btn-primary">Confirmar reserva</button>
+                    <div class="form-group">
+                        <label for="motivo">Motivo de solicitud de la cita (opcional):</label>
+                        <textarea class="form-control" name="motivo" id="motivo" cols="30" rows="2">
+
+                        </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Confirmar reserva</button>
                 </form>
             </div>
         </div>

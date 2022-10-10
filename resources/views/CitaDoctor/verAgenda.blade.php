@@ -36,10 +36,14 @@
                             </div>
                                 <div class="card-body">
                                     <h5 class="card-title"><span class="">Hora: {{ Str::substr($cupo->hora_inicio,0,5) }}-{{ Str::substr($cupo->hora_fin,0,5) }}</span> </h5>
-                                    <p class="card-text">Paciente: {{$cupo->cita->paciente->persona->nombre}}</p>
+                                    <p class="card-text"> <strong>Paciente:</strong> 
+                                        {{$cupo->cita->paciente->persona->nombre}}
+                                        {{$cupo->cita->paciente->persona->apellido_paterno}}
+                                        {{$cupo->cita->paciente->persona->apellido_materno}}
+                                    </p>
                                     <div>
-                                        <span class="text-secondary">Reservado</span>
-                                        <a href="{{route('cita.create',['cupo'=>$cupo])}}" class="col">Confirmar</a>    
+                                        <span class="text-warning">Reservado</span>
+                                        {{-- <a href="{{route('cita.confirmar',['cupo'=>$cupo])}}" class="col">Confirmar</a>     --}}
                                     </div>
                                 </div>
                             </div>
@@ -50,10 +54,14 @@
                             </div>
                                 <div class="card-body">
                                     <h5 class="card-title"><span class="">Hora: {{ Str::substr($cupo->hora_inicio,0,5) }}-{{ Str::substr($cupo->hora_fin,0,5) }}</span> </h5>
-                                    <p class="card-text">Paciente: {{$cupo->cita->paciente->persona->nombre}}</p>
+                                    <p class="card-text"> <strong>Paciente:</strong> 
+                                        {{$cupo->cita->paciente->persona->nombre}}
+                                        {{$cupo->cita->paciente->persona->apellido_paterno}}
+                                        {{$cupo->cita->paciente->persona->apellido_materno}}
+                                    </p>
                                     <div>
                                         <span class="text-success">Confirmado</span>
-                                        <a href="{{route('cita.create',['cupo'=>$cupo])}}" class="col">Ver</a>    
+                                        <a href="{{route('cita.show',['cupo'=>$cupo])}}" class="col">Ver</a>    
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +74,7 @@
                                 <h5 class="card-title"><span class="">Hora: {{ Str::substr($cupo->hora_inicio,0,5) }}-{{ Str::substr($cupo->hora_fin,0,5) }}</span> </h5>
                                 <div>
                                     <span class="text-info">Disponible</span>
-                                    <a href="{{route('cita.create',['cupo'=>$cupo])}}" class="col">Reservar</a>    
+                                    {{-- <a href="{{route('cita.create',['cupo'=>$cupo])}}" class="col">Reservar</a>     --}}
                                 </div>
                             </div>
                         </div>

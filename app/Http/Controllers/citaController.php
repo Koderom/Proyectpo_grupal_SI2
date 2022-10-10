@@ -34,13 +34,23 @@ class citaController extends Controller
         $cita->doctor_id = $doctor->id;
         $cita->paciente_id = $request->input('paciente');
         $cita->save();
-        return $cita;
+        $agenda = $cupo->agenda;
+        return redirect()->route('agenda.ver-cupos',['agenda'=>$agenda, 'doctor'=>$doctor]);
+        //return view('Agenda.ver-cupos',['doctor'=>$doctor, 'agenda'=>$agenda, 'Cupos'=>$Cupos]);
     }
-    public function confirmarCita(){
-
+    public function confirmarCita(cupo $cupo){
+        $cupo->estado = 'C';
+        $cita = $cupo->cita;
+        $cita->administrativo_id = '1';
+        $cita->confirmado = true;
+        $agenda = $cupo->agenda;
+        $doctor = $agenda->doctor;
+        $cita->save();
+        $cupo->save();
+        return redirect()->route('agenda.ver-cupos',['agenda'=>$agenda, 'doctor'=>$doctor]);
     }
-    public function storeConfirmarCita(){
-        
+    public function show(Cupo $cupo){
+        return view('Cita.show',['cupo'=>$cupo]);
     }
     public function reservarCitaPaciente(){
         $Especialidades = especialidad::all();
@@ -61,7 +71,7 @@ class citaController extends Controller
     }
     public function verCupo(Request $request){
         $agenda = agenda::find($request->input('agenda'));
-        $Cupos = $agenda->cupo;
+        $Cupos = $agenda->cupo->where('estado','=','D');
         return view('CitaPaciente.cupo',['Cupos'=>$Cupos]);
     }
     public function confirmarReserva(Request $request){
@@ -70,6 +80,7 @@ class citaController extends Controller
         $cita->fecha_cita = $cupo->agenda->fecha;
         $cita->hora_cita = $cupo->hora_inicio;
         $cita->confirmado = false;
+        $cita->motivo = $request->input('motivo');
         $cupo->estado = 'R';
         $cita->cupo_id = $cupo->id;
         $cita->paciente_id = '1';//arreglas el inicio de sesion
@@ -92,6 +103,10 @@ class citaController extends Controller
         $Cupos = cupo::where('agenda_id','=',$agenda->id)->orderBy('id')->get();
         return view('CitaDoctor.verAgenda',['doctor'=>$doctor, 'agenda'=>$agenda, 'Cupos'=>$Cupos]);
     }
-
+    public function verMisCitas(){
+        $paciente = paciente::find(1);
+        $misCitas = $paciente->cita;
+        return view('CitaPaciente.misCitas',['Citas'=>$misCitas, 'paciente'=>$paciente]);
+    }
 }
 ;

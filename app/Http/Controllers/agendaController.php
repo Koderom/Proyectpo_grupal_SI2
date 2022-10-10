@@ -56,6 +56,4 @@ class agendaController extends Controller
         $Cupos = cupo::where('agenda_id','=',$agenda->id)->orderBy('id')->get();
         return view('Agenda.ver-cupos',['doctor'=>$doctor, 'agenda'=>$agenda, 'Cupos'=>$Cupos]);
     }
-
-
 }

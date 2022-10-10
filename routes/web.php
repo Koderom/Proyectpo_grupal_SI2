@@ -71,8 +71,9 @@ Route::controller(citaController::class)->group(function(){
     Route::get('/cita/index/{cupo}','index')->name('cita.index');
     Route::get('/cita/create/{cupo}','create')->name('cita.create');
     Route::post('/cita/store/{cupo}','store')->name('cita.store');
-    Route::get('/cita/create-confirmar/{cupo}','confirmarCita')->name('cita.create-confirmar');
-    Route::post('/cita/store-confirmar/{cupo}','storeConfirmarCita')->name('cita.store-confirmar');
+    Route::get('/cita/confirmar/{cupo}','confirmarCita')->name('cita.confirmar');
+    Route::get('/cita/show/{cupo}','show')->name('cita.show');
+    //Route::post('/cita/store-confirmar/{cupo}','storeConfirmarCita')->name('cita.store-confirmar');
     // rutas para pacientes
     Route::get('/cita/paciente/reservar','reservarCitaPaciente')->name('cita.paciente.reservar');
     Route::post('/cita/paciente/reservar/store','seleccionarEspecialidad')->name('cita.paciente.reservar.store');
@@ -80,6 +81,7 @@ Route::controller(citaController::class)->group(function(){
     Route::get('/cita/paciente/reservar/ver-agenda','verAgenda')->name('cita.paciente.reservar.agenda');
     Route::get('/cita/paciente/reservar/ver-cupo','verCupo')->name('cita.paciente.reservar.cupo');
     Route::post('/cita/paciente/reservar/confirmar','confirmarReserva')->name('cita.paciente.reservar.confirmar');
+    Route::get('/cita/paciente/mis-citas','verMiscitas')->name('cita.paciente.verCitas');
     //rutas para medico
 
     Route::get('/cita/medico/ver-agenda/{fecha?}','verAgendaMedico')->name('cita.medico.verAgenda');
