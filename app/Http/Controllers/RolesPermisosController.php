@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class RolesPermisosController extends Controller
 {
@@ -121,6 +122,32 @@ class RolesPermisosController extends Controller
     public function destroy(Role $rol)
     {
         $rol->delete();
+        return redirect()->route('roles.index');
+    }
+
+
+    public function revocar(){
+        $Usuarios = User::all();
+        $Roles = Role::all();
+        $usuariosRoles = collect([]);
+        foreach($Usuarios as $usuario) if($usuario->hasAnyRole($Roles)) $usuariosRoles->push($usuario);
+        return view('RolesPermisos.revocar',['Usuarios'=>$usuariosRoles]);
+    }
+    public function revocarRolAUsuario(){
+        $usuario = User::find(request()->input('usuario'));
+        $Roles = Role::all();
+        $rolesUsuario = collect([]);
+        foreach($Roles as $rol){
+            if($usuario->hasRole([$rol->name])) $rolesUsuario->push($rol);
+        }
+        return view('RolesPermisos.revocarRoles',['usuario'=>$usuario, 'Roles'=>$rolesUsuario]);
+    }
+    public function revocarRoles(Request $request){
+        $Roles = Role::all();
+        $usuario = User::find($request->input('usuario'));
+        foreach($Roles as $rol)if($usuario->hasRole($rol->name)) $usuario->removeRole($rol->name);
+        $roles = $request->input('roles');
+        $usuario->assignRole($roles);
         return redirect()->route('roles.index');
     }
 }

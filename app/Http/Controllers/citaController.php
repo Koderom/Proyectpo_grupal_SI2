@@ -65,13 +65,23 @@ class citaController extends Controller
         return view('CitaPaciente.doctor',['Doctores'=>$Doctores]);
     }
     public function verAgenda(Request $request){
+        $mytime= Carbon::now('America/La_Paz'); 
+        $diaActual = $mytime->toDateString();
+
         $doctor = doctor::find($request->input('doctor'));
-        $Agendas = $doctor->agenda;
+        $Agendas = agenda::where('doctor_id',$doctor->id)->where('fecha','>=',$diaActual)->get();
+        //$Agendas = $doctor->agenda;
         return view('CitaPaciente.agenda',['Agendas'=>$Agendas]);
     }
     public function verCupo(Request $request){
+        $mytime= Carbon::now('America/La_Paz'); 
+        $horaActural = $mytime->toTimeString();
         $agenda = agenda::find($request->input('agenda'));
-        $Cupos = $agenda->cupo->where('estado','=','D');
+        //$Cupos = $agenda->cupo->where('estado','=','D');
+        $Cupos = cupo::where('estado','=','D')
+        ->where('agenda_id',$agenda->id)
+        ->where('hora_inicio','>',$horaActural)->get();
+        //foreach($Cupos as $cupo) 
         return view('CitaPaciente.cupo',['Cupos'=>$Cupos]);
     }
     public function confirmarReserva(Request $request){

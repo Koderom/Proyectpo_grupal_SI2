@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Reservar Cita @endsection
+@section('header')Seleccionar usuario @endsection
 
 @section('content')
     <div class="container">
@@ -16,31 +16,27 @@
                         </ul>
                     </div>
                 @endif
-                <form  action="{{route('cita.paciente.reservar.confirmar')}}" method="POST">
+                <form  action="{{route('roles.revocar.usuario')}}" method="GET">
                     @csrf
                     <div class="form-group">
-                        <label for="cupo">Sereccionar horario</label>
-                        <select name="cupo" id="cupo" class="form-control">
-                            @foreach ($Cupos as $cupo)
-                                <option value="{{$cupo->id}}">{{$cupo->hora_inicio}}</option>
+                        <label for="usuario">Usuarios registrados con algun rol</label>
+                        <select name="usuario" id="usuario" class="form-control">
+                            @foreach ($Usuarios as $usuario)
+                                <option value="{{$usuario->id}}">
+                                    {{$usuario->persona->nombre}}
+                                    {{$usuario->persona->apellido_paterno}}
+                                    {{$usuario->persona->apellido_materno}}
+                                </option>
                             @endforeach
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="motivo">Motivo de solicitud de la cita (opcional):</label>
-                        <textarea class="form-control" name="motivo" id="motivo" cols="30" rows="2">
-
-                        </textarea>
-                    </div>
                     </div class="container">
-                        <div class="row px-3">
+                        <div class="row">
                             <button type="submit" class="btn btn-primary col-3">Siguiente</button>
-                            <a href="{{ route('menu') }}"
+                            <a href="{{ route('roles.index') }}"
                                 class="btn btn-danger btn-user btn-block col-3">
                                 Cancelar
                             </a>
                         </div>
-                    </div>
                 </form>
             </div>
         </div>

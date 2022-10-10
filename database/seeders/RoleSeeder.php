@@ -31,12 +31,6 @@ class RoleSeeder extends Seeder
             $user = User::factory()->create([
                 'persona_id'=>$persona->id
             ]);
-            agenda::factory()
-            ->count(5)
-            ->create([
-                'doctor_id'=>$doctor,
-            ]);
-        
         }
         for ($cant=0; $cant < 20; $cant++) { 
             $persona = persona::factory()->create();

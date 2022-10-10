@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Fechas Disponibles @endsection
+@section('header')Reservar Cita @endsection
 
 @section('content')
     <div class="container">
@@ -26,7 +26,15 @@
                             @endforeach
                         </select>
                     </div>
-                      <button type="submit" class="btn btn-primary">Ver Cupos</button>
+                    </div class="container">
+                        <div class="row px-3">
+                            <button type="submit" class="btn btn-primary col-3">Siguiente</button>
+                            <a href="{{ route('menu') }}"
+                                class="btn btn-danger btn-user btn-block col-3">
+                                Cancelar
+                            </a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Seleccionar especialidad @endsection
+@section('header')Reservar Cita @endsection
 
 @section('content')
     <div class="container">
@@ -19,14 +19,22 @@
                 <form  action="{{route('cita.paciente.reservar.store')}}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="especialidad">Especialidades disponibles</label>
+                        <label for="especialidad">Seleccionar especialidad</label>
                         <select name="especialidad" id="especialidad" class="form-control">
                             @foreach ($Especialidades as $especialidad)
                                 <option value="{{$especialidad->id}}">{{$especialidad->nombre}}</option>
                             @endforeach
                         </select>
                     </div>
-                      <button type="submit" class="btn btn-primary">Continuar</button>
+                    </div class="container">
+                        <div class="row px-3">
+                            <button type="submit" class="btn btn-primary col-3">Siguiente</button>
+                            <a href="{{ route('menu') }}"
+                                class="btn btn-danger btn-user btn-block col-3">
+                                Cancelar
+                            </a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

@@ -38,6 +38,10 @@ Route::controller(RolesPermisosController::class)->group(function(){
     Route::get('/roles/edit/{rol}','edit')->name('roles.edit');
     Route::post('/roles/update/{rol}','update')->name('roles.update');
     Route::delete('/roles/destroy/{rol}','destroy')->name('roles.destroy');
+
+    Route::get('/roles/revocar/rol','revocar')->name('roles.revocar');
+    Route::get('/roles/revocar/rol/usuario','revocarRolAUsuario')->name('roles.revocar.usuario');
+    Route::post('/roles/revocar/rol/store','revocarRoles')->name('roles.revocar.store');
 });
 Route::controller(TurnoController::class)->group(function(){
     Route::get('/turno/index','index')->name('turno.index');

@@ -19,24 +19,24 @@
                 @endif
                 <form class="user" action="{{route('agenda.store',['doctor'=>$doctor])}}" method="POST">
                     @csrf
-                    <div class="form-row p-3">
-                        <div class="form-group col-6 ">
+                    <div class="form p-3">
+                        <div class="form-group ">
                             <label for="fecha_agendar">Ingrese una fecha a agendar:</label>
                             <input class="form-control "  type="date" name="fecha_agendar" id="fecha_agendar" value="{{old('fecha_agendar')}}">
                         </div>
-                        <div class="form-group col md-6">
+                        <div class="form-group">
                             <label for="cantidad_cupos">Ingresar la catidad de cupos habilitados:</label>
                             <input class="form-control "  type="number" name="cantidad_cupos" id="cantidad_cupos" value="{{old('cantidad_cupos')}}">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group ">
                             <label for="hora_inicio">Integrese la hora de principio de atencion:</label>
                             <input class="form-control "  type="time" name="hora_inicio" id="hora_inicio" value="{{old('hora_inicio')}}">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group ">
                             <label for="hora_fin">Integrese la hora de finalizacion de atencion</label>
                             <input class="form-control "  type="time" name="hora_fin" id="hora_fin" value="{{old('hora_fin')}}">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group ">
                             <label for="minutos">Intese la catidad de minutos dedicados al paciente:</label>
                             <input class="form-control "  type="number" name="minutos" id="minutos" value="{{old('minutos')}}">
                         </div>

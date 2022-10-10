@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Seleccionar doctor @endsection
+@section('header')Reservar Cita @endsection
 
 @section('content')
     <div class="container">
@@ -19,14 +19,22 @@
                 <form  action="{{route('cita.paciente.reservar.agenda')}}" method="GET">
                     @csrf
                     <div class="form-group">
-                        <label for="doctor">Doctores Disponibles</label>
+                        <label for="doctor">Seleccionar doctor</label>
                         <select name="doctor" id="doctor" class="form-control">
                             @foreach ($Doctores as $doctor)
                                 <option value="{{$doctor->id}}">{{$doctor->persona->nombre}}</option>
                             @endforeach
                         </select>
                     </div>
-                      <button type="submit" class="btn btn-primary">Continuar</button>
+                      </div class="container">
+                            <div class="row px-3">
+                                <button type="submit" class="btn btn-primary col-3">Siguiente</button>
+                                <a href="{{ route('menu') }}"
+                                    class="btn btn-danger btn-user btn-block col-3">
+                                    Cancelar
+                                </a>
+                            </div>
+                        </div>
                 </form>
             </div>
         </div>
