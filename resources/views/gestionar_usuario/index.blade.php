@@ -19,7 +19,7 @@
                                     <thead>
                                         <tr>
                                             <th>Nrº</th>
-                                            <th>CI</th>
+                                            {{-- <th>CI</th> --}}
                                             <th>Nombre</th>
                                             <th>Usuario</th>
                                             <th>Tipo</th>
