@@ -29,7 +29,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>Nrº</th>
-                                            <th>CI</th>
+                                            {{-- <th>CI</th> --}}
                                             <th>Nombre</th>
                                             <th>Correo</th>
                                             <th>Tipo</th>
@@ -46,7 +46,7 @@
                                          
                                             <tr>
                                                 <td>{{ $i++ }}</td>
-                                                <th>{{$usuario->persona->ci}}</th>
+                                                {{-- <th>{{$usuario->persona->ci}}</th> --}}
                                                 <th>{{$usuario->persona->nombre." ".$usuario->persona->apellido_paterno . " " . $usuario->persona->apellido_materno }}</th>
                                                 <th>{{$usuario->email}}</th>
                                                 <th>{{$usuario->persona->tipo}}</th>
