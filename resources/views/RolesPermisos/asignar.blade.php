@@ -18,7 +18,11 @@
                                 </div>
                                 <select name="usuario" id="usuario" class="custom-select">
                                     @foreach ($Usuarios as $usuario)
-                                    <option value="{{$usuario->id}}">{{$usuario->name}}</option>
+                                    <option value="{{$usuario->id}}">
+                                        {{$usuario->persona->nombre}}
+                                        {{$usuario->persona->apellido_paterno}}
+                                        {{$usuario->persona->apellido_materno}}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
