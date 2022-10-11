@@ -22,7 +22,7 @@ return new class extends Migration
             $table->char('sexo');
             $table->unsignedInteger('edad');
             $table->date('fecha_nacimiento');
-            $table->unsignedInteger('telefono');
+            $table->unsignedBigInteger('telefono');
             $table->text('direccion');
             $table->char('tipo');
 
