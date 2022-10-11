@@ -46,7 +46,7 @@ class doctorSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'persona_id'=> $persona->id,
             ]);
-            
+            $usuario->assignRole('doctor');
         }
     }
 }
