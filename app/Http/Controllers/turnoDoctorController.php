@@ -12,9 +12,13 @@ use function PHPUnit\Framework\isEmpty;
 
 class turnoDoctorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function asignar(doctor $doctor){
         $Turnos = Turno::all();
-        $Dias = collect(['Lunes','Martes','Mercoles','Jueves','Viernes','Sabado','Domingo']);
+        $Dias = collect(['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo']);
         $DiasLibres = collect([]);
         foreach($Dias as $dia){
             $turnoOcupado = turnoDoctor::where('dia_atencion',$dia)->where('doctor_id',$doctor->id)->get();

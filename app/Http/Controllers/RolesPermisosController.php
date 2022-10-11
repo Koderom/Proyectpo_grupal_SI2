@@ -10,6 +10,10 @@ use Symfony\Contracts\Service\Attribute\Required;
 
 class RolesPermisosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

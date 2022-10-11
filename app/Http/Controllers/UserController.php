@@ -17,29 +17,27 @@ class UserController extends Controller
     {
         return view('login');
     }
-    public function login(Request $request)
-    {
-        $validateData = $request->validate([
-            'name'=> ['required', 'max:50'],
-            'password'=> ['required'],
+    public function login(){
+        $credenciales = request()->validate([
+            'email' => 'required|email|string',
+            'password'=> 'required|string'
         ]);
-        $usuario = User::where('name',$request-> name)->first();
-        if (is_null($usuario)) {
-            return back()->withErrors(['error' => 'el usuario no existe']);
+        if(Auth::attempt($credenciales, true)){
+            request()->session()->regenerate();
+            return redirect()->route('home');
         }
-        if (Auth::guard('admin')->attempt(['name'=>$request->name,'password'=>$request->password])) {
-            return redirect()->route('menu');
-        }
-        return back()->withErrors(['Error' => 'la contraseña es incorrecta']);
+        return redirect()->route('login');
     }
     
     public function menu()
     {
         return view('menu');
     }
-    public function logout(){
-        Auth::guard('admin')->logout();
-        return redirect()->route('login.view');
+    public function logout(Request $request ){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 
     public function index()

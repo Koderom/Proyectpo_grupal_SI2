@@ -45,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('menu')}}">
+                <a class="nav-link" href="{{route('home')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Menu</span></a>
             </li>
@@ -68,13 +68,30 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
-
+                        @can('ver.usuario')
                         <a class="collapse-item" href="{{asset('/usuario')}}">Usuario</a>
+                        @endcan
+                        
+                        @can('ver.roles')
                         <a class="collapse-item" href="{{route('roles.index')}}">Roles y permiso</a>
+                        @endcan
+                        
+                        @can('ver.administrativo')
                         <a class="collapse-item" href="{{asset('/administrativo')}}">Personal Administrativo</a>
+                        @endcan
+                        
+                        @can('ver.medico')
                         <a class="collapse-item" href="{{asset('/medico')}}">Medico</a>
+                        @endcan
+                        
+                        @can('ver.paciente')
                         <a class="collapse-item" href="{{asset('/paciente')}}">Paciente</a>
+                        @endcan
+                        
+                        @can('ver.bitacora')
                         <a class="collapse-item" href="{{asset('/bitacora')}}">Bitacora</a>
+                        @endcan
+                        
                         
                     </div>
                 </div>
@@ -91,10 +108,22 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
+                        @can('ver.documentacion')
                         <a class="collapse-item" href="{{asset('/documentacion')}}">Documentacion</a>
+                        @endcan
+                        
+                        @can('ver.historial-clinico')
                         <a class="collapse-item" href="{{asset('/historial;')}}">Historial Clinico</a>
+                        @endcan
+                        
+                        @can('ver.hoja-de-consulta')
                         <a class="collapse-item" href="{{asset('/consulta')}}">Hoja de consulta</a>
+                        @endcan
+                        
+                        @can('ver.receta')
                         <a class="collapse-item" href="{{asset('/recetas')}}">Recetas</a>
+                        @endcan
+                        
                         
                     </div>
                 </div>
@@ -110,13 +139,34 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
                         
+                        
+                        @can('ver.agenda')
                         <a class="collapse-item" href="{{route('agenda.index')}}">Agenda</a>
+                        @endcan
+                        
+                        @can('ver.recervar cita')
                         <a class="collapse-item" href="{{route('cita.paciente.reservar')}}">Resevar Cita</a>
+                        @endcan
+                        
+                        @can('ver.mis-agendas')
                         <a class="collapse-item" href="{{route('cita.paciente.verCitas')}}">Mis citas</a>
+                        @endcan
+                        
+                        @can('ver.horarios')
                         <a class="collapse-item" href="{{route('cita.medico.verAgenda')}}">Mi agenda</a>
+                        @endcan
+                        
+                        {{-- @can('ver.turnos')
                         <a class="collapse-item" href="{{asset('/Horario')}}">Horarios</a>
+                        @endcan --}}
+                        
+                        @can('ver.turnos')
                         <a class="collapse-item" href="{{route('turno.index')}}">Turnos</a>
+                        @endcan
+                        
+                        @can('ver.especialidades')
                         <a class="collapse-item" href="{{asset('/consulta')}}">Especialidades</a>
+                        @endcan
                         
                         
                     </div>
@@ -132,10 +182,24 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
+                        
+                        @can('ver.sectores')
                         <a class="collapse-item" href="{{asset('/sectores')}}">Sectores</a>
+                        @endcan
+                        
+                        @can('ver.quirofano')
                         <a class="collapse-item" href="{{asset('/quirofano')}}">Quirofano</a>
+                        @endcan
+                        
+                        @can('ver.consultorio')
                         <a class="collapse-item" href="{{asset('/consultorio')}}">Consultorio</a>
+                        @endcan
+
+                        @can('ver.internacion')
                         <a class="collapse-item" href="{{asset('/internacion')}}">Internacion</a>
+                        @endcan
+                        
+
                     </div>
                 </div>
             </li>

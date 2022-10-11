@@ -10,6 +10,10 @@ use Symfony\Contracts\Service\Attribute\Required;
 
 class TurnoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $Turnos = Turno::all();
         //$TurnoDoctors = turnoDoctor::all();

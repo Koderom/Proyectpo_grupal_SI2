@@ -62,7 +62,7 @@
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp" name="name"
+                                                id="exampleInputEmail" aria-describedby="emailHelp" name="email"
                                                 placeholder="Introducir usuario..." required>
                                         </div>
                                         <div class="form-group">

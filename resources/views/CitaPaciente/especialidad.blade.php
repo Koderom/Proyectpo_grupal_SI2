@@ -29,7 +29,7 @@
                     </div class="container">
                         <div class="row px-3">
                             <button type="submit" class="btn btn-primary col-3">Siguiente</button>
-                            <a href="{{ route('menu') }}"
+                            <a href="{{ route('home') }}"
                                 class="btn btn-danger btn-user btn-block col-3">
                                 Cancelar
                             </a>

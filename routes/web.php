@@ -92,13 +92,20 @@ Route::controller(citaController::class)->group(function(){
     Route::get('/cita/medico/ver-agenda/{fecha?}','verAgendaMedico')->name('cita.medico.verAgenda');
 });
 /*-----------------------GP----------------------------------------------------- */
-Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
-Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('guest:admin');
+Route::get('/',function(){ return redirect()->route('login'); })->name('welcome');
+Route::view('/menu', 'menu')->name('home')->middleware('auth');
+Route::view('/login','login')->name('login')->middleware('guest');
 
-Route::middleware('auth:admin')->group(function(){
-    Route::post('/logout',[UserController::class,'logout'])->name('logout');
+Route::post('/login', [UserController::class, 'login']);
+
+//Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
+//Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('guest:admin');
+
+Route::middleware('auth')->group(function(){
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+    //Route::post('/logout',[UserController::class,'logout'])->name('logout');
  
-    Route::get('/menu', [UserController::class, 'menu'])->name("menu");
+    //Route::get('/menu', [UserController::class, 'menu'])->name("menu");
 
     // Gestionar Usuario
     Route::get('/usuario', [UserController::class, 'index'])->name('usuario.index');  

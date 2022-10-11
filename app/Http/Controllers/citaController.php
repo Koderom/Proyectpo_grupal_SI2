@@ -15,6 +15,10 @@ use PhpParser\Node\Expr\FuncCall;
 
 class citaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function create(cupo $cupo){
         $Pacientes = paciente::all();
         return view('Cita.create',['cupo'=>$cupo, 'Pacientes'=>$Pacientes]);
@@ -28,7 +32,9 @@ class citaController extends Controller
         $cupo->estado = 'R';
         $cupo->update();
         $cita->cupo_id = $cupo->id;
-        $cita->administrativo_id = '1'; //resolver usuario autenticado Auth
+        $personaUsuario = Auth::user()->persona;
+        if($personaUsuario->tipo[0] != 'A') return "ERROR El usuario no es un Administrativo";
+        $cita->administrativo_id = $personaUsuario->administrativo; //resolver usuario autenticado Auth
         $doctor = $cupo->agenda->doctor;
         $cita->especialidad_id = $doctor->especialidad->id;
         $cita->doctor_id = $doctor->id;
@@ -41,7 +47,9 @@ class citaController extends Controller
     public function confirmarCita(cupo $cupo){
         $cupo->estado = 'C';
         $cita = $cupo->cita;
-        $cita->administrativo_id = '1';
+        $personaUsuario = Auth::user()->persona;
+        if($personaUsuario->tipo[0] != 'A') return "ERROR El usuario no es un administrativo";
+        $cita->administrativo_id = $personaUsuario->administrativo;
         $cita->confirmado = true;
         $agenda = $cupo->agenda;
         $doctor = $agenda->doctor;
@@ -78,9 +86,18 @@ class citaController extends Controller
         $horaActural = $mytime->toTimeString();
         $agenda = agenda::find($request->input('agenda'));
         //$Cupos = $agenda->cupo->where('estado','=','D');
-        $Cupos = cupo::where('estado','=','D')
-        ->where('agenda_id',$agenda->id)
-        ->where('hora_inicio','>',$horaActural)->get();
+        $fechaActual = $mytime->toDateString();
+        if($agenda->fecha == $fechaActual){
+            $Cupos = cupo::where('estado','=','D')
+            ->where('agenda_id',$agenda->id)
+            ->where('hora_inicio','>',$horaActural)->get();    
+        }else{
+            $Cupos = cupo::where('estado','=','D')
+            ->where('agenda_id',$agenda->id)->get();
+            
+        }
+        
+        
         //foreach($Cupos as $cupo) 
         return view('CitaPaciente.cupo',['Cupos'=>$Cupos]);
     }
@@ -93,12 +110,14 @@ class citaController extends Controller
         $cita->motivo = $request->input('motivo');
         $cupo->estado = 'R';
         $cita->cupo_id = $cupo->id;
-        $cita->paciente_id = '1';//arreglas el inicio de sesion
+        $personaUsuario = Auth::user()->persona;
+        if($personaUsuario->tipo[0] != 'P') return "ERROR El usuario no es un paciente";
+        $cita->paciente_id = $personaUsuario->paciente;//arreglas el inicio de sesion
         $cita->especialidad_id = $cupo->agenda->doctor->especialidad_id;
         $cita->doctor_id = $cupo->agenda->doctor->id;
         $cupo->update();
         $cita->save();
-        return redirect()->route('menu');
+        return redirect()->route('home');
         
     }
     public function verAgendaMedico(){
@@ -107,14 +126,18 @@ class citaController extends Controller
             $mytime= Carbon::now('America/La_Paz'); 
             $fecha = $mytime->toDateString();
         }
-        $doctor = doctor::find('1');
+        $personaUsuario = Auth::user()->persona;
+        if($personaUsuario->tipo[0] != 'D') return "ERROR El usuario no es un doctor";
+        $doctor = $personaUsuario->doctor;
         $agenda = agenda::where('fecha','=',$fecha)->where('doctor_id','=',$doctor->id)->first();
         if($agenda == null) $agenda = agenda::where('doctor_id','=',$doctor->id)->first();
         $Cupos = cupo::where('agenda_id','=',$agenda->id)->orderBy('id')->get();
         return view('CitaDoctor.verAgenda',['doctor'=>$doctor, 'agenda'=>$agenda, 'Cupos'=>$Cupos]);
     }
     public function verMisCitas(){
-        $paciente = paciente::find(1);
+        $personaUsuario = Auth::user()->persona;
+        if($personaUsuario->tipo[0] != 'P') return "ERROR El usuario no es un paciente";
+        $paciente = $personaUsuario->paciente;
         $misCitas = $paciente->cita;
         return view('CitaPaciente.misCitas',['Citas'=>$misCitas, 'paciente'=>$paciente]);
     }

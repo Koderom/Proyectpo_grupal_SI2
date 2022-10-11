@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="p-5">
-                        <h1>Editar persmisos de {{$rol->name}}</h1>
+                        <h1>Editar permisos de {{$rol->name}}</h1>
                             {{ csrf_field() }}
                             @if ($errors->any())
                                 <div class="alert alert-danger">

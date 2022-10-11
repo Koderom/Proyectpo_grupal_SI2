@@ -19,7 +19,7 @@
                 <form  action="{{route('cita.paciente.reservar.confirmar')}}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="cupo">Sereccionar horario</label>
+                        <label for="cupo">Seleccionar horario</label>
                         <select name="cupo" id="cupo" class="form-control">
                             @foreach ($Cupos as $cupo)
                                 <option value="{{$cupo->id}}">{{$cupo->hora_inicio}}</option>
@@ -35,7 +35,7 @@
                     </div class="container">
                         <div class="row px-3">
                             <button type="submit" class="btn btn-primary col-3">Siguiente</button>
-                            <a href="{{ route('menu') }}"
+                            <a href="{{ route('home') }}"
                                 class="btn btn-danger btn-user btn-block col-3">
                                 Cancelar
                             </a>

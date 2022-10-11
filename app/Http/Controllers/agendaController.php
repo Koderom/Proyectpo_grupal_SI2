@@ -17,6 +17,10 @@ use function PHPUnit\Framework\returnSelf;
 
 class agendaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $Doctores = doctor::all();
         return view('Agenda.index',['Doctores'=>$Doctores]);
@@ -41,7 +45,7 @@ class agendaController extends Controller
             'minutos'=>'required',
         ]);
         /*------------Validaciones-------------- */
-        $Dias = collect(['Lunes','Martes','Mercoles','Jueves','Viernes','Sabado','Domingo']);
+        $Dias = collect(['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo']);
         $fechaParaAgendar = Carbon::createFromDate($request->input('fecha_agendar'));
         $hoy = Carbon::now('America/La_Paz');
         $indiceDia = $fechaParaAgendar->weekday();
@@ -51,7 +55,7 @@ class agendaController extends Controller
         $existeAgenda = agenda::where('doctor_id',$doctor->id)->where('fecha',$fechaParaAgendar->toDateString())->get();
         if(!$existeAgenda->isEmpty()) return "El doctor ya tiene una agenda para este dia";
         $turno = Turno::where('id',$existeDia->first()->turno_id)->first();
-        if($turno->hora_inicio > $request->input('hora_inicio')) return "El horario de comienzo de atencion es menor al horario de ingreso del doctor";
+        if($turno->hora_inicio >= $request->input('hora_inicio')) return "El horario de comienzo de atencion es menor al horario de ingreso del doctor";
         $hora_ini = Carbon::createFromTimeString($turno->hora_inicio);
         $hora_fn = Carbon::createFromTimeString($turno->hora_fin);
         if($hora_ini->greaterThan($hora_fn)) $hora_fn->addDay(1);

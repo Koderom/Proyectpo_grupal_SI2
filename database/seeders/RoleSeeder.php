@@ -24,7 +24,9 @@ class RoleSeeder extends Seeder
     public function run()
     {
         for ($cant=0; $cant < 20; $cant++) { 
-            $persona = persona::factory()->create();
+            $persona = persona::factory()->create([
+                'tipo'=>'D'
+            ]);
             $doctor = doctor::factory()->create([
                 'persona_id'=>$persona->id
             ]);
@@ -33,7 +35,9 @@ class RoleSeeder extends Seeder
             ]);
         }
         for ($cant=0; $cant < 20; $cant++) { 
-            $persona = persona::factory()->create();
+            $persona = persona::factory()->create([
+                'tipo'=>'P'
+            ]);
             $doctor = paciente::factory()->create([
                 'persona_id'=>$persona->id
             ]);
@@ -70,7 +74,7 @@ class RoleSeeder extends Seeder
 
         Permission::create(['name'=>'ver.sectores']);
         Permission::create(['name'=>'ver.quirofano']);
-        Permission::create(['name'=>'ver.consultario']);
+        Permission::create(['name'=>'ver.consultorio']);
         Permission::create(['name'=>'ver.internacion']);
 
         Permission::create(['name'=>'ver.reportes']);

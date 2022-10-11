@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="p-5">
-                            <h1>Registrat nuevo Turno</h1>
+                            <h1>Registra nuevo Turno</h1>
                                 {{ csrf_field() }}
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -28,7 +28,7 @@
                                         <input class="form-control form-control-user"  type="text" name="descripcion" id="descripcion" value="{{old('descripcion')}}">
                                     </div>
                                     <div class="form-group col md-6">
-                                        <label for="hora_inicio">El turno empieza desde::</label>
+                                        <label for="hora_inicio">El turno empieza desde:</label>
                                         <input class="form-control form-control-user"  type="time" name="hora_inicio" id="hora_inicio" value="{{old('hora_inicio')}}">
                                     </div>
                                     <div class="form-group col-md-6">
