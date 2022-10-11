@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\agenda;
 use App\Models\cupo;
 use App\Models\doctor;
-use App\Models\Turno;
+use App\Models\turno;
 use App\Models\turnoDoctor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -54,7 +54,7 @@ class agendaController extends Controller
         if($existeDia->isEmpty()) return "El doctor no tiene asignado un turno para este dia";
         $existeAgenda = agenda::where('doctor_id',$doctor->id)->where('fecha',$fechaParaAgendar->toDateString())->get();
         if(!$existeAgenda->isEmpty()) return "El doctor ya tiene una agenda para este dia";
-        $turno = Turno::where('id',$existeDia->first()->turno_id)->first();
+        $turno = turno::where('id',$existeDia->first()->turno_id)->first();
         if($turno->hora_inicio >= $request->input('hora_inicio')) return "El horario de comienzo de atencion es menor al horario de ingreso del doctor";
         $hora_ini = Carbon::createFromTimeString($turno->hora_inicio);
         $hora_fn = Carbon::createFromTimeString($turno->hora_fin);

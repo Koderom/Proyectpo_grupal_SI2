@@ -37,7 +37,7 @@
                                       <label class="input-group-text" for="inputGroupSelect01">Turnos</label>
                                     </div>
                                     <select name="turno" id="turno" class="custom-select">
-                                        @foreach ($Turnos as $turno)
+                                        @foreach ($turnos as $turno)
                                         <option value="{{$turno->id}}">{{$turno->descripcion}}</option>
                                         @endforeach
                                     </select>

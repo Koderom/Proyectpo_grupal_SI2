@@ -20,7 +20,7 @@
                         <th>hora de finalizacion</th>    
                         <th>Opciones</th>    
                     </tr>
-                    @foreach ($Turnos as $turno)
+                    @foreach ($turnos as $turno)
                     <tr>
                         <td>{{$turno->id}}</td>
                         <td>{{$turno->descripcion}}</td>

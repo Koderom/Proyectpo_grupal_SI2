@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\doctor;
-use App\Models\Turno;
+use App\Models\turno;
 use App\Models\turnoDoctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +17,7 @@ class turnoDoctorController extends Controller
         $this->middleware('auth');
     }
     public function asignar(doctor $doctor){
-        $Turnos = Turno::all();
+        $turnos = turno::all();
         $Dias = collect(['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo']);
         $DiasLibres = collect([]);
         foreach($Dias as $dia){
@@ -25,12 +25,12 @@ class turnoDoctorController extends Controller
             if($turnoOcupado->isEmpty()) $DiasLibres->push($dia);
         }
         if($DiasLibres->isEmpty()) return "el doctor no tiene dias libres para asigar turnos, libere uno o mas dias para asignar un nuevo turno";
-        return view('TurnoDoctor.asignar',['doctor'=>$doctor, 'Turnos'=>$Turnos, 'Dias'=>$DiasLibres]);
+        return view('TurnoDoctor.asignar',['doctor'=>$doctor, 'turnos'=>$turnos, 'Dias'=>$DiasLibres]);
     }
     public function store(Request $request, doctor $doctor){
         
         $dias = $request->input('dias');
-        $turno = Turno::find($request->input('turno'));
+        $turno = turno::find($request->input('turno'));
         foreach ($dias as $dia) {
             $turnoDoctor = new turnoDoctor();
             $turnoDoctor->doctor_id = $doctor->id;

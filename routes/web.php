@@ -6,7 +6,7 @@ use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\agendaController;
 use App\Http\Controllers\citaController;
 use App\Http\Controllers\pacienteController;
-use App\Http\Controllers\TurnoController;
+use App\Http\Controllers\turnoController;
 use App\Http\Controllers\turnoDoctorController;
 use App\Http\Controllers\UserController;
 use App\Models\turnoDoctor;
@@ -43,7 +43,7 @@ Route::controller(RolesPermisosController::class)->group(function(){
     Route::get('/roles/revocar/rol/usuario','revocarRolAUsuario')->name('roles.revocar.usuario');
     Route::post('/roles/revocar/rol/store','revocarRoles')->name('roles.revocar.store');
 });
-Route::controller(TurnoController::class)->group(function(){
+Route::controller(turnoController::class)->group(function(){
     Route::get('/turno/index','index')->name('turno.index');
     Route::get('/turno/create','create')->name('turno.create');
     Route::post('/turno/store','store')->name('turno.store');
