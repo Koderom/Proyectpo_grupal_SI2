@@ -49,7 +49,7 @@ class citaController extends Controller
         $cita = $cupo->cita;
         $personaUsuario = Auth::user()->persona;
         if($personaUsuario->tipo[0] != 'A') return "ERROR El usuario no es un administrativo";
-        $cita->administrativo_id = $personaUsuario->administrativo;
+        $cita->administrativo_id = $personaUsuario->administrativo->id;
         $cita->confirmado = true;
         $agenda = $cupo->agenda;
         $doctor = $agenda->doctor;
@@ -114,7 +114,7 @@ class citaController extends Controller
         $cita->cupo_id = $cupo->id;
         $personaUsuario = Auth::user()->persona;
         if($personaUsuario->tipo[0] != 'P') return "ERROR El usuario no es un paciente";
-        $cita->paciente_id = $personaUsuario->paciente;//arreglas el inicio de sesion
+        $cita->paciente_id = $personaUsuario->paciente->id;//arreglas el inicio de sesion
         $cita->especialidad_id = $cupo->agenda->doctor->especialidad_id;
         $cita->doctor_id = $cupo->agenda->doctor->id;
         $cupo->update();
