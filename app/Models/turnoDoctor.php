@@ -15,6 +15,6 @@ class turnoDoctor extends Model
         return $this->belongsTo(doctor::class);
     }
     public function turno(){
-        return $this->belongsTo(Turno::class);
+        return $this->belongsTo(turno::class);
     }
 }
