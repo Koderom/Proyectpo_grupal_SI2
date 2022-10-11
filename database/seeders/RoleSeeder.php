@@ -23,28 +23,28 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        for ($cant=0; $cant < 20; $cant++) { 
-            $persona = persona::factory()->create([
-                'tipo'=>'D'
-            ]);
-            $doctor = doctor::factory()->create([
-                'persona_id'=>$persona->id
-            ]);
-            $user = User::factory()->create([
-                'persona_id'=>$persona->id
-            ]);
-        }
-        for ($cant=0; $cant < 20; $cant++) { 
-            $persona = persona::factory()->create([
-                'tipo'=>'P'
-            ]);
-            $doctor = paciente::factory()->create([
-                'persona_id'=>$persona->id
-            ]);
-            $user = User::factory()->create([
-                'persona_id'=>$persona->id
-            ]);
-        }
+        // for ($cant=0; $cant < 20; $cant++) { 
+        //     $persona = persona::factory()->create([
+        //         'tipo'=>'D'
+        //     ]);
+        //     $doctor = doctor::factory()->create([
+        //         'persona_id'=>$persona->id
+        //     ]);
+        //     $user = User::factory()->create([
+        //         'persona_id'=>$persona->id
+        //     ]);
+        // }
+        // for ($cant=0; $cant < 20; $cant++) { 
+        //     $persona = persona::factory()->create([
+        //         'tipo'=>'P'
+        //     ]);
+        //     $doctor = paciente::factory()->create([
+        //         'persona_id'=>$persona->id
+        //     ]);
+        //     $user = User::factory()->create([
+        //         'persona_id'=>$persona->id
+        //     ]);
+        // }
         
         //User::factory()->count(5)->create();
         
