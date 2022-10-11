@@ -144,7 +144,7 @@
                         <a class="collapse-item" href="{{route('agenda.index')}}">Agenda</a>
                         @endcan
                         
-                        @can('ver.recervar cita')
+                        @can('ver.reservar cita')
                         <a class="collapse-item" href="{{route('cita.paciente.reservar')}}">Resevar Cita</a>
                         @endcan
                         
