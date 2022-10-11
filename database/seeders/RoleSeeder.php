@@ -65,7 +65,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'ver.receta']);
 
         Permission::create(['name'=>'ver.agenda']);
-        Permission::create(['name'=>'ver.recervar cita']);
+        Permission::create(['name'=>'ver.reservar cita']);
         Permission::create(['name'=>'ver.mis-citas']);
         Permission::create(['name'=>'ver.mis-agendas']);
         Permission::create(['name'=>'ver.horarios']);

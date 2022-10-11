@@ -29,7 +29,7 @@
 </div>
 <div class="container-fluid">
     <a href="{{ route('roles.create') }}" class="btn btn-success btn-icon-split"> <span class="text">Crear nuevo rol</span> </a>
-    <a href="{{ route('roles.asignar-rol') }}" class="btn btn-success btn-icon-split"><span class="text">Asignar rol a usaurio</span></a>    
+    <a href="{{ route('roles.asignar-rol') }}" class="btn btn-success btn-icon-split"><span class="text">Asignar rol a usuario</span></a>    
     <a href="{{ route('roles.revocar') }}" class="btn btn-info btn-icon-split"><span class="text">Editar roles del usuario</span></a>    
     <div class="card shadow mb-4">
         <div class="card-header py-3">

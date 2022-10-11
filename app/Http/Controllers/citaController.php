@@ -34,7 +34,7 @@ class citaController extends Controller
         $cita->cupo_id = $cupo->id;
         $personaUsuario = Auth::user()->persona;
         if($personaUsuario->tipo[0] != 'A') return "ERROR El usuario no es un Administrativo";
-        $cita->administrativo_id = $personaUsuario->administrativo; //resolver usuario autenticado Auth
+        $cita->administrativo_id = $personaUsuario->administrativo->id; //resolver usuario autenticado Auth
         $doctor = $cupo->agenda->doctor;
         $cita->especialidad_id = $doctor->especialidad->id;
         $cita->doctor_id = $doctor->id;
@@ -69,6 +69,8 @@ class citaController extends Controller
         return redirect()->route('cita.paciente.reservar.doctor',['especialidad'=>$especialidad]);
     }
     public function verDoctorEspecialidad(especialidad $especialidad){
+        $persona = Auth::user()->persona;
+        if($persona->tipo[0] != 'P') return "El actual no es un paciente, opcion reservada solo para el paciente";
         $Doctores = $especialidad->doctor;
         return view('CitaPaciente.doctor',['Doctores'=>$Doctores]);
     }

@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Editar permimiso para: {{$rol->name}}@endsection
+@section('header')Editar permiso para: {{$rol->name}}@endsection
 
 @section('content')
 <div class="container">
