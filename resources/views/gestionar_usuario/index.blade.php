@@ -61,7 +61,7 @@
                                                         <a href="{{route('paciente.show',$usuario->persona_id)}}" class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
                                                         @endif
                                                         @if($usuario->persona->tipo[0]=='D')
-                                                        <a href="{{route('paciente.show',$usuario->persona_id)}}" class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
+                                                        <a href="#" class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
                                                         @endif
                                                         
                                                         <a href="{{route('usuario.edit',$usuario->persona_id)}}"
