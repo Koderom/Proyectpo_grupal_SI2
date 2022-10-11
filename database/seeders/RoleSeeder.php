@@ -48,6 +48,7 @@ class RoleSeeder extends Seeder
         
         //User::factory()->count(5)->create();
         
+        
         $role1 = Role::create(['name'=>'administrador']);
         $role2 = Role::create(['name'=>'doctor']);
         $role3 = Role::create(['name'=>'paciente']);

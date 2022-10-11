@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
             administrativoSeeder::class,
             especialidadSeeder::class,
             RoleSeeder::class,
-            
+            pacienteSeeder::class,
+            doctorSeeder::class
         ]);
 
     }
