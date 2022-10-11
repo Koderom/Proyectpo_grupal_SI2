@@ -19,10 +19,10 @@ class turnoController extends Controller
         $turnos = turno::all();
         //$TurnoDoctors = turnoDoctor::all();
         $Doctores = doctor::all();
-        return view('turno.index',['turnos'=>$turnos, 'Doctores'=>$Doctores]);
+        return view('Turno.index',['turnos'=>$turnos, 'Doctores'=>$Doctores]);
     }
     public function create(){
-        return view('turno.create');
+        return view('Turno.create');
     }
     public function store(Request $request){
         $request->validate([
@@ -38,7 +38,7 @@ class turnoController extends Controller
         return redirect()->route('turno.index');
     }
     public function show(turno $turno){
-        return view('turno.show',['turno'=>$turno]);
+        return view('Turno.show',['turno'=>$turno]);
     }
     public function edit(turno $turno){
         return view('Turno.edit', ['turno'=>$turno]);
