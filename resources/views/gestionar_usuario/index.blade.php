@@ -31,7 +31,7 @@
                                             <th>Nrº</th>
                                             <th>CI</th>
                                             <th>Nombre</th>
-                                            <th>Usuario</th>
+                                            <th>Correo</th>
                                             <th>Tipo</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -48,7 +48,7 @@
                                                 <td>{{ $i++ }}</td>
                                                 <th>{{$usuario->persona->ci}}</th>
                                                 <th>{{$usuario->persona->nombre." ".$usuario->persona->apellido_paterno . " " . $usuario->persona->apellido_materno }}</th>
-                                                <th>{{$usuario->name}}</th>
+                                                <th>{{$usuario->email}}</th>
                                                 <th>{{$usuario->persona->tipo}}</th>
                                                 <td>
                                                     <form action="{{route('usuario.destroy',$usuario->persona_id)}}" method="post">
