@@ -81,7 +81,7 @@
                         @endcan
                         
                         @can('ver.medico')
-                        <a class="collapse-item" href="{{asset('/medico')}}">Medico</a>
+                        <a class="collapse-item" href="{{asset('/doctores')}}">Medico</a>
                         @endcan
                         
                         @can('ver.paciente')
@@ -319,8 +319,8 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     @yield('usuario')
-                                </span>
-                                <img class="img-profile rounded-circle"
+                                </span >
+                                <img class="img-profile rounded-cir{cle"
                                     src="{{asset('/adminTemplate/img/sesion.png')}}">
                             </a>
                             <!-- Dropdown - User Information -->
