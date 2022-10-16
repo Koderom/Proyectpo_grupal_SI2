@@ -4,6 +4,7 @@ use App\Http\Controllers\RolesPermisosController;
 
 use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\agendaController;
+use App\Http\Controllers\bitacoraController;
 use App\Http\Controllers\citaController;
 use App\Http\Controllers\pacienteController;
 use App\Http\Controllers\turnoController;
@@ -70,7 +71,7 @@ Route::controller(agendaController::class)->group(function(){
     Route::get('/agenda/ver-cupos/{doctor}/{agenda}','verCupos')->name('agenda.ver-cupos');
     
 });
-/*-----------------------GP----------------------------------------------------- */
+
 Route::controller(citaController::class)->group(function(){
     //rutas para administrativos
     Route::get('/cita/index/{cupo}','index')->name('cita.index');
@@ -90,6 +91,11 @@ Route::controller(citaController::class)->group(function(){
     //rutas para medico
 
     Route::get('/cita/medico/ver-agenda/{fecha?}','verAgendaMedico')->name('cita.medico.verAgenda');
+});
+
+Route::controller(bitacoraController::class)->group(function(){
+    Route::get('/bitacora','index')->name('bitacora.index');
+    Route::get('/bitacora/show/{bitacora}','show')->name('bitacora.show');
 });
 /*-----------------------GP----------------------------------------------------- */
 Route::get('/',function(){ return redirect()->route('login'); })->name('welcome');
