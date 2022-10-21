@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\turno;
+use App\Observers\turnoObserver;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -15,6 +17,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
+    protected $observers = [
+        turno::class => [turnoObserver::class],
+    ];
+    
     public function register()
     {
         //
@@ -30,5 +37,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         Carbon::setLocale('es');
         setlocale(LC_TIME, 'es_ES.utf8');
+
+        turno::observe(turnoObserver::class);
     }
 }

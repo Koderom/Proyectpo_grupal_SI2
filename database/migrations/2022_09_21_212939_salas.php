@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('nro_sala');
             $table->unsignedInteger('capacidad');
+            $table->char('tipo_sala');
 
             $table->unsignedBigInteger('sector_id');
             $table->foreign('sector_id')->references('id')->on('sectors');
