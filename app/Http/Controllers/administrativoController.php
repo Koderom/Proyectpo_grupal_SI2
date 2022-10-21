@@ -101,7 +101,7 @@ class administrativoController extends Controller
             'sexo'=>'required',
             'edad'=>'required',
             'fecha_nacimiento'=>'required',
-            'telefono'=>'required',
+            'telefono'=>'requi  red',
             'direccion'=>'required',
             'name'=>'required',
             'email'=>'required',

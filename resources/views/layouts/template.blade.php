@@ -91,8 +91,6 @@
                         @can('ver.bitacora')
                         <a class="collapse-item" href="{{asset('/bitacora')}}">Bitacora</a>
                         @endcan
-                        
-                        
                     </div>
                 </div>
             </li>
@@ -165,7 +163,7 @@
                         @endcan
                         
                         @can('ver.especialidades')
-                        <a class="collapse-item" href="{{asset('/consulta')}}">Especialidades</a>
+                        <a class="collapse-item" href="{{asset('/especialidad')}}">Especialidades</a>
                         @endcan
                         
                         

@@ -86,6 +86,9 @@ class pacienteController extends Controller
      return view('gestionar_paciente.edit', compact('persona'));
     }
 
+
+
+    
     public function update(Request $request, $persona_id)
     {
         $request->validate([

@@ -10,6 +10,7 @@ use App\Http\Controllers\turnoController;
 use App\Http\Controllers\turnoDoctorController;
 use App\Http\Controllers\doctorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\especialidadController;
 use App\Models\turnoDoctor;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
@@ -135,15 +136,14 @@ Route::middleware('auth')->group(function(){
     Route::delete('paciente.destroy/{paciente}', [pacienteController::class, 'destroy'])->name('paciente.destroy');
 });
  //Gestionar Doctores
- Route::get('/doctores', [doctorController::class, 'index'])
- ->name('doctores.index');
- Route::get('/doctores.create', [doctorController::class, 'create'])
- ->name('doctores.create');
- Route::get('doctores.show/{id_doctor}',[doctorController::class, 'show'])
- ->name('doctores.show');
- Route::delete('doctores.destroy/{id_doctor}', [doctorController::class, 'destroy'])
- ->name('doctores.destroy');
- Route::post('doctores', [doctorController::class, 'store'])
- ->name('doctores.store');
- Route::put('doctores', [doctorController::class, 'edit'])//actualizar
- ->name('doctores.Update');
+ Route::get('/doctores', [doctorController::class, 'index'])->name('doctores.index');
+ Route::get('/doctores.create', [doctorController::class, 'create'])->name('doctores.create');
+ Route::get('doctores.show/{id_doctor}',[doctorController::class, 'show'])->name('doctores.show');
+ Route::post('doctores', [doctorController::class, 'store'])->name('doctores.store');
+ Route::get('doctores/{id_doctor}/edit', [doctorController::class, 'edit'])->name('doctores.edit');
+ Route::delete('doctores.destroy/{id_doctor}', [doctorController::class, 'destroy'])->name('doctores.destroy');
+ Route::put('doctores.update/{id_doctor}', [doctorController::class, 'update'])->name('doctores.update');
+
+ //especialidades
+ Route::get('/especialidad', [doctorController::class, 'index'])->name('especialidad.index');
+ Route::get('/especialidad.create',[especialidadController::class, 'create'])->name('especialidad.create');
