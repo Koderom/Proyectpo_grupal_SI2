@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class sector extends Model
 {
     use HasFactory;
+
+    protected $table = 'sectors';
+
+    public function sala(){
+        return $this->hasMany(sala::class);
+    }
+
 }

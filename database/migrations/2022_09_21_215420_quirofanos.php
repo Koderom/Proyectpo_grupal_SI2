@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        schema::create('sectors', function(Blueprint $table){
+        Schema::create('quirofanos', function(Blueprint $table){
             $table->id();
-            $table->string('nombre',100);
-            $table->string('piso', 100);
-            $table->text('funcionalidad');
+            $table->char('estado'); // 'A':asignano 'D': disponible
+            $table->unsignedBigInteger('sala_id');
+            $table->foreign('sala_id')->references('id')->on('salas');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        schema::drop('sectors');
+        Schema::dropIfExists('quirofanos');
     }
 };

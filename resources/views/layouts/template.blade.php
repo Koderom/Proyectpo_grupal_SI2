@@ -182,7 +182,7 @@
                         <h6 class="collapse-header">Gestionar:</h6>
                         
                         @can('ver.sectores')
-                        <a class="collapse-item" href="{{asset('/sectores')}}">Sectores</a>
+                        <a class="collapse-item" href="{{route('sector.index')}}">Sectores</a>
                         @endcan
                         
                         @can('ver.quirofano')

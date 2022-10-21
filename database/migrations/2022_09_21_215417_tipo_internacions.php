@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        schema::create('sectors', function(Blueprint $table){
+        Schema::create('tipo_internacions', function(Blueprint $table){
             $table->id();
-            $table->string('nombre',100);
-            $table->string('piso', 100);
-            $table->text('funcionalidad');
+            $table->string('descripcion',120);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        schema::drop('sectors');
+        Schema::dropIfExists('tipo_internacions');
     }
 };

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\reservaQuirofanoController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,5 +27,13 @@ class doctor extends Model
     }
     public function cita(){
         return $this->hasMany(cita::class);
+    }
+
+
+    public function asignacionConsultorio(){
+        return $this->hasMany(asignacionCosultorio::class);
+    }
+    public function reservaQuirofano(){
+        return $this->hasMany(reservaQuirofano::class);
     }
 }

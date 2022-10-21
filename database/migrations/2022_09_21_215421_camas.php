@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        schema::create('sectors', function(Blueprint $table){
+        Schema::create('camas', function(Blueprint $table){
             $table->id();
-            $table->string('nombre',100);
-            $table->string('piso', 100);
-            $table->text('funcionalidad');
+            //para mas atributos
+            $table->unsignedBigInteger('internacion_id');
+            $table->foreign('internacion_id')->references('id')->on('internacions');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        schema::drop('sectors');
+        Schema::dropIfExists('camas');
     }
 };
