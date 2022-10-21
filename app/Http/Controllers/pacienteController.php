@@ -40,6 +40,18 @@ class pacienteController extends Controller
             'numero_telefono_tutor'=>'required',
 
         ]);
+        $persona_ci = persona::where('ci', $request->ci)->first();
+        if (!is_null($persona_ci)) {
+        return back()->withErrors(['Ci ya esta registrado, intente con otro']);
+        }
+        $persona_usuario = User::where('name', $request->name)->first();
+        if (!is_null($persona_usuario)) {
+        return back()->withErrors(['El usuario ya existe, intente con otro']);
+        }
+        $persona_email = User::where('email', $request->email)->first();
+        if (!is_null($persona_email)) {
+        return back()->withErrors(['Email ya esta registrado, intente con otro']);
+        }
         $persona = new persona();
         $persona->ci = $request->ci;
         $persona->nombre = $request->nombre;

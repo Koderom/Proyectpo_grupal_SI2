@@ -22,11 +22,16 @@ class UserController extends Controller
             'email' => 'required|email|string',
             'password'=> 'required|string'
         ]);
+        $usuario = User::where('email', request()->email)->first();     
+        if (is_null($usuario)) {
+          return back()->withErrors(['Error' => 'El usuario no existe']);
+        }
         if(Auth::attempt($credenciales, true)){
             request()->session()->regenerate();
             return redirect()->route('home');
         }
-        return redirect()->route('login');
+        //return redirect()->route('login');
+        return back()->withErrors(['Error' => 'La contraseña es incorrecta']);
     }
     
     public function menu()
