@@ -4,12 +4,16 @@ use App\Http\Controllers\RolesPermisosController;
 
 use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\agendaController;
+use App\Http\Controllers\bitacoraController;
 use App\Http\Controllers\citaController;
 use App\Http\Controllers\pacienteController;
+use App\Http\Controllers\sectorController;
 use App\Http\Controllers\turnoController;
 use App\Http\Controllers\turnoDoctorController;
 use App\Http\Controllers\doctorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\especialidadController;
+use App\Models\sector;
 use App\Models\turnoDoctor;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
@@ -54,12 +58,9 @@ Route::controller(turnoController::class)->group(function(){
     Route::delete('/turno/destroy/{turno}','destroy')->name('turno.destroy');
 });
 Route::controller(turnoDoctorController::class)->group(function(){
-    //Route::get('/turno-doctor/index','index')->name('turno-doctor.index');
     Route::get('/turno-doctor/asigna/{doctor}r','asignar')->name('turno-doctor.asignar');
     Route::post('/turno-doctor/store/{doctor}','store')->name('turno-doctor.store');
     Route::get('/turno-doctor/show/{doctor}','show')->name('turno-doctor.show');
-    //Route::get('/turno-doctor/edit/{turno}/{doctor}','edit')->name('turno-doctor.edit');
-    //Route::post('/turno-doctor/update/{turno_doctor}','update')->name('turno-doctor.update');
     Route::delete('/turno-doctor/destroy/{turno_doctor}','destroy')->name('turno-doctor.destroy');
 });
 
@@ -71,7 +72,7 @@ Route::controller(agendaController::class)->group(function(){
     Route::get('/agenda/ver-cupos/{doctor}/{agenda}','verCupos')->name('agenda.ver-cupos');
     
 });
-/*-----------------------GP----------------------------------------------------- */
+
 Route::controller(citaController::class)->group(function(){
     //rutas para administrativos
     Route::get('/cita/index/{cupo}','index')->name('cita.index');
@@ -79,7 +80,6 @@ Route::controller(citaController::class)->group(function(){
     Route::post('/cita/store/{cupo}','store')->name('cita.store');
     Route::get('/cita/confirmar/{cupo}','confirmarCita')->name('cita.confirmar');
     Route::get('/cita/show/{cupo}','show')->name('cita.show');
-    //Route::post('/cita/store-confirmar/{cupo}','storeConfirmarCita')->name('cita.store-confirmar');
     // rutas para pacientes
     Route::get('/cita/paciente/reservar','reservarCitaPaciente')->name('cita.paciente.reservar');
     Route::post('/cita/paciente/reservar/store','seleccionarEspecialidad')->name('cita.paciente.reservar.store');
@@ -89,9 +89,18 @@ Route::controller(citaController::class)->group(function(){
     Route::post('/cita/paciente/reservar/confirmar','confirmarReserva')->name('cita.paciente.reservar.confirmar');
     Route::get('/cita/paciente/mis-citas','verMiscitas')->name('cita.paciente.verCitas');
     //rutas para medico
-
     Route::get('/cita/medico/ver-agenda/{fecha?}','verAgendaMedico')->name('cita.medico.verAgenda');
 });
+
+Route::controller(bitacoraController::class)->group(function(){
+    Route::get('/bitacora','index')->name('bitacora.index');
+    Route::get('/bitacora/show/{bitacora}','show')->name('bitacora.show');
+});
+/*---------------------------------Modulo Ambientes------------------------------*/
+Route::controller(sectorController::class)->group(function(){
+    Route::get('sector/index','index')->name('sector.index');
+});
+
 /*-----------------------GP----------------------------------------------------- */
 Route::get('/',function(){ return redirect()->route('login'); })->name('welcome');
 Route::view('/menu', 'menu')->name('home')->middleware('auth');
@@ -135,15 +144,14 @@ Route::middleware('auth')->group(function(){
     Route::delete('paciente.destroy/{paciente}', [pacienteController::class, 'destroy'])->name('paciente.destroy');
 });
  //Gestionar Doctores
- Route::get('/doctores', [doctorController::class, 'index'])
- ->name('doctores.index');
- Route::get('/doctores.create', [doctorController::class, 'create'])
- ->name('doctores.create');
- Route::get('doctores.show/{id_doctor}',[doctorController::class, 'show'])
- ->name('doctores.show');
- Route::delete('doctores.destroy/{id_doctor}', [doctorController::class, 'destroy'])
- ->name('doctores.destroy');
- Route::post('doctores', [doctorController::class, 'store'])
- ->name('doctores.store');
- Route::put('doctores', [doctorController::class, 'edit'])//actualizar
- ->name('doctores.Update');
+ Route::get('/doctores', [doctorController::class, 'index'])->name('doctores.index');
+ Route::get('/doctores.create', [doctorController::class, 'create'])->name('doctores.create');
+ Route::get('doctores.show/{id_doctor}',[doctorController::class, 'show'])->name('doctores.show');
+ Route::post('doctores', [doctorController::class, 'store'])->name('doctores.store');
+ Route::get('doctores/{id_doctor}/edit', [doctorController::class, 'edit'])->name('doctores.edit');
+ Route::delete('doctores.destroy/{id_doctor}', [doctorController::class, 'destroy'])->name('doctores.destroy');
+ Route::put('doctores.update/{id_doctor}', [doctorController::class, 'update'])->name('doctores.update');
+
+ //especialidades
+ Route::get('/especialidad', [doctorController::class, 'index'])->name('especialidad.index');
+ Route::get('/especialidad.create',[especialidadController::class, 'create'])->name('especialidad.create');

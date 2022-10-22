@@ -19,4 +19,12 @@ class paciente extends Model
     public function cita(){
         return $this->hasMany(cita::class);
     }
+
+
+    public function reservaQuirofano(){
+        return $this->hasMany(reservaQuirofano::class);
+    }
+    public function camaPaciente(){
+        return $this->hasMany(camaPaciente::class);
+    }
 }

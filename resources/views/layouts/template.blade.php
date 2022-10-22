@@ -89,10 +89,8 @@
                         @endcan
                         
                         @can('ver.bitacora')
-                        <a class="collapse-item" href="{{asset('/bitacora')}}">Bitacora</a>
+                        <a class="collapse-item" href="{{route('bitacora.index')}}">Bitacora</a>
                         @endcan
-                        
-                        
                     </div>
                 </div>
             </li>
@@ -165,7 +163,7 @@
                         @endcan
                         
                         @can('ver.especialidades')
-                        <a class="collapse-item" href="{{asset('/consulta')}}">Especialidades</a>
+                        <a class="collapse-item" href="{{asset('/especialidad')}}">Especialidades</a>
                         @endcan
                         
                         
@@ -184,7 +182,7 @@
                         <h6 class="collapse-header">Gestionar:</h6>
                         
                         @can('ver.sectores')
-                        <a class="collapse-item" href="{{asset('/sectores')}}">Sectores</a>
+                        <a class="collapse-item" href="{{route('sector.index')}}">Sectores</a>
                         @endcan
                         
                         @can('ver.quirofano')
