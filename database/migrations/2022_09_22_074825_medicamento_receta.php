@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('medicamento_recetas', function(Blueprint $table){
             $table->id();
             $table->unsignedInteger('cantidad_total');
-            $table->string('dosis', 120);
-            $table->string('frecuescia',120);
+            $table->string('dosis');
+            $table->string('frecuencia');
 
 
             $table->unsignedBigInteger('medicamento_id');

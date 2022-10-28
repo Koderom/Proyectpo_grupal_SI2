@@ -76,7 +76,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="date" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="fecha_nacimiento" placeholder="Fecha de nacimiento" value="{{ old('fecha_naci') }}">
+                                        name="fecha_nacimiento" placeholder="Fecha de nacimiento" value="{{ old('fecha_nacimiento') }}">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="tel" class="form-control form-control-user" id="exampleInputEmail"
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="email" placeholder="Correo" value="{{ old('correo') }}">
+                                        name="email" placeholder="Correo" value="{{ old('email') }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -113,7 +113,7 @@
 
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="name" placeholder="Usuario" value="{{ old('usuario') }}">
+                                        name="name" placeholder="Usuario" value="{{ old('name') }}">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user" id="exampleInputEmail"

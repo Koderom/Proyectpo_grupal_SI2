@@ -31,7 +31,7 @@ class administrativoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'ci'=>'required',
+            'ci'=>'required|unique:personas',
             'nombre'=>'required',
             'apellido_paterno'=>'required',
             'apellido_materno'=>'required',
@@ -40,24 +40,12 @@ class administrativoController extends Controller
             'fecha_nacimiento'=>'required',
             'telefono'=>'required',
             'direccion'=>'required',
-            'name'=>'required',
-            'email'=>'required',
+            'name'=>'required|unique:users',
+            'email'=>'required|unique:users',
             'password'=>'required',
             'cargo'=>'required',
 
         ]);
-        $persona_ci = persona::where('ci', $request->ci)->first();
-        if (!is_null($persona_ci)) {
-        return back()->withErrors(['Ci ya esta registrado, intente con otro']);
-        }
-        $persona_usuario = User::where('name', $request->name)->first();
-        if (!is_null($persona_usuario)) {
-        return back()->withErrors(['El usuario ya existe, intente con otro']);
-        }
-        $persona_email = User::where('email', $request->email)->first();
-        if (!is_null($persona_email)) {
-        return back()->withErrors(['Email ya esta registrado, intente con otro']);
-        }
         
         $persona = new persona();
         $persona->ci = $request->ci;
@@ -116,7 +104,7 @@ class administrativoController extends Controller
             'sexo'=>'required',
             'edad'=>'required',
             'fecha_nacimiento'=>'required',
-            'telefono'=>'required',
+            'telefono'=>'requi  red',
             'direccion'=>'required',
             'name'=>'required',
             'email'=>'required',
