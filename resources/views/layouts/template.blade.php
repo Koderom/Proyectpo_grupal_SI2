@@ -183,6 +183,7 @@
                         
                         @can('ver.sectores')
                         <a class="collapse-item" href="{{route('sector.index')}}">Sectores</a>
+                        <a class="collapse-item" href="{{route('sala.index')}}">Salas</a>
                         @endcan
                         
                         @can('ver.quirofano')
@@ -194,7 +195,7 @@
                         @endcan
 
                         @can('ver.internacion')
-                        <a class="collapse-item" href="{{asset('/internacion')}}">Internacion</a>
+                        <a class="collapse-item" href="{{route('internacion.index')}}">Internacion</a>
                         @endcan
                         
 
@@ -363,7 +364,6 @@
                     </div>
                     <!-- content Row-->
                     <div class="row" >
-
                         @yield('content')
 
                     </div>

@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('camas', function(Blueprint $table){
             $table->id();
             //para mas atributos
+            $table->integer('nro_cama');
+            $table->boolean('estaOcupado');
             $table->unsignedBigInteger('internacion_id');
             $table->foreign('internacion_id')->references('id')->on('internacions');
             $table->timestamps();

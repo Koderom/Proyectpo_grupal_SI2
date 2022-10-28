@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cama_pacientes', function(Blueprint $table){
             $table->id();
             $table->date('fecha_ingreso');
-            $table->unsignedInteger('dias_estida');
+            $table->date('fecha_de_salida')->nullable();
             //para mas atributos
             $table->unsignedBigInteger('cama_id');
             $table->foreign('cama_id')->references('id')->on('camas');

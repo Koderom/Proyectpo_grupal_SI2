@@ -27,4 +27,15 @@ class paciente extends Model
     public function camaPaciente(){
         return $this->hasMany(camaPaciente::class);
     }
+
+
+
+    public function estaInternado(){
+        $id = $this->id;
+        $paciente = paciente::join('cama_pacientes', 'cama_pacientes.paciente_id','=','pacientes.id')
+        ->where('pacientes.id','=',$id)
+        ->whereNull('cama_pacientes.fecha_de_salida')->get();
+        if($paciente->isEmpty()) return false;
+        return true;
+    }
 }

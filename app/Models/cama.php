@@ -15,6 +15,6 @@ class cama extends Model
         return $this->belongsTo(internacion::class);
     }
     public function camaPaciente(){
-        return $this->belongsTo(camaPaciente::class);
+        return $this->hasMany(camaPaciente::class);
     }
 }

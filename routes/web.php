@@ -6,11 +6,16 @@ use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\agendaController;
 use App\Http\Controllers\bitacoraController;
 use App\Http\Controllers\citaController;
+use App\Http\Controllers\consultorioController;
 use App\Http\Controllers\pacienteController;
 use App\Http\Controllers\sectorController;
 use App\Http\Controllers\turnoController;
 use App\Http\Controllers\turnoDoctorController;
 use App\Http\Controllers\doctorController;
+use App\Http\Controllers\internacionController;
+use App\Http\Controllers\quirofanoController;
+use App\Http\Controllers\salaController;
+use App\Http\Controllers\tipoInternacionController;
 use App\Http\Controllers\UserController;
 use App\Models\sector;
 use App\Models\turnoDoctor;
@@ -98,8 +103,36 @@ Route::controller(bitacoraController::class)->group(function(){
 /*---------------------------------Modulo Ambientes------------------------------*/
 Route::controller(sectorController::class)->group(function(){
     Route::get('sector/index','index')->name('sector.index');
+    Route::get('sector/create', 'create')->name('sector.create');
+    Route::post('sector/store', 'store')->name('sector.store');
+    Route::get('sector/edit/{sector}', 'edit')->name('sector.edit');
+    Route::put('sector/update/{sector}', 'update')->name('sector.update');
 });
-
+Route::controller(salaController::class)->group(function(){
+    Route::get('sala/index','index')->name('sala.index');
+    Route::get('sala/create', 'create')->name('sala.create');
+    Route::post('sala/store', 'store')->name('sala.store');
+    Route::get('salas/ver-mas/{sala}','verMas')->name('sala.verMas');
+});
+Route::controller(consultorioController::class)->group(function(){
+    Route::get('consultorio/show/{sala}}', 'show')->name('consultorio.show');
+});
+Route::controller(quirofanoController::class)->group(function(){
+    Route::get('quirofano/show/{sala}', 'show')->name('quirofano.show');
+});
+Route::controller(internacionController::class)->group(function(){
+    Route::get('internacion/index', 'index')->name('internacion.index');
+    Route::get('internacion/show/{sala}', 'show')->name('internacion.show');
+    Route::get('internacion/internar-paciente', 'internarPaciente')->name('internacion.internarPaciente');
+    Route::post('internacion/internar-paciente/store','internarPacienteStore')->name('internacion.internarPaciente.store');
+    Route::get('internacion/paciente/retirar/{paciente}','retirarPaciente')->name('internacion.paciente.retirar');
+    Route::get('internacion/create','create')->name('internacion.create');
+    Route::post('internacion/store','store')->name('internacion.store');
+    Route::delete('internacion/delete/{sala}','destroy')->name('internacion.destroy');
+});
+Route::controller(tipoInternacionController::class)->group(function(){
+    Route::post('tipoInternacion/store','store')->name('tipoInternacion.store');
+});
 /*-----------------------GP----------------------------------------------------- */
 Route::get('/',function(){ return redirect()->route('login'); })->name('welcome');
 Route::view('/menu', 'menu')->name('home')->middleware('auth');
