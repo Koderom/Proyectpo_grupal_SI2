@@ -56,8 +56,9 @@
                                 $i = 1;
                             @endphp
                             @foreach ($doctores as $doctor)
+                            {{-- @dd($doctores) --}}
                                 <tr>
-                                    <td>{{ $i++ }}</td>
+                                    <td>{{ $i++ }} </td>
                                     <th>{{ $doctor->persona->ci }}</th>
                                     <th>{{ $doctor->persona->nombre }}</th>
                                     <th>{{ $doctor->persona->apellido_paterno . ' ' . $doctor->persona->apellido_materno }}</th>

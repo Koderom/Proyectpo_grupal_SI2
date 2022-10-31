@@ -153,5 +153,10 @@ Route::middleware('auth')->group(function(){
  Route::put('doctores.update/{id_doctor}', [doctorController::class, 'update'])->name('doctores.update');
 
  //especialidades
- Route::get('/especialidad', [doctorController::class, 'index'])->name('especialidad.index');
+ Route::get('/especialidad', [especialidadController::class, 'index'])->name('especialidad.index');
  Route::get('/especialidad.create',[especialidadController::class, 'create'])->name('especialidad.create');
+ Route::post('/especialidad.store',[especialidadController::class, 'store'])->name('especialidad.store');
+ Route::DELETE('/especialidad/{id}/destroy',[especialidadController::class, 'destroy'])->name('especialidad.destroy');
+ Route::get('/especialidad/{id}/edit',[especialidadController::class, 'edit'])->name('especialidad.edit');
+ Route::put('/especialidad/{especialidad}/update',[especialidadController::class, 'update'])->name('especialidad.update');
+ 
