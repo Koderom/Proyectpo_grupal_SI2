@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('quirofanos', function(Blueprint $table){
             $table->id();
-            $table->char('estado'); // 'A':asignano 'D': disponible
+            $table->char('estado'); // 'F':full-lleno 'D': disponible 'V': vacio
             $table->unsignedBigInteger('sala_id');
             $table->foreign('sala_id')->references('id')->on('salas');
             $table->timestamps();

@@ -17,7 +17,7 @@ class reservaQuirofano extends Model
     public function paciente(){
         return $this->belongsTo(paciente::class);
     }
-    public function doctor(){
-        return $this->belongsTo(doctor::class);
+    public function doctorQuirofano(){
+        return $this->hasMany(doctorQuirofano::class);
     }
 }

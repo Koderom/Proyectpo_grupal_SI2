@@ -4,6 +4,7 @@ use App\Http\Controllers\RolesPermisosController;
 
 use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\agendaController;
+use App\Http\Controllers\asignacionConsultorioController;
 use App\Http\Controllers\bitacoraController;
 use App\Http\Controllers\citaController;
 use App\Http\Controllers\consultorioController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\salaController;
 use App\Http\Controllers\tipoInternacionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\especialidadController;
+use App\Http\Controllers\reservaQuirofanoController;
 use App\Models\sector;
 use App\Models\turnoDoctor;
 use Illuminate\Support\Facades\Route;
@@ -108,6 +110,7 @@ Route::controller(sectorController::class)->group(function(){
     Route::post('sector/store', 'store')->name('sector.store');
     Route::get('sector/edit/{sector}', 'edit')->name('sector.edit');
     Route::put('sector/update/{sector}', 'update')->name('sector.update');
+    Route::delete('sector/delete/{sector}','destroy')->name('sector.destroy');
 });
 Route::controller(salaController::class)->group(function(){
     Route::get('sala/index','index')->name('sala.index');
@@ -116,10 +119,31 @@ Route::controller(salaController::class)->group(function(){
     Route::get('salas/ver-mas/{sala}','verMas')->name('sala.verMas');
 });
 Route::controller(consultorioController::class)->group(function(){
-    Route::get('consultorio/show/{sala}}', 'show')->name('consultorio.show');
+    Route::get('consultorio/index', 'index')->name('consultorio.index');
+    Route::get('consultorio/create','create')->name('consultorio.create');
+    Route::post('consultorio/store','store')->name('consultorio.store');
+    Route::get('consultorio/show/{sala}', 'show')->name('consultorio.show');
+    Route::get('consultorio/edit/{sala}','edit')->name('consultorio.edit');
+    Route::put('consultorio/update/{sala}','update')->name('consultorio.update');
+    Route::delete('consultorio/destroy/{sala}', 'destroy')->name('consultorio.destroy');
+});
+Route::controller(asignacionConsultorioController::class)->group(function(){
+    Route::get('asignacionConsultorio/create','create')->name('asignacionConsultorio.create');
+    Route::post('asignacionConsultorio/store','store')->name('asignacionConsultorio.store');
+    Route::delete('asignacionConsultorio/destroy/{asignacionConsultorio}','destroy')->name('asignacionConsultorio.destroy');
 });
 Route::controller(quirofanoController::class)->group(function(){
-    Route::get('quirofano/show/{sala}', 'show')->name('quirofano.show');
+    Route::get('quirofano/index', 'index')->name('quirofano.index');
+    Route::get('quirofano/create','create')->name('quirofano.create');
+    Route::post('quirofano/store','store')->name('quirofano.store');
+    Route::get('quirofano/show/{sala}', 'show')->name('quirofano.show');    
+});
+Route::controller(reservaQuirofanoController::class)->group(function(){
+    Route::get('reservarQuirofano/create','create')->name('reservarQuirofano.create');
+    Route::post('reservarQuirofano/store','store')->name('reservarQuirofano.store');
+    Route::get('reservarQuirofano/show/{reservarQuirofano}','show')->name('reservarQuirofano.show');
+    Route::post('reservaQuirofano/agregar/{reservarQuirofano}','agregarDoctor')->name('reservarQuirofano.agregar');
+    Route::delete('reservaQuirofano/eliminar/{doctorQuirofano}','doctorQuirofanoEliminar')->name('reservarQuirofano.eliminar');
 });
 Route::controller(internacionController::class)->group(function(){
     Route::get('internacion/index', 'index')->name('internacion.index');
@@ -135,11 +159,12 @@ Route::controller(tipoInternacionController::class)->group(function(){
     Route::post('tipoInternacion/store','store')->name('tipoInternacion.store');
 });
 /*-----------------------GP----------------------------------------------------- */
-Route::get('/',function(){ return redirect()->route('login'); })->name('welcome');
-Route::view('/menu', 'menu')->name('home')->middleware('auth');
+
+Route::get('/',function(){ return redirect()->route('login'); })->name('welcome')->middleware('guest');
+Route::view('/home', 'menu')->name('home')->middleware('auth');
 Route::view('/login','login')->name('login')->middleware('guest');
 
-Route::post('/login', [UserController::class, 'login']);
+Route::post('/login-user', [UserController::class, 'login']);
 
 //Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
 //Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('guest:admin');

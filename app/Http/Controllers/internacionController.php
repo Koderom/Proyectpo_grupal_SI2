@@ -42,6 +42,7 @@ class internacionController extends Controller
                     ->select('sectors.*')
                     ->distinct()
                     ->get();
+        if($Sectores->count() == 0) return back()->withErrors('No existen salas de internacion');
         $Salas = sala::where('tipo_sala','=','I')->get();
         foreach($Salas as $sala) $sala->internacion->tipoInternacion;
         $Pacientes = paciente::all();
@@ -73,13 +74,14 @@ class internacionController extends Controller
         return back()->with('message','paciente retirado de internacion');
     }
     public function create(){
+        if(sector::count() == 0) return back()->withErrors('Antes de registrar una sala, de debe registrar un sector');
         $Sectores = sector::all();
         $TiposInternacion = tipoInternacion::all();
         return view('Internacion.create',['Sectores'=>$Sectores , 'TiposInternacion'=>$TiposInternacion]);
     }
     public function store(Request $request){
         $request->validate([
-            'numero_de_sala'=>'required',
+            'numero_de_sala'=>'required|unique:salas,nro_sala',
             'capacidad'=>'required',
             'sector'=>'required',
             'cantidad_camas'=>'required',

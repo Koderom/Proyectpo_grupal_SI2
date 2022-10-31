@@ -64,7 +64,7 @@
                                   <input type="submit" class="btn btn-facebook btn-user btn-block" value="Aceptar">
                               </div>
                               <div class="col-sm-6 mb-3 mb-sm-0">
-                                  <a href="{{ route('sector.index') }}"
+                                  <a href="{{ route('sala.index') }}"
                                       class="btn btn-primary btn-user btn-block">
                                       Cancelar
                                   </a>

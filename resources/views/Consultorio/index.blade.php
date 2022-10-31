@@ -1,26 +1,29 @@
 @extends('layouts.template')
 
-@section('header')Gestionar Salas @endsection
+@section('header')Gestionar Consultorios @endsection
 
-@section('content')
+@section('content') 
 @include('components.flash_alerts')
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
     
     <p class="mb-4"></p>       
-    <a href="{{route('sala.create')}}" class="btn btn-success btn-icon-split">
-        <span class="text">Registrar Salas</span>
+    <a href="{{route('consultorio.create')}}" class="btn btn-success btn-icon-split">
+        <span class="text">Registrar consultorio</span>
+    </a>
+    <a href="{{route('asignacionConsultorio.create')}}" class="btn btn-success btn-icon-split">
+        <span class="text">Asignar consultorio</span>
     </a>
     <div class="my-2"></div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Salas registrados</h6>
+            <h6 class="m-0 font-weight-bold text-primary">consultorios registrados</h6>
         </div>
-        <div class="card-body">
+        <div class="card-body ">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered mx-2" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -28,7 +31,6 @@
                             <th>Capacidad</th>
                             <th>Sector</th>
                             <th>Piso</th>
-                            <th>Tipo de sala</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -39,7 +41,6 @@
                             <th>Capacidad</th>
                             <th>Sector</th>
                             <th>Piso</th>
-                            <th>Tipo de sala</th>
                             <th>Acciones</th>
                         </tr>
                     </tfoot>
@@ -52,20 +53,20 @@
                                 <th>{{$sala->capacidad}}</th>
                                 <th>{{$sala->sector->nombre}}</th>
                                 <th>{{$sala->sector->piso}}</th>
-                                @switch($sala->tipo_sala[0])
-                                    @case('I')
-                                        <th>Internacion</th>
-                                        @break
-                                    @case('C')
-                                        <th>Consultorio</th>    
-                                        @break
-                                    @case('Q')
-                                        <th>Quirofano</th>
-                                        @break    
-                                @endswitch
+                                
                                 <td>
-                                    <a href="{{route('sala.verMas',['sala'=>$sala])}}" class="btn btn-info btn-sm fas fa-eye cursor-pointer"> ver mas</a>
+                                    <form action="{{route('consultorio.destroy',['sala'=>$sala])}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="{{route('consultorio.show',['sala'=>$sala])}}" class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
+                                    <a href="{{route('consultorio.edit',['sala'=>$sala])}}" class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
+                                    <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
+                                        onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar">
+                                    </button>
+                                    </form>
+                                    
                                 </td>
+                                
                             </tr>
                         @endforeach
                     </tbody>

@@ -20,10 +20,14 @@ class citaController extends Controller
         $this->middleware('auth');
     }
     public function create(cupo $cupo){
+        $personaUsuario = Auth::user()->persona;
+        if($personaUsuario->tipo[0] != 'A') return "ERROR El usuario no es un Administrativo";
         $Pacientes = paciente::all();
         return view('Cita.create',['cupo'=>$cupo, 'Pacientes'=>$Pacientes]);
     }
     public function store(Request $request, cupo $cupo){
+        $personaUsuario = Auth::user()->persona;
+        if($personaUsuario->tipo[0] != 'A') return "ERROR El usuario no es un Administrativo";
         $cita = new cita();
         $cita->motivo = $request->input('motivo');
         $cita->fecha_cita = $cupo->agenda->fecha;
@@ -31,9 +35,7 @@ class citaController extends Controller
         $cita->confirmado = false;
         $cupo->estado = 'R';
         $cupo->update();
-        $cita->cupo_id = $cupo->id;
-        $personaUsuario = Auth::user()->persona;
-        if($personaUsuario->tipo[0] != 'A') return "ERROR El usuario no es un Administrativo";
+        $cita->cupo_id = $cupo->id;        
         $cita->administrativo_id = $personaUsuario->administrativo->id; //resolver usuario autenticado Auth
         $doctor = $cupo->agenda->doctor;
         $cita->especialidad_id = $doctor->especialidad->id;
@@ -45,10 +47,10 @@ class citaController extends Controller
         //return view('Agenda.ver-cupos',['doctor'=>$doctor, 'agenda'=>$agenda, 'Cupos'=>$Cupos]);
     }
     public function confirmarCita(cupo $cupo){
-        $cupo->estado = 'C';
-        $cita = $cupo->cita;
         $personaUsuario = Auth::user()->persona;
         if($personaUsuario->tipo[0] != 'A') return "ERROR El usuario no es un administrativo";
+        $cupo->estado = 'C';
+        $cita = $cupo->cita;
         $cita->administrativo_id = $personaUsuario->administrativo->id;
         $cita->confirmado = true;
         $agenda = $cupo->agenda;
@@ -104,6 +106,8 @@ class citaController extends Controller
         return view('CitaPaciente.cupo',['Cupos'=>$Cupos]);
     }
     public function confirmarReserva(Request $request){
+        $personaUsuario = Auth::user()->persona;
+        if($personaUsuario->tipo[0] != 'P') return "ERROR El usuario no es un paciente";
         $cupo = cupo::find($request->input('cupo'));
         $cita = new cita();
         $cita->fecha_cita = $cupo->agenda->fecha;
@@ -112,8 +116,6 @@ class citaController extends Controller
         $cita->motivo = $request->input('motivo');
         $cupo->estado = 'R';
         $cita->cupo_id = $cupo->id;
-        $personaUsuario = Auth::user()->persona;
-        if($personaUsuario->tipo[0] != 'P') return "ERROR El usuario no es un paciente";
         $cita->paciente_id = $personaUsuario->paciente->id;//arreglas el inicio de sesion
         $cita->especialidad_id = $cupo->agenda->doctor->especialidad_id;
         $cita->doctor_id = $cupo->agenda->doctor->id;
@@ -123,13 +125,13 @@ class citaController extends Controller
         
     }
     public function verAgendaMedico(){
+        $personaUsuario = Auth::user()->persona;
+        if($personaUsuario->tipo[0] != 'D') return "ERROR El usuario no es un doctor";
         if(request()->input('fecha')!=null) $fecha = request()->input('fecha');
         else {
             $mytime= Carbon::now('America/La_Paz'); 
             $fecha = $mytime->toDateString();
         }
-        $personaUsuario = Auth::user()->persona;
-        if($personaUsuario->tipo[0] != 'D') return "ERROR El usuario no es un doctor";
         $doctor = $personaUsuario->doctor;
         $agenda = agenda::where('fecha','=',$fecha)->where('doctor_id','=',$doctor->id)->first();
         if($agenda == null) $agenda = agenda::where('doctor_id','=',$doctor->id)->first();

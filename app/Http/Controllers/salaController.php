@@ -20,13 +20,14 @@ class salaController extends Controller
         return view('Sala.index',['Salas'=>$Salas]);
     }
     public function create(){
+        if(sector::count() == 0) return back()->withErrors('Antes de registrar una sala, de debe registrar un sector');
         $Sectores = sector::all();
         $TipoInternacions = tipoInternacion::all();
         return view('Sala.create',['Sectores'=>$Sectores, 'TipoInternacions'=>$TipoInternacions]);
     }
     public function store(Request $request){
         $request->validate([
-            'numero_de_sala'=>'required',
+            'numero_de_sala'=>'required|unique:salas,nro_sala',
             'capacidad'=>'required',
             'tipo_sala'=>'required',
             'sector'=>'required',
@@ -77,7 +78,12 @@ class salaController extends Controller
             case 'I':
                 return redirect()->route('internacion.show',['sala'=>$sala]);
                 break;
-            
+            case 'Q':
+                return redirect()->route('quirofano.show',['sala'=>$sala]);
+                break;
+            case 'C':
+                //return redirect()->route('internacion.show',['sala'=>$sala]);
+                break;
             default:
                 return "Error inesperado";
                 break;

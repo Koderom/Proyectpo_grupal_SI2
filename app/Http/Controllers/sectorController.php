@@ -43,4 +43,12 @@ class sectorController extends Controller
         $sector->update();
         return redirect()->route('sector.index');
     }
+    public function destroy(sector $sector){
+        if($sector->sala->count() == 0){
+            $sector->delete();
+            return redirect()->route('sector.index')->with('message', 'sector eliminado con exito');
+        }else{
+            return redirect()->route('sector.index')->withErrors('existen salas asigndas al sector');
+        }
+    }
 }

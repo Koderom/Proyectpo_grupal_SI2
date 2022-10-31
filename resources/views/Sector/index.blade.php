@@ -3,6 +3,7 @@
 @section('header')Sectores @endsection
 
 @section('content')
+@include('components.flash_alerts')
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -47,7 +48,7 @@
                                 <th>{{$sector->piso}}</th>
                                 <th>{{$sector->funcionalidad}}</th>
                                 <td>
-                                    <form action="#" method="post">
+                                    <form action="{{route('sector.destroy',['sector'=>$sector])}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <a href="#" class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
