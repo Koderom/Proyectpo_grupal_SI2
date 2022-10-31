@@ -86,6 +86,7 @@
                                             name="Especialidad" placeholder="Especialidad" value="{{ old('cargo') }}">  --}}
                                         <select name="especialidad_id" id="">
                                             @foreach ($Especialidades as $especialidad)
+                                           
                                                 @if ($doctor->especialidad_id == $especialidad->id)
                                                     <option value="{{ $especialidad->id }}" selected>{{ $especialidad->nombre }}</option>
                                                 @else

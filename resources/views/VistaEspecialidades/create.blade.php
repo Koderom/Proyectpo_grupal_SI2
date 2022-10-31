@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Registrar nuevo Turno @endsection
+@section('header')Registrar nueva Especialidad @endsection
 
 @section('content')
     <div class="container">
@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="p-5">
-                            <h1>Registra nuevo Turno</h1>
+                            <h1>Registra nuevo Especialidad</h1>
                                 {{ csrf_field() }}
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -22,18 +22,11 @@
                                 @endif
                             <form class="user" action="{{ route('especialidad.store') }}" method="POST">
                                 @csrf
+                                @method('POST')
                                 <div class="form-row">
                                     <div class="form-group col-12 ">
                                         <label for="descripcion">Ingrese una descripcion:</label>
-                                        <input class="form-control form-control-user"  type="text" name="descripcion" id="descripcion" value="{{old('descripcion')}}">
-                                    </div>
-                                    <div class="form-group col md-6">
-                                        <label for="hora_inicio">El turno empieza desde:</label>
-                                        <input class="form-control form-control-user"  type="time" name="hora_inicio" id="hora_inicio" value="{{old('hora_inicio')}}">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="hora_fin">El turno termina a las:</label>
-                                        <input class="form-control form-control-user"  type="time" name="hora_fin" id="hora_fin" value="{{old('hora_fin')}}">
+                                        <input class="form-control form-control-user"  type="text" name="especialidad" id="descripcion" value="{{old('descripcion')}}">
                                     </div>
                                 </div>
                                 <div class="form-group row m-5" >
@@ -41,7 +34,7 @@
                                         <input type="submit" class="btn btn-facebook btn-user btn-block" value="Aceptar">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <a href="{{ route('turno.index') }}"
+                                        <a href="{{ route('especialidad.index') }}"
                                             class="btn btn-primary btn-user btn-block">
                                             Cancelar
                                         </a>
