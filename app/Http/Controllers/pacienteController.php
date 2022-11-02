@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\expediente;
 use App\Models\paciente;
 use App\Models\persona;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+ 
 use Illuminate\Support\Facades\DB;
 
 class pacienteController extends Controller
@@ -67,6 +71,14 @@ class pacienteController extends Controller
         $paciente->numero_telefono_tutor = $request-> numero_telefono_tutor;
         $paciente->save();
         $user->save();
+
+        $mytime= Carbon::now('America/La_Paz'); 
+        $fechaActual = $mytime->toDateString();
+
+        $expediente = new expediente();
+        $expediente->codigo_registro = Str::random(6);
+        $expediente->fecha_registro=$fechaActual;
+        $expediente->save();
         return redirect()->route('paciente.index');
     }
     public function show($persona_id){
