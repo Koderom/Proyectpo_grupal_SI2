@@ -183,18 +183,19 @@
                         
                         @can('ver.sectores')
                         <a class="collapse-item" href="{{route('sector.index')}}">Sectores</a>
+                        <a class="collapse-item" href="{{route('sala.index')}}">Salas</a>
                         @endcan
                         
                         @can('ver.quirofano')
-                        <a class="collapse-item" href="{{asset('/quirofano')}}">Quirofano</a>
+                        <a class="collapse-item" href="{{route('quirofano.index')}}">Quirofano</a>
                         @endcan
                         
                         @can('ver.consultorio')
-                        <a class="collapse-item" href="{{asset('/consultorio')}}">Consultorio</a>
+                        <a class="collapse-item" href="{{route('consultorio.index')}}">Consultorio</a>
                         @endcan
 
                         @can('ver.internacion')
-                        <a class="collapse-item" href="{{asset('/internacion')}}">Internacion</a>
+                        <a class="collapse-item" href="{{route('internacion.index')}}">Internacion</a>
                         @endcan
                         
 
@@ -281,7 +282,7 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
+                        
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -316,6 +317,16 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @php
+                                        $roles = Auth::user()->roles;    
+                                    @endphp
+                                    @foreach ($roles as $rol)
+                                        {{$rol->name}}
+                                    @endforeach
+                                    : {{Auth::user()->persona->nombre}}
+                                    {{Auth::user()->persona->apellido_paterno}}
+                                    {{Auth::user()->persona->apellido_materno}} -
+                                    {{Auth::user()->name}}
                                     @yield('usuario')
                                 </span >
                                 <img class="img-profile rounded-cir{cle"
@@ -363,7 +374,6 @@
                     </div>
                     <!-- content Row-->
                     <div class="row" >
-
                         @yield('content')
 
                     </div>

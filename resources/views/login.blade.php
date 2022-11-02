@@ -58,7 +58,7 @@
                                         </div>
                                     @endif
 
-                                    <form class="user"action="{{route('login')}}" method="POST">
+                                    <form class="user"action="/login-user" method="POST">
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"

@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('reserva_quirofanos', function(Blueprint $table){
             $table->id();
-            $table->dateTime('fecha_hora');
+            $table->dateTime('fecha_hora_entrada');
             $table->unsignedTinyInteger('cantidad_horas');
+            $table->dateTime('fecha_hora_salida');
             $table->string('tipo_intervencion');
             $table->string('procedimiento');
             //para mas atributos
             $table->unsignedBigInteger('quirofano_id');
             $table->foreign('quirofano_id')->references('id')->on('quirofanos');
-            $table->unsignedBigInteger('doctor_id');
-            $table->foreign('doctor_id')->references('id')->on('doctors');
+            
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id')->references('id')->on('pacientes');
             $table->timestamps();

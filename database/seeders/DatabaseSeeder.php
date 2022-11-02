@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             especialidadSeeder::class,
             RoleSeeder::class,
             pacienteSeeder::class,
-            doctorSeeder::class
+            doctorSeeder::class,
+            tipoInternacionSeeder::class
         ]);
 
     }

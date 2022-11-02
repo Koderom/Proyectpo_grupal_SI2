@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('asignacion_consultorios', function(Blueprint $table){
             $table->id();
-            $table->date('fecha_asignacion');
+            $table->date('fecha_inicio');
             $table->unsignedInteger('cantidad_dias');
-            $table->time('hora_inicio');
-            $table->unsignedTinyInteger('horas_asigandas');
+            $table->date('fecha_finalizacion');
+            $table->time('hora_entrada');
+            //$table->unsignedTinyInteger('horas_asigandas');
+            $table->time('hora_salida');
             //Espacio para mas atributos
             $table->unsignedBigInteger('consultorio_id');
             $table->foreign('consultorio_id')->references('id')->on('consultorios');
