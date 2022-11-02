@@ -17,20 +17,26 @@ class doctorObserver
      */
     public function created(doctor $doctor)
     {
-        $mTime = Carbon::now('America/La_Paz');
         $usuario = Auth::user();
+        if(! $usuario == null){
+            $mTime = Carbon::now('America/La_Paz');
+            $usuario = Auth::user();
 
-        $bitacora = new bitacora();
-        $bitacora->objeto = 'pacientes';
-        $bitacora->entidad_id = $doctor->id;
-        $bitacora->entidad_descripcion = $doctor->persona->nombre;
-        $bitacora->verbo = 'crear';
-        $bitacora->fecha_hora = $mTime->toDateTimeString();
-        $bitacora->user_id = $usuario->id;
-        $bitacora->user_name = $usuario->name;
-        $bitacora->persona_id = $usuario->persona->id;
-        $bitacora->nombre_completo = $usuario->persona->nombre;
-        $bitacora->save();
+            $bitacora = new bitacora();
+            $bitacora->objeto = 'pacientes';
+            $bitacora->entidad_id = $doctor->id;
+            $bitacora->entidad_descripcion = $doctor->persona->nombre;
+            $bitacora->verbo = 'crear';
+            $bitacora->fecha_hora = $mTime->toDateTimeString();
+            $bitacora->user_id = $usuario->id;
+            $bitacora->user_name = $usuario->name;
+            $bitacora->persona_id = $usuario->persona->id;
+            $bitacora->nombre_completo = $usuario->persona->nombre;
+            $bitacora->save();
+        }
+            
+        
+        
     }
 
     /**
