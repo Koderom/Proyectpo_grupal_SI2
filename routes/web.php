@@ -7,6 +7,7 @@ use App\Http\Controllers\agendaController;
 use App\Http\Controllers\asignacionConsultorioController;
 use App\Http\Controllers\bitacoraController;
 use App\Http\Controllers\citaController;
+use App\Http\Controllers\consultaController;
 use App\Http\Controllers\consultorioController;
 use App\Http\Controllers\pacienteController;
 use App\Http\Controllers\sectorController;
@@ -19,6 +20,10 @@ use App\Http\Controllers\salaController;
 use App\Http\Controllers\tipoInternacionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\especialidadController;
+use App\Http\Controllers\hojaConsultaController;
+use App\Http\Controllers\medicamentoController;
+use App\Http\Controllers\medicamentoRecetaController;
+use App\Http\Controllers\recetaController;
 use App\Http\Controllers\reservaQuirofanoController;
 use App\Models\sector;
 use App\Models\turnoDoctor;
@@ -200,6 +205,24 @@ Route::middleware('auth')->group(function(){
     Route::get('paciente.edit/{paciente}', [pacienteController::class, 'edit'])->name('paciente.edit');
     Route::put('paciente.update/{paciente}', [pacienteController::class, 'update'])->name('paciente.update'); 
     Route::delete('paciente.destroy/{paciente}', [pacienteController::class, 'destroy'])->name('paciente.destroy');
+
+    //Consulta
+    Route::get('/consulta', [consultaController::class, 'index'])->name('consulta.index');
+    Route::post('consulta.store', [consultaController::class, 'store'])->name('consulta.store');
+    
+    
+    //Hoja de consulta
+    Route::get('/hojaconsulta', [hojaConsultaController::class, 'index'])->name('hojaconsulta.index');//cambiar a hoja de consulta
+    Route::post('hojaconsulta.store', [consultaController::class, 'store'])->name('hojaconsulta.store');      
+    //receta
+    Route::post('receta.store', [recetaController::class, 'store'])->name('receta.store');
+    
+    //Medicamento-receta 
+    Route::get('medicamentoReceta', [medicamentoRecetaController::class, 'index'])->name('receta.medicamento.index'); 
+    Route::post('medicamento.store', [medicamentoRecetaController::class, 'store'])->name('receta.medicamento.store');
+    //Medicamento
+    Route::post('medicamento.store',[medicamentoController::class,'store'])->name('medicamento.store');
+    
 });
  //Gestionar Doctores
  Route::get('/doctores', [doctorController::class, 'index'])->name('doctores.index');
@@ -211,6 +234,8 @@ Route::middleware('auth')->group(function(){
  Route::put('doctores.update/{id_doctor}', [doctorController::class, 'update'])->name('doctores.update');
 
  //especialidades
+
+
  Route::get('/especialidad', [especialidadController::class, 'index'])->name('especialidad.index');
  Route::get('/especialidad.create',[especialidadController::class, 'create'])->name('especialidad.create');
  Route::post('/especialidad.store',[especialidadController::class, 'store'])->name('especialidad.store');

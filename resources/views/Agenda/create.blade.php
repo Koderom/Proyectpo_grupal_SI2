@@ -6,7 +6,7 @@
     <div class="container">
         <div class="card shadow-lg p-3 mb-5 bg-white" style="border-radius: 1rem">
             <div class="card-body ">
-                <h3>Registrar en la egenda de: <strong>{{$doctor->persona->nombre}}</strong></h3>
+                <h3>Registrar en la Agenda de: <strong>{{$doctor->persona->nombre}}</strong></h3>
                 {{ csrf_field() }}
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -25,7 +25,7 @@
                             <input class="form-control "  type="date" name="fecha_agendar" id="fecha_agendar" value="{{old('fecha_agendar')}}">
                         </div>
                         <div class="form-group">
-                            <label for="cantidad_cupos">Ingresar la catidad de cupos habilitados:</label>
+                            <label for="cantidad_cupos">Ingresar la cantidad de cupos habilitados:</label>
                             <input class="form-control "  type="number" name="cantidad_cupos" id="cantidad_cupos" value="{{old('cantidad_cupos')}}">
                         </div>
                         <div class="form-group ">

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('hoja_consultas', function(Blueprint $table){
             $table->id();
-            $table->text('impresion_diagnosticas');
-            $table->text('indicaciones_medical');
+            $table->text('sintomas');
+            $table->text('impresion_diagnostica');
+            $table->text('indicaciones_medica');
             $table->date('proxima_consulta');
 
             $table->unsignedBigInteger('consulta_id');

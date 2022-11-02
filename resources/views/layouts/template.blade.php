@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Menu administrador</title>
+    <title>DoClinic</title>
 
     <!-- Custom fonts for this template-->
 
@@ -115,7 +115,7 @@
                         @endcan
                         
                         @can('ver.hoja-de-consulta')
-                        <a class="collapse-item" href="{{asset('/consulta')}}">Hoja de consulta</a>
+                        <a class="collapse-item" href="{{asset('/consulta')}}">Consulta</a>
                         @endcan
                         
                         @can('ver.receta')
