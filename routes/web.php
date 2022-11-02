@@ -169,7 +169,7 @@ Route::get('/',function(){ return redirect()->route('login'); })->name('welcome'
 Route::view('/home', 'menu')->name('home')->middleware('auth');
 Route::view('/login','login')->name('login')->middleware('guest');
 
-Route::post('/login-users', [UserController::class, 'login']);
+Route::post('/login-user', [UserController::class, 'login']);
 
 //Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middlfeware('guest:admin');
 //Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('guest:admin');
