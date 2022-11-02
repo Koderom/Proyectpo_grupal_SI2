@@ -3,6 +3,7 @@
 @section('header')Paciente @endsection
 
 @section('content')
+@include('components.flash_alerts')
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->

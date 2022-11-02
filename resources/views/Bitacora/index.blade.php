@@ -36,6 +36,7 @@
                     </tr>
                     @endforeach
                 </table>
+                {!!$Bitacoras->links()!!}
             </div>
         </div>
     </div>    
