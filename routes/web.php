@@ -171,7 +171,7 @@ Route::view('/login','login')->name('login')->middleware('guest');
 
 Route::post('/login-user', [UserController::class, 'login']);
 
-//Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
+//Route::get('/login', [UserController::class, 'loginView'])->name('login.view')->middlfeware('guest:admin');
 //Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('guest:admin');
 
 Route::middleware('auth')->group(function(){

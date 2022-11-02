@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
  
+use Illuminate\Support\Facades\DB;
 
 class pacienteController extends Controller
 {
@@ -160,12 +161,19 @@ class pacienteController extends Controller
     
     public function destroy($persona_id)
     {
-        $persona = persona::findOrFail($persona_id);
-        $paciente = paciente::where('persona_id',$persona_id)->first();
-        $user = User::where('persona_id',$persona_id)->first();
-        $user->delete($user);
-        $paciente->delete($paciente);
-        $persona->delete($persona);
-        return redirect()->route('paciente.index');
+        try{
+            DB::beginTransaction();
+            $persona = persona::findOrFail($persona_id);
+            $paciente = paciente::where('persona_id',$persona_id)->first();
+            $user = User::where('persona_id',$persona_id)->first();
+            $user->delete($user);
+            $paciente->delete($paciente);
+            $persona->delete($persona);
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->back()->withErrors('No se puede eliminar, error de dependencia');
+        }
+        return redirect()->route('paciente.index')->with('message','eliminado');
     }
 }

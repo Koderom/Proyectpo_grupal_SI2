@@ -7,7 +7,7 @@ use App\Models\doctor;
 use App\Models\User;
 use App\Models\especialidad;
 use App\Models\persona;
-
+use Illuminate\Support\Facades\DB;
 
 class doctorController extends Controller
 {
@@ -185,8 +185,14 @@ class doctorController extends Controller
     }
     public function destroy(doctor $id_doctor) //eliminar
     {
+      try{
+        DB::beginTransaction();
         $id_doctor->delete();
-         return redirect()->route('doctores.index');
+        DB::commit();
+      }catch(\Exception $e){
+        DB::rollBack();
+      }
+      return redirect()->route('doctores.index');
        
     }
 }

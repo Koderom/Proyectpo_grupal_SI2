@@ -6,6 +6,7 @@ use App\Models\administrativo;
 use App\Models\persona;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class administrativoController extends Controller
 {
@@ -151,12 +152,18 @@ class administrativoController extends Controller
     
     public function destroy($persona_id)
     {
-        $persona = persona::findOrFail($persona_id);
-        $administrativo = administrativo::where('persona_id',$persona_id)->first();
-        $user = User::where('persona_id',$persona_id)->first();
-        $user->delete($user);
-        $administrativo->delete($administrativo);
-        $persona->delete($persona);
+        try{
+            DB::beginTransaction();
+            $persona = persona::findOrFail($persona_id);
+            $administrativo = administrativo::where('persona_id',$persona_id)->first();
+            $user = User::where('persona_id',$persona_id)->first();
+            $user->delete($user);
+            $administrativo->delete($administrativo);
+            $persona->delete($persona);
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+        }
         return redirect()->route('administrativo.index');
     }
  

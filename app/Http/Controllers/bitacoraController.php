@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class bitacoraController extends Controller
 {
     public function index(){
-        $Bitacoras = bitacora::all();
+        $Bitacoras = bitacora::paginate(10);
         return view('Bitacora.index',['Bitacoras'=>$Bitacoras]);
     }
     public function show(Bitacora $bitacora){
