@@ -17,7 +17,8 @@ class medicamentoController extends Controller
         $medicamento = new medicamento();
         $medicamento->descripcion = $request->descripcion;
         $medicamento->cantidad_por_unidad = $request->cantidad_por_unidad;
+        $recetaid=$request->recetaid;
         $medicamento->save();
-        return redirect()->route('receta.medicamento.index');
+        return redirect()->route('receta.medicamento.index',[$recetaid]);
     }
 }

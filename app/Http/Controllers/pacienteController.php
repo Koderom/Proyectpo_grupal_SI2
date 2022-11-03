@@ -43,6 +43,7 @@ class pacienteController extends Controller
             'password'=>'required',
             'nombre_tutor'=>'required',
             'numero_telefono_tutor'=>'required',
+            'codigo_registro'=>'unique:expedientes',
 
         ]);
         
@@ -78,6 +79,7 @@ class pacienteController extends Controller
         $expediente = new expediente();
         $expediente->codigo_registro = Str::random(6);
         $expediente->fecha_registro=$fechaActual;
+        $expediente->paciente_id= $paciente->id;
         $expediente->save();
         return redirect()->route('paciente.index');
     }

@@ -11,14 +11,13 @@
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <!--label for="fecha_agendar">Medico:</label-->
-                    <h4 class="col-auto">Medico: <strong>Leonor O'Keefe Sr.</strong></h4>
+                    <h4 class="col-auto">Medico: <strong>{{$receta->hoja_consulta->consulta->doctor->persona->nombre}}</strong></h4>
                 </div>
                 <div class="col-sm-6">
                     <!--label for="fecha_agendar">Cita:1-</label-->
-                    <h4 class="col-auto">Cita: <strong>1-Brant Schamberger</strong></h4>
+                    <h4 class="col-auto">Cita: <strong>{{$receta->hoja_consulta->consulta->cita->id}}</strong></h4>
                 </div>  
              </div>
-
         </div>
 
         <div class="card-body">
@@ -32,32 +31,11 @@
                         <th>Cantidad</th>    
                         <th>Acciones</th>    
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Azitromicina-500gr</td>
-                        <td>1c</td>
-                        <td>24hrs</td>
-                        <td>5</td>
-                        <td>
-                            <form action="#"
-                                method="post">
-                                @csrf
-                                @method('delete')
-                                <a href="#"
-                                    class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
-                                <a href="#"
-                                    class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
-                                <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
-                                    onclick="return confirm('¿ESTA SEGURO QUE DESEA ELIMINAR?')" value="Borrar">
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
 
                     @php
                         $i = 1;
                     @endphp
-                    @foreach ($medicamentos_receta as $medrec)
+                    @foreach ($receta->medicamentoReceta as $medrec)
                     <tr>
                         <td>{{$i++}}</td>
                         <td>{{$medrec->medicamento_id}}</td>
@@ -65,7 +43,7 @@
                         <td>{{$medrec->frecuencia}}</td>
                         <td>{{$medrec->cantidad_total}}</td>
                         <td>
-                            <form action="#"
+                            <form id="acciones" action="#"
                                 method="post">
                                 @csrf
                                 @method('delete')
@@ -73,7 +51,7 @@
                                     class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
                                 <a href="#"
                                     class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
-                                <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
+                                <button form='acciones' class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
                                     onclick="return confirm('¿ESTA SEGURO QUE DESEA ELIMINAR?')" value="Borrar">
                                 </button>
                             </form>
@@ -104,47 +82,37 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#" method="POST">
+            <form id="medrec" action="{{route('receta.medicamento.store')}}" method="post">
                 @csrf
                 <div class="modal-body">
 
                     <div class="col-xs-6 col-sm-6 col-md-12 mt-3">
                         <label style="color: #0b1949" for="ci" class="form-label la">Medicamento:</label>
-                        <select name="medicamento" id="medicamento" class="form-control shadow-sm" required>
+                        <select name="medicamento_id" id="medicamento" class="form-control shadow-sm" required>
                             @foreach ($medicamentos as $medicamento)
-                                <option {{ old('descripcion') == $medicamento->id ? 'selected' : ' ' }}
+                                <option {{ old('medicamento_id') == $medicamento->id ? 'selected' : ' ' }}
                                     value="{{ $medicamento->id }} ">{{ $medicamento->descripcion }}-{{$medicamento->cantidad_por_unidad}}</option>
                             @endforeach
                         </select>
+                        <input type="hidden" name="receta_id" value="{{$receta->id}}">
                     </div>
                     <div class="form-group " style="display: flex;">
                         <div class="col-xs-6 col-sm-6 col-md-6 mt-3">
-                            <label style="color: #061030" for="cantidad" class="form-label la">Dosis</label>
-                            <input name="cantidad" type="text" class="form-control
-                            shadow-sm"
-                                id="cantidad" for="cantidad" value="{{ old('cantidad') }}">
-                            @error('cantidad')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                            <label style="color: #061030" for="dosis" class="form-label la">Dosis</label>
+                            <input name="dosis" type="text" class="form-control shadow-sm"
+                                id="cantidad" for="dosis" value="{{ old('dosis') }}">
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 mt-3">
-                            <label style="color: #061030" for="cantidad" class="form-label la">Frecuencia</label>
-                            <input name="cantidad" type="text" class="form-control
-                            shadow-sm"
-                                id="cantidad" for="cantidad" value="{{ old('cantidad') }}">
-                            @error('cantidad')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                            <label style="color: #061030" for="frecuencia" class="form-label la">Frecuencia</label>
+                            <input name="frecuencia" type="text" class="form-control shadow-sm"
+                                id="frecuencia" for="frecuencia" value="{{ old('frecuencia') }}">
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 mt-3">
-                        <label style="color: #061030" for="cantidad" class="form-label la">Cantidad</label>
-                        <input name="cantidad" type="number" class="form-control
+                        <label style="color: #061030" for="cantidad_total" class="form-label la">Cantidad</label>
+                        <input name="cantidad_total" type="number" class="form-control
                         shadow-sm"
-                            id="cantidad" for="cantidad" value="{{ old('cantidad') }}">
-                        @error('cantidad')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                            id="cantidad" for="cantidad_total" value="{{ old('cantidad_total') }}">
                     </div>
 
                 </div>
@@ -158,7 +126,7 @@
                             Nuevo Medicamento
                         </button>  
                     </div>
-                    <button type="submit" class="btn btn-primary" style="background: #1cc88a; border-color: #1cc88a;">
+                    <button type="submit" form="medrec" class="btn btn-primary" style="background: #1cc88a; border-color: #1cc88a;">
                         Recetar
                     </button>
                 </div>
@@ -178,13 +146,14 @@
                 </button>
                 <br>
             </div>
-            <form action="{{ route('medicamento.store') }}" method="POST">
+            <form id="med" action="{{ route('medicamento.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="col-xs-6 col-sm-6 col-md-12 mt-3">
                         <label style="color: #0b1949" for="descripcion" class="form-label la">Medicamento:</label>
                         <input name="descripcion" type="text" class="form-control shadow-sm"
                                 id="descripcion"  value="{{ old('descripcion') }}" required>
+                        <input type="hidden" name="recetaid" value="{{$receta->id}}">
                     </div>
                     <br>
                     <!--div class="form-group row"-->
@@ -201,7 +170,7 @@
                 </div>
                 <div class="modal-footer">
                     <br>
-                    <button type="submit" class="btn btn-primary" style="background: #1cc88a; border-color: #fbaf32;">
+                    <button type="submit" form="med" class="btn btn-primary" style="background: #1cc88a; border-color: #fbaf32;">
                         Aceptar
                     </button>
                 </div>

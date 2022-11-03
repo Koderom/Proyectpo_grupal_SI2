@@ -10,19 +10,24 @@ use Illuminate\Http\Request;
 class medicamentoRecetaController extends Controller
 {
     //
-    public function index()
+    public function index(receta $receta)
     {
-        $recetas = receta::all();
-        $medicamentos = medicamento::all();
-        $medicamentos_receta = medicamento_receta::all();
-        return view('Medicamento_Receta.index',['recetas'=>$recetas,'medicamentos'=>$medicamentos,'medicamentos_receta'=>$medicamentos_receta]);
-        
+       // return $receta;
+        // $recetas = receta::all();
+         $medicamentos = medicamento::all();
+        // $medicamentos_receta = medicamento_receta::all();
+        return view('Medicamento_Receta.index',['receta'=>$receta, 'medicamentos'=>$medicamentos]);
+
     }
     public function store(Request $request)
     {   
-        /*$consulta = new consulta();
-        //$consulta->doctor_id = $doctor->id;
-        //$consulta->cita_id = $cita->id;
-        $consulta->save();*/
+        $medicamentoreceta = new medicamento_receta();
+        $medicamentoreceta->cantidad_total = $request->cantidad_total;
+        $medicamentoreceta->frecuencia = $request->frecuencia;
+        $medicamentoreceta->dosis = $request->dosis;
+        $medicamentoreceta->receta_id = $request->receta_id;
+        $medicamentoreceta->medicamento_id = $request->medicamento_id;
+        $medicamentoreceta->save();
+        return  redirect()->route('receta.medicamento.index',[$medicamentoreceta->receta_id]);
     }
 }

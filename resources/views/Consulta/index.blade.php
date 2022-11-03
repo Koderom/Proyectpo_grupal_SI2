@@ -81,13 +81,16 @@
                                     <div>
                                         <span class="text-success">Confirmado</span>
                                         <!--a href="#" class="col">Ver</a-->
-                                        <button type="button" onclick="editar(this.id ,<?php echo $citaid?> )" id="<?php echo $pacienteSeleccionado?>" class="btn btn-sm btn-light float-right" data-toggle="modal"
-                                        style="background-color:#71a1d3d9;   border-radius: 12px;" id="">
-                                        <span>
-                                            <i class="fa fa-plus " style="color: #f8f8f8"></i>
-                                        </span>
-                                            Consulta
-                                        </button>    
+                                        <form action="{{ route('consulta.store',['doctorid'=>$doctor->id,'citaid'=>$citaid]) }}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-sm btn-light float-right" data-toggle="modal"
+                                            style="background-color:#71a1d3d9;   border-radius: 12px;" id="">
+                                            <span>
+                                                <i class="fa fa-plus " style="color: #f8f8f8"></i>
+                                            </span>
+                                                Consulta
+                                            </button>    
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +100,6 @@
                         </div>
                     @endswitch
                 </div>    
-                @endforeach
                 <script>
                     function editar(id, citaid) {
                         console.log(citaid);
@@ -106,52 +108,54 @@
                       document.getElementById('idcita').value = citaid;
                     }
                   </script> 
+                
+                @endforeach
 <!--modal-->
-<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #1e5b5e; color: white">
-                <h5 class="modal-title" id="exampleModalLongTitle"> Consulta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <br>
-            </div>
-            <form action="{{ route('consulta.store') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    
-                    <div class="col-xs-6 col-sm-6 col-md-12 mt-3">
-                        <label style="color: #0b1949" for="descripcion" class="form-label la">Doctor:</label>
-                        <input type="text" class="form-control shadow-sm"
-                                id="descripcion"  value="{{$NombreDoctor}}" style="width: 80%" required readonly>
-                        <input name="doctor_id" type="hidden" id="doctor" value={{$doctor->id}} >
+        {{-- <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #1e5b5e; color: white">
+                        <h5 class="modal-title" id="exampleModalLongTitle"> Consulta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <br>
                     </div>
-                    <!--div class="form-group row"-->
-                    <div class="col-xs-6 col-sm-6 col-md-6 mt-3">
-                        <label style="color: #061030" for="cantidad_por_unidad" class="form-label la">N.º Cita-Paciente:</label>
-                        <input type="text" class="form-control
-                            shadow-sm" id="namepaciente" style="width: 160%" required readonly>
-                        <input name="cita_id" type="hidden" id="idcita">
-                            @error('cita_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                    </div>
-                    <!--/div-->
-                    <br>
-                </div>
-                <div class="modal-footer">
-                    <br>
-                    <button type="submit" class="btn btn-primary" style="background: #1cc88a; border-color: #fbaf32;">
-                        Hoja de consulta
-                    </button>
-                </div>
-                <br>
-            </form>
+                    <form action="{{ route('consulta.store') }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            
+                            <div class="col-xs-6 col-sm-6 col-md-12 mt-3">
+                                <label style="color: #0b1949" for="descripcion" class="form-label la">Doctor:</label>
+                                <input type="text" class="form-control shadow-sm"
+                                        id="descripcion"  value="{{$NombreDoctor}}" style="width: 80%" required readonly>
+                                <input name="doctor_id" type="hidden" id="doctor" value={{$doctor->id}} >
+                            </div>
+                            <!--div class="form-group row"-->
+                            <div class="col-xs-6 col-sm-6 col-md-6 mt-3">
+                                <label style="color: #061030" for="cantidad_por_unidad" class="form-label la">N.º Cita-Paciente:</label>
+                                <input type="text" class="form-control
+                                    shadow-sm" id="namepaciente" style="width: 160%" required readonly>
+                                <input name="cita_id" type="hidden" id="idcita">
+                                    @error('cita_id')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                            </div>
+                            <!--/div-->
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <br>
+                            <button type="submit" class="btn btn-primary" style="background: #1cc88a; border-color: #fbaf32;">
+                                Hoja de consulta
+                            </button>
+                        </div>
+                        <br>
+                    </form>
 
-        </div>
-    </div>
-</div>
+                </div>
+            </div>
+        </div> --}}
 <!--  --->
 
 

@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 
 class recetaController extends Controller
 {
-    //
-    public function store(Request $request)
-    {   
+    
+    
+    public function store(Request $request, $hojaconsultaid, $expedienteid)
+    {  
         $receta = new receta();
-        //$receta->hoja_consulta_id = $hoja_consulta->id;
-        //$receta->expediente_id = $expediente->id;
+        $receta->hoja_consulta_id = $hojaconsultaid;
+        $receta->expediente_id = $expedienteid;
         $receta->save();
+        return redirect()->route('receta.medicamento.index',['receta'=>$receta]);
     }
 }

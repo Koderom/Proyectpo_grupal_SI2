@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('expedientes', function(Blueprint $table){
             $table->id();
-            $table->unsignedInteger('codigo_registro');
+            $table->text('codigo_registro');
             $table->dateTime('fecha_registro');
             
             $table->unsignedBigInteger('paciente_id');

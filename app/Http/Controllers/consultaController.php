@@ -33,17 +33,14 @@ class consultaController extends Controller
      return view('consulta.index',['doctor'=>$doctor, 'agenda'=>$agenda, 'Citas'=>$Citas, 'fechaActual'=>$fechaActual]);     
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $doctorid, $citaid)
     {   
-        $request->validate([
-            'doctor_id'=>'required',
-            'cita_id'=>'required|unique:consultas',
-        ]);
+        
         $consulta = new consulta();
-        $consulta->doctor_id = $request->doctor_id;
-        $consulta->cita_id = $request->cita_id;
+        $consulta->doctor_id =$doctorid;
+        $consulta->cita_id = $citaid;
         $consulta->save();
-        return redirect()->route('hojaconsulta.index');
+        return redirect()->route('hojaconsulta.create',['consulta'=>$consulta]);
     }
 
 }

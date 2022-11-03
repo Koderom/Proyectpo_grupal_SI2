@@ -27,7 +27,10 @@ class paciente extends Model
     public function camaPaciente(){
         return $this->hasMany(camaPaciente::class);
     }
-
+    public function expediente()
+    {
+        return $this->hasOne(expediente::class);
+    }
 
 
     public function estaInternado(){

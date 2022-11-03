@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\expediente;
 use App\Models\paciente;
 use App\Models\persona;
 use App\Models\User;
@@ -47,6 +48,12 @@ class pacienteSeeder extends Seeder
                 'password' =>bcrypt(123456789),
                 'remember_token' => Str::random(10),
                 'persona_id'=> $persona->id,
+            ]);
+            //expediente
+            $expediente=expediente::create([
+                'codigo_registro'=>Str::random(6),
+                'fecha_registro'=>fake()->date(),
+                'paciente_id'=>$paciente->id,
             ]);
             $usuario->assignRole('paciente');
         }

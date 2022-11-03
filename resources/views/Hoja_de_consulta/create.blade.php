@@ -1,55 +1,115 @@
 @extends('layouts.template')
 
-@section('header')Receta @endsection
+@section('header')Consulta @endsection
 
 @section('content')
-<div class="container-fluid">
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h2 style="text-align: center;">Receta Medica</h2>
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label for="fecha_agendar">Medico:</label>
-                       
+    <div class="container">
+        <div class="card border-0 shadow-lg my-0"><!--o-hidden-->
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+
+                    <div class="col-lg-7">
+                        <div class="p-mgps" style="padding: 3rem; background-color: #c9d5d7;">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4"><strong>HOJA DE CONSULTA</strong></h1>
+                            </div>
+                            {{ csrf_field() }}
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <!-- personas.create=stores-->
+                            <form id="HojaConsulta" class="user" action="{{ route('hojaconsulta.store') }}"  method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <h4 class="col-auto">Medico: <strong>{{$consulta->doctor->persona->nombre}}</strong></h4>
+                                        <input name="doctor_id" type="hidden" id="doctor_id" value={{$consulta->doctor->id}}>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4 class="col-auto">Numero de cita: <strong>{{$consulta->cita->id}}</strong></h4>
+                                    </div>  
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <h4 class="col-auto">Paciente: <strong>{{$consulta->cita->paciente->persona->nombre}}</strong></h4>
+                                        <input name="cita_id" type="hidden" id="cita_id" value={{$consulta->cita->id}}>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="fecha_agendar">Motivo de consulta:</label>
+                                        <textarea class="form-control"  type="text" name="motivo" id="motivo" disabled>{{$consulta->cita->motivo}}</textarea>   
+                                        <input name="consulta_id" type="hidden" id="consultaid" value={{($consulta->id)}}>
+                                <input name="expediente_id" type="hidden" id="expedienteid" value={{$consulta->cita->paciente->expediente->id}}>
+                                
+                                    </div>  
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    <label for="fecha_agendar">Sintomas:</label>
+                                    <textarea class="form-control"  type="text" name="sintomas" id="motivo" value="{{old('sintomas')}}"></textarea>                                     
+                                </div>
+                                <div class="form-group ">
+                                    <label for="fecha_agendar">Impresion diagnostica:</label>
+                                     <textarea class="form-control"  type="text" name="impresion_diagnostica" id="motivo" value="{{old('impresion_diagnostica')}}"></textarea>
+                                </div> 
+                               <div class="form-group ">
+                                    <label for="fecha_agendar">Indicaciones medicas:</label>
+                                    <textarea class="form-control"  type="text" name="indicaciones_medica" id="motivo" value="{{old('indicaciones_medica')}}"></textarea>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label for="fecha_agendar">Proxima consulta:</label>
+                                        <input type="date" class="form-control form-control-user" id="exampleInputEmail"
+                                        name="proxima_consulta"  value="{{ old('proxima_consulta') }}">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#exampleModalCenterTitle"
+                                        style="background-color:#1cc88a; margin: 15px 10px; padding: 10px 40px; border-radius: 12px; font-size: large;">
+                                        <span>
+                                            <i class="fa fa-plus " style="color: #f8f8f8"></i>
+                                        </span>
+                                              Recetar
+                                        </button>
+
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="submit" form="HojaConsulta" class="btn btn-facebook btn-user btn-block" value="Aceptar">
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <a href="#"
+                                            class="btn btn-primary btn-user btn-block">
+                                            Cancelar
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <label for="fecha_agendar">Cita:</label>
-                    <select></select>
-                </div>  
-             </div>
-
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-                        <th>ID</th>
-                        <th>Medicamento</th>
-                        <th>dosis</th>
-                        <th>frecuentacia</th>
-                        <th>cantidad</th>    
-                    </tr>
-                </table>
             </div>
         </div>
-        <div class="">
-            <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#exampleModalCenterTitle"
-            style="background-color:#1cc88a; margin: 15px 10px; padding: 10px 40px; border-radius: 12px; font-size: large;">
-            <span>
-                <i class="fa fa-plus " style="color: #f8f8f8"></i>
-            </span>
-                Agregar Medicamento
-            </button>  
-        </div>
-    </div> 
-</div>
+
+    </div>
 
 <div class="modal fade" id="exampleModalCenterTitle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header" style="background: #3c4f66; color: white">
-                <h5 class="modal-title" id="exampleModalLongTitle">Medicamento Receta</h5>
+            <div class="modal-header" style="background: #36b9cc; color: white">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Receta</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -59,103 +119,30 @@
                 <div class="modal-body">
 
                     <div class="col-xs-6 col-sm-6 col-md-12 mt-3">
-                        <label style="color: #0b1949" for="ci" class="form-label la">Medicamento:</label>
-                        <select name="lista_material" id="lista_material" class="form-control shadow-sm" required>
+                        <label style="color: #0b1949" for="ci" class="form-label la">Hoja de consulta:</label>
+                        <!--select name="lista_material" id="lista_material" class="form-control shadow-sm" value="1" required>
 
-                        </select>
+                        </select-->
+                        <input name="fecha_c" type="text" class="form-control shadow-sm" id="fecha_c" for="fecha_c"
+                            value="1" />
                     </div>
-                    <div class="form-group " style="display: flex;">
-                        <div class="col-xs-6 col-sm-6 col-md-6 mt-3">
-                            <label style="color: #061030" for="cantidad" class="form-label la">Dosis</label>
-                            <input name="cantidad" type="text" class="form-control
-                            shadow-sm"
-                                id="cantidad" for="cantidad" value="{{ old('cantidad') }}">
-                            @error('cantidad')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 mt-3">
-                            <label style="color: #061030" for="cantidad" class="form-label la">Frecuencia</label>
-                            <input name="cantidad" type="text" class="form-control
-                            shadow-sm"
-                                id="cantidad" for="cantidad" value="{{ old('cantidad') }}">
-                            @error('cantidad')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                    </div>
+
                     <div class="col-xs-6 col-sm-6 col-md-6 mt-3">
-                        <label style="color: #061030" for="cantidad" class="form-label la">Cantidad</label>
-                        <input name="cantidad" type="number" class="form-control
+                        <label style="color: #061030" for="cantidad" class="form-label la">Expediente</label>
+                        <input name="cantidad" type="text" class="form-control
                         shadow-sm"
-                            id="cantidad" for="cantidad" value="{{ old('cantidad') }}">
-                        @error('cantidad')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                            id="cantidad" for="cantidad" value='1-Brant Schamberger'>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <div class="">
-                        <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#ModalNuevoMedicamento"
-                        style="background-color:#fbaf32; margin: 0 170px 0 0; border-radius: 12px; font-size: large;">
-                        <span>
-                            <i class="fa fa-plus " style="color: #f8f8f8"></i>
-                        </span>
-                            Nuevo Medicamento
-                        </button>  
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="background: #1cc88a; border-color: #1cc88a;">
-                        Recetar
-                    </button>
-                </div>
-            </form>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="ModalNuevoMedicamento" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #1e5b5e; color: white">
-                <h5 class="modal-title" id="exampleModalLongTitle"> Nuevo Medicamento</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <br>
-            </div>
-            <form action="{{ route('medicamento.store') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="col-xs-6 col-sm-6 col-md-12 mt-3">
-                        <label style="color: #0b1949" for="descripcion" class="form-label la">Medicamento:</label>
-                        <input name="descripcion" type="text" class="form-control shadow-sm"
-                                id="descripcion"  value="{{ old('descripcion') }}" required>
-                    </div>
-                    <br>
-                    <!--div class="form-group row"-->
-                        <div class="col-xs-6 col-sm-6 col-md-6 mt-3">
-                            <label style="color: #061030" for="cantidad_por_unidad" class="form-label la">Cantidad por unidad:</label>
-                            <input name="cantidad_por_unidad" type="text" class="form-control
-                            shadow-sm" id="cantidad" value="{{ old('cantidad_por_unidad') }}" required>
-                            @error('cantidad')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                    <!--/div-->
-                    <br>
-                </div>
-                <div class="modal-footer">
-                    <br>
                     <button type="submit" class="btn btn-primary" style="background: #1cc88a; border-color: #fbaf32;">
-                        Aceptar
-                    </button>
+                        Recetar</button>
                 </div>
-                <br>
             </form>
 
         </div>
     </div>
 </div>
+
 @endsection

@@ -26,4 +26,7 @@ class cita extends Model
     public function doctor(){
         return $this->belongsTo(doctor::class);
     }
+    public function consulta(){
+        return $this->belongsTo(consulta::class);
+    }
 }

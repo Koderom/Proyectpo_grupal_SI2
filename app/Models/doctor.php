@@ -62,5 +62,7 @@ class doctor extends Model
         if($cirugiaProgramada->count() != 0) return true;
         return false;
     }
-    
+    public function consulta(){
+        return $this->belongsTo(consulta::class);
+    }
 }
