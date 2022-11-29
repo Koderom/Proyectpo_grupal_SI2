@@ -91,6 +91,7 @@
                         @can('ver.bitacora')
                         <a class="collapse-item" href="{{route('bitacora.index')}}">Bitacora</a>
                         @endcan
+                        <a class="collapse-item" href="{{route('clinica.index')}}">Clinica</a>
                     </div>
                 </div>
             </li>

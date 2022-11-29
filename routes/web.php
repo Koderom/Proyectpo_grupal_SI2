@@ -7,6 +7,7 @@ use App\Http\Controllers\agendaController;
 use App\Http\Controllers\asignacionConsultorioController;
 use App\Http\Controllers\bitacoraController;
 use App\Http\Controllers\citaController;
+use App\Http\Controllers\clinicaController;
 use App\Http\Controllers\consultaController;
 use App\Http\Controllers\consultorioController;
 use App\Http\Controllers\pacienteController;
@@ -20,6 +21,8 @@ use App\Http\Controllers\salaController;
 use App\Http\Controllers\tipoInternacionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\especialidadController;
+use App\Http\Controllers\expedienteController;
+use App\Http\Controllers\historialClinicoController;
 use App\Http\Controllers\hojaConsultaController;
 use App\Http\Controllers\medicamentoController;
 use App\Http\Controllers\medicamentoRecetaController;
@@ -163,6 +166,18 @@ Route::controller(internacionController::class)->group(function(){
 Route::controller(tipoInternacionController::class)->group(function(){
     Route::post('tipoInternacion/store','store')->name('tipoInternacion.store');
 });
+Route::controller(clinicaController::class)->group(function(){
+    Route::get('clinica/index', 'index')->name('clinica.index');
+    Route::post('clinica/store','store')->name('clinica.store');
+});
+Route::controller(expedienteController::class)->group(function(){
+    Route::get('expediente/paciente/index/{paciente}','expedientePaciente')->name('expediente.paciente.index');
+});
+Route::controller(historialClinicoController::class)->group(function(){
+    Route::get('historialClinico/create/{paciente}','create')->name('historialClinico.create');
+    Route::post('historialClinico/pdf-generate/{paciente}','pdfGenerate')->name('historialClinico.pdfGenerate');
+});
+
 /*-----------------------GP----------------------------------------------------- */
 
 Route::get('/',function(){ return redirect()->route('login'); })->name('welcome')->middleware('guest');

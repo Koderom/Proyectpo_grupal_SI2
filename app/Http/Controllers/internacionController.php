@@ -40,11 +40,12 @@ class internacionController extends Controller
         $Sectores = sector::join('salas','salas.sector_id','=','sectors.id')
                     ->where('salas.tipo_sala','=','I')
                     ->select('sectors.*')
-                    ->distinct()
+                    ->groupBy('sectors.id')
                     ->get();
         if($Sectores->count() == 0) return back()->withErrors('No existen salas de internacion');
         $Salas = sala::where('tipo_sala','=','I')->get();
         foreach($Salas as $sala) $sala->internacion->tipoInternacion;
+        //foreach($Sectores as $sector) $sector->$sala->internacion->tipoInternacion;
         $Pacientes = paciente::all();
         return view('Internacion.internarPaciente',['Sectores'=>$Sectores, 'Salas'=>$Salas, 'Pacientes'=>$Pacientes]);
     }
@@ -80,6 +81,7 @@ class internacionController extends Controller
         return view('Internacion.create',['Sectores'=>$Sectores , 'TiposInternacion'=>$TiposInternacion]);
     }
     public function store(Request $request){
+        
         $request->validate([
             'numero_de_sala'=>'required|unique:salas,nro_sala',
             'capacidad'=>'required',

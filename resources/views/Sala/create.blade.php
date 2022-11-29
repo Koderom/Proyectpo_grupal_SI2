@@ -31,7 +31,7 @@
                                 <input type="text" class="form-control form-control-user" id="numero_de_sala" name="numero_de_sala" placeholder="Numero de sala" value="{{ old('numero_de_sala') }}">
                               </div>
                               <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="capacidad">Capacidad:</label>
+                                <label for="capacidad">Capacidad maxima de personas en la sala:</label>
                                 <input type="text" class="form-control form-control-user" id="capacidad" name="capacidad" placeholder="capacidad" value="{{ old('capacidad') }}">
                               </div>
                                
