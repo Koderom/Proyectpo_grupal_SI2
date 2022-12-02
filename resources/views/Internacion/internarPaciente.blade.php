@@ -38,7 +38,10 @@
                                 <label for="sala">Seleccionar sala de Internacion:</label>
                                 <select name="sala" id="sala" class="form-control" style="border-radius: 3rem">
                                   @foreach ($Sectores[0]->sala as $sala)
-                                    <option value="{{$sala->id}}">Sala nº:{{$sala->nro_sala}}-{{$sala->internacion->tipoInternacion->descripcion}}</option>
+                                  @if($sala->tipo_sala[0] == 'I')
+                                    <option value="{{$sala->id}}">Sala nº:{{$sala->nro_sala}}-{{$sala->internacion->tipoInternacion->descripcion}}</option>    
+                                  @endif
+                                  
                                   @endforeach
                                 </select>                            
                             </div>
