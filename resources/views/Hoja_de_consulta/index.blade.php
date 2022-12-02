@@ -48,7 +48,7 @@
                                     <td>{{ $i++ }}</td>
                                     <th>{{ $hojaconsulta->id }}</th>
                                     <th>{{ $hojaconsulta->impresion_diagnostica}}</th>
-                                    <th>{{ $hojaconsulta->expediente->paciente_id}}</th>
+                                    <th>{{ $hojaconsulta->expediente->paciente->persona->nombre}}</th>
                                     <th>{{ $hojaconsulta->consulta->cita->id }}</th>
                                     <th>
                                         <form action="{{route('receta.store',['hojaconsultaid'=>$hojaconsulta->id,'expedienteid'=>$hojaconsulta->expediente->id])}}"

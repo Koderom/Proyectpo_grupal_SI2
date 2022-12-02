@@ -49,4 +49,13 @@ class hojaConsultaController extends Controller
         $hojaconsulta->save();
         return redirect()->route('hojaconsulta.index');
     }
+
+//ver hoja de consulta
+ /*public function show($hojaconsulta_id)
+ {
+    $hojaconsulta= hoja_consulta::find($hojaconsulta_id);
+    return view('Hoja_de_consulta.show', $hojaconsulta);
+ }
+*/
+
 }
