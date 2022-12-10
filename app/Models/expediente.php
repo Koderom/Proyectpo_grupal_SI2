@@ -17,4 +17,10 @@ class expediente extends Model
     {
         return $this->belongsTo(paciente::class);
     }
+    public function receta(){
+        return $this->belongsTo(receta::class);
+    }
+    public function documentacion(){
+        return $this->hasMany(documentacion::class);
+    }
 }

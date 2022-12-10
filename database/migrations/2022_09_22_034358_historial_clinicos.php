@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('historial_clinicos', function(Blueprint $table){
             $table->id();
-            $table->string('enfermedad_diagnosticada',150);
-            $table->string('manifestaciones_clinicas',150);
-            $table->dateTime('fecha_registro');
-            $table->string('estado_paciente');
-
+            $table->unsignedBigInteger('codigo');
+            
+            $table->unsignedSmallInteger('documentacion_id');
+            $table->foreign('documentacion_id')->references('id')->on('documentacions');
             $table->unsignedBigInteger('administrativo_id');//persona que registra el historial
             $table->foreign('administrativo_id')->references('id')->on('administrativos');
             $table->timestamps();
