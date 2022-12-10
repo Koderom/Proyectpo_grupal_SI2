@@ -13,4 +13,8 @@ class medicamento_receta extends Model
     {
         return $this->belongsTo(receta::class);
     }
+    public function medicamento()
+    {
+        return $this->belongsTo(medicamento::class);
+    }
 }

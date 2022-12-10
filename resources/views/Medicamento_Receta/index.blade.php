@@ -38,7 +38,7 @@
                     @foreach ($receta->medicamentoReceta as $medrec)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td>{{$medrec->medicamento_id}}</td>
+                        <td>{{$medrec->medicamento->descripcion}}</td>
                         <td>{{$medrec->dosis}}</td>
                         <td>{{$medrec->frecuencia}}</td>
                         <td>{{$medrec->cantidad_total}}</td>
@@ -69,6 +69,12 @@
             </span>
                 Agregar Medicamento
             </button>  
+        </div>
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <a href="{{ route('hojaconsulta.index') }}"
+                class="btn btn-primary btn-user btn-block">
+                Cancelar
+            </a>
         </div>
     </div> 
 </div>
