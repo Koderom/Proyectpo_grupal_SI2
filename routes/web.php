@@ -5,6 +5,7 @@ use App\Http\Controllers\RolesPermisosController;
 use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\agendaController;
 use App\Http\Controllers\asignacionConsultorioController;
+use App\Http\Controllers\backupController;
 use App\Http\Controllers\bitacoraController;
 use App\Http\Controllers\citaController;
 use App\Http\Controllers\clinicaController;
@@ -189,6 +190,10 @@ Route::controller(documentacionController::class)->group(function(){
 Route::controller(reporteController::class)->group(function(){
     Route::get('reporte/index','index')->name('reporte.index');
     Route::post('reporte/create','create')->name('reporte.create');
+    Route::post('reporte/pdfGenerate','pdfGenerate')->name('reporte.pdfGenerate');
+});
+Route::controller(backupController::class)->group(function(){
+    Route::get('backup/create','create')->name('backup.create');
 });
 /*-----------------------GP----------------------------------------------------- */
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('consultorios', function(Blueprint $table){
             $table->id();
-            $table->char('estado'); // 'O' : ocupado 'D' : disponible
+            $table->char('estado',1); // 'O' : ocupado 'D' : disponible
             $table->unsignedBigInteger('sala_id');
             $table->foreign('sala_id')->references('id')->on('salas');
             $table->timestamps();
