@@ -10,6 +10,6 @@ class backupController extends Controller
         return exec('C:\xampp\htdocs\DoClinic\public\backup\backup_doclinic.bat');
     }
     public function restore(){
-
+        return exec('C:\xampp\htdocs\DoClinic\public\backup\backup_doclinic.bat');
     }
 }
