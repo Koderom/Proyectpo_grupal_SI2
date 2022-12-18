@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('documentacions', function(Blueprint $table){
             $table->id();
+            $table->string('nombre',150);
             $table->dateTime('fecha_registro');
-            $table->string('tipo_documento');
-
-            $table->unsignedBigInteger('expediente');
-            $table->foreign('expediente')->references('id')->on('expedientes');
+            $table->string('path',200);
+            
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('expediente_id');
+            $table->foreign('expediente_id')->references('id')->on('expedientes');
             $table->timestamps();
         });
     }

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\etiqueta;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -31,7 +33,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             pacienteSeeder::class,
             doctorSeeder::class,
-            tipoInternacionSeeder::class
+            tipoInternacionSeeder::class,
+            etiquetaSeeder::class
         ]);
 
     }

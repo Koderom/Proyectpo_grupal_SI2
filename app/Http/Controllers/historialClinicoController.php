@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\clinica;
+use App\Models\documentacion;
+use App\Models\documento_etiqueta;
+use App\Models\etiqueta;
+use App\Models\historial_clinico;
 use App\Models\paciente;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -26,7 +30,6 @@ class historialClinicoController extends Controller
 
 
     public function create(paciente $paciente){
-        
         return view('HistorialClinico.create',[
             'paciente'=> $paciente,
             'AntecedentesPatologicos'=>collect($this->AntecedentesPatologicos),
@@ -36,9 +39,10 @@ class historialClinicoController extends Controller
         ]);
     }
     public function pdfGenerate(Request $request, paciente $paciente){
-        //return $request;
+        //generacion del documento
         $myTime = Carbon::now('America/La_Paz');
-        $doctor = Auth::user()->persona;
+        $cod = "".$myTime->year."".$myTime->month."".$myTime->day."".$myTime->minute."".$myTime->second."".$myTime->micro."";
+        $doctor = Auth::user()->persona;//revisar quienes pueden registrar el HC
         $clinica = clinica::first();
         $pdf = Pdf::loadView('HistorialClinico.historialClinicoPDF',[
             'fecha_hora'=>$myTime,
@@ -49,13 +53,34 @@ class historialClinicoController extends Controller
             'AntecedentesPatologicos'=>collect($this->AntecedentesPatologicos),
             'Alergias'=>collect($this->Alergias),
             'Heredofamiliares'=>collect($this->Heredofamiliares),
-            'GruposEtnicos'=>collect($this->GruposEtinicos)
-
+            'GruposEtnicos'=>collect($this->GruposEtinicos),
+            'HC_codigo'=>$cod
         ]);
-        $hcpdf = $pdf->download('historialClinico.pdf');
-        $path = "documentos/HC"."holamundo".".pdf";
-        $documento = Storage::disk('public')->put($path, $hcpdf);
-        return $pdf->download('historialClinico.pdf');
+        $hcpdf = $pdf->download('historialClinico.pdf');//<- documento
+        // almacenamiento del documento
+        $path = "documentos/HC".$cod.".pdf";
+        Storage::disk('public')->put($path, $hcpdf);
+        // guardar datos del documento en la base de datos
+        $documento = new documentacion();
+        $documento->nombre = "HistoriaClinica-".$cod;
+        $documento->fecha_registro = $myTime->toDateString();
+        $documento->path = 'public/'.$path;
+        $documento->expediente_id = $paciente->expediente->id;
+        $documento->user_id = Auth::user()->id;
+        $documento->save();
+        // guardar la HC en BD
+        $historiaClinica = new historial_clinico();
+        $historiaClinica->codigo = $cod;
+        $historiaClinica->administrativo_id = $doctor->id;
+        $historiaClinica->documentacion_id = $documento->id;
+        $historiaClinica->save();
+        // etiqueto del documento
+        $etiqueta = etiqueta::where('descripcion','Historia clinica')->first();
+        $documento_etiqueta = new documento_etiqueta();
+        $documento_etiqueta->etiqueta_id = $etiqueta->id;
+        $documento_etiqueta->documentacion_id = $documento->id;
+        $documento_etiqueta->save();
 
+        return redirect()->route('expediente.paciente.index',['paciente'=>$paciente])->with('message','Historia clinica registrada');
     }
 }

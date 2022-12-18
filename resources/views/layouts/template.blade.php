@@ -108,7 +108,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
                         @can('ver.documentacion')
-                        <a class="collapse-item" href="{{asset('/documentacion')}}">Documentacion</a>
+                        <a class="collapse-item" href="{{route('documentacion.index')}}">Documentacion</a>
                         @endcan
                         
                         @can('ver.historial-clinico')

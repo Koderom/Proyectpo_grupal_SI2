@@ -25,4 +25,7 @@ class administrativo extends Model
     public function cita(){
         return $this->hasMany(cita::class);
     }
+    public function historialClinico(){
+        return $this->hasMany(historial_clinico::class);
+    }
 }

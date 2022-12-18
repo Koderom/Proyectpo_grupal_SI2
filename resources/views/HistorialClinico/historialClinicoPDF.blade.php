@@ -7,17 +7,16 @@
   <style>
     header{
       width: 100%;
+      margin: 1rem auto;
     }
     .titulo{
-      margin: 0;
       padding: 0;
-      text-align: center;
+      margin: 0;
     }
     .logo{
       display: inline-block;
     }
     .titulos-encabezado{
-      margin-left: 9rem; 
       max-width: max-content;
       display: inline-block;
     }
@@ -60,17 +59,24 @@
 </head>
 <body>
   <header>
+    @if ($clinica != null)
     <img class="logo" src="{{public_path(Storage::url($clinica->logo_url))}}" width="100">
     <div class="titulos-encabezado">
       <h1 class="titulo">{{$clinica->nombre}}</h1>
       <h2 class="titulo">Historia Clinica</h2>
+    </div>    
+    @else
+    <div class="titulos-encabezado">
+      <h2 class="titulo">Historia Clinica</h2>
     </div>
+    @endif
+    
   </header>
   <main>
     <div class="informacion">
       <div class="datos">
         <span class="campo">Nº Historia Clinica: </span>
-        <span class="dato">11111111111</span>
+        <span class="dato">{{$HC_codigo}}</span>
       </div>
       <div class="datos">
         <span class="campo">Fecha y hora de elaboracion: </span>

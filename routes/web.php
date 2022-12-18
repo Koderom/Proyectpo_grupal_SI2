@@ -5,6 +5,7 @@ use App\Http\Controllers\RolesPermisosController;
 use App\Http\Controllers\administrativoController;
 use App\Http\Controllers\agendaController;
 use App\Http\Controllers\asignacionConsultorioController;
+use App\Http\Controllers\backupController;
 use App\Http\Controllers\bitacoraController;
 use App\Http\Controllers\citaController;
 use App\Http\Controllers\clinicaController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\sectorController;
 use App\Http\Controllers\turnoController;
 use App\Http\Controllers\turnoDoctorController;
 use App\Http\Controllers\doctorController;
+use App\Http\Controllers\documentacionController;
 use App\Http\Controllers\internacionController;
 use App\Http\Controllers\quirofanoController;
 use App\Http\Controllers\salaController;
@@ -27,6 +29,7 @@ use App\Http\Controllers\hojaConsultaController;
 use App\Http\Controllers\medicamentoController;
 use App\Http\Controllers\medicamentoRecetaController;
 use App\Http\Controllers\recetaController;
+use App\Http\Controllers\reporteController;
 use App\Http\Controllers\reservaQuirofanoController;
 use App\Models\sector;
 use App\Models\turnoDoctor;
@@ -177,7 +180,21 @@ Route::controller(historialClinicoController::class)->group(function(){
     Route::get('historialClinico/create/{paciente}','create')->name('historialClinico.create');
     Route::post('historialClinico/pdf-generate/{paciente}','pdfGenerate')->name('historialClinico.pdfGenerate');
 });
-
+Route::controller(documentacionController::class)->group(function(){
+    Route::get('documentacion/index','index')->name('documentacion.index');
+    Route::get('documentacion/create','index')->name('documentacion.create');
+    Route::get('documentacion/paciente/create/{paciente}','create')->name('documentacion.paciente.create');
+    Route::post('documentacion/paciente/create/{paciente}','store')->name('documentacion.paciente.store');
+    Route::delete('documentacion/destroy/{documentacion}','destroy')->name('documentacion.destroy');
+});
+Route::controller(reporteController::class)->group(function(){
+    Route::get('reporte/index','index')->name('reporte.index');
+    Route::post('reporte/create','create')->name('reporte.create');
+    Route::post('reporte/pdfGenerate','pdfGenerate')->name('reporte.pdfGenerate');
+});
+Route::controller(backupController::class)->group(function(){
+    Route::get('backup/create','create')->name('backup.create');
+});
 /*-----------------------GP----------------------------------------------------- */
 
 Route::get('/',function(){ return redirect()->route('login'); })->name('welcome')->middleware('guest');

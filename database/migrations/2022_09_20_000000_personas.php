@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido_paterno');
             $table->string('apellido_materno');
-            $table->char('sexo');
+            $table->char('sexo',1);
             $table->unsignedInteger('edad');
             $table->date('fecha_nacimiento');
             $table->unsignedBigInteger('telefono');
             $table->text('direccion');
-            $table->char('tipo');
+            $table->char('tipo',1);
 
             // $table->unsignedBigInteger('user_id');
             // $table->foreign('user_id')->references('id')->on('users');

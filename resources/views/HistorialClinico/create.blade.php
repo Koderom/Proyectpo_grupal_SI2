@@ -320,7 +320,7 @@
           </div>
         </div> --}}
         <button type="submit" class="btn btn-primary my-5">Guardar</button>
-        <button type="button" class="btn btn-danger my-5">Cancelar</button>
+        <a href="{{url()->previous()}}" class="btn btn-danger my-5" >Cancelar</a>
       </form>
     </div>
   </div>

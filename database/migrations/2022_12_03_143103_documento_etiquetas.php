@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quirofanos', function(Blueprint $table){
+        Schema::create('documento_etiquetas', function(Blueprint $table){
             $table->id();
-            $table->char('estado',1); // 'F':full-lleno 'D': disponible 'V': vacio
-            $table->unsignedBigInteger('sala_id');
-            $table->foreign('sala_id')->references('id')->on('salas');
+            $table->unsignedBigInteger('documentacion_id');
+            $table->foreign('documentacion_id')->references('id')->on('documentacions');
+            $table->unsignedBigInteger('etiqueta_id');
+            $table->foreign('etiqueta_id')->references('id')->on('etiquetas');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quirofanos');
+        Schema::dropIfExists('documento_etiquetas');
     }
 };
