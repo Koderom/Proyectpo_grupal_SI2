@@ -229,7 +229,8 @@ Route::middleware('auth')->group(function(){
     //Hoja de consulta
     Route::get('/hojaconsulta', [hojaConsultaController::class, 'index'])->name('hojaconsulta.index');
     Route::get('/hojaconsulta.create/{consulta}', [hojaConsultaController::class, 'create'])->name('hojaconsulta.create');//cambiar a hoja de consulta
-    Route::post('hojaconsulta.store', [hojaConsultaController::class, 'store'])->name('hojaconsulta.store');      
+    Route::post('hojaconsulta.store', [hojaConsultaController::class, 'store'])->name('hojaconsulta.store');
+    Route::get('hojaconsulta.show/{consulta}',[hojaConsultaController::class,'show'])->name('hojaconsulta.show');      
     
     //receta
     Route::post('receta.store/{hojaconsultaid}/{expedienteid}', [recetaController::class, 'store'])->name('receta.store');

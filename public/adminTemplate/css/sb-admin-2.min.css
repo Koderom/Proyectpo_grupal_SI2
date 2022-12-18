@@ -84,6 +84,13 @@ body {
     width: 52%;
     margin: auto;
 }
+.notcita {
+    text-align: center;
+    padding: 1em;
+    width: 100%;
+    background-color: #cd0e0e33;
+    border-radius: 10px;
+}
 /**/
 
 [tabindex="-1"]:focus:not(:focus-visible) {

@@ -118,7 +118,9 @@
                         @can('ver.hoja-de-consulta')
                         <a class="collapse-item" href="{{asset('/consulta')}}">Consulta</a>
                         @endcan
-                        
+                        @can('ver.hoja-de-consulta')
+                        <a class="collapse-item" href="{{asset('/hojaconsulta')}}">Hojas de Consultas</a>
+                        @endcan
                         @can('ver.receta')
                         <a class="collapse-item" href="{{asset('/recetas')}}">Recetas</a>
                         @endcan

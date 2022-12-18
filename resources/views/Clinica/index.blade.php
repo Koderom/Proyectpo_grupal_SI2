@@ -16,7 +16,7 @@
 					</div>
 					<div class="row">
 						<strong class="col-12">Logo del establecimiento:</strong>
-						<img class="py-3" src="{{ Storage::url($clinica->logo_url) }}" alt="logo" width="300">
+						<img class="py-3" src="{{ Storage::url('imagenes/logo/XgQlOwFHgorud3i3pNPNj2rxpR5KgJNVtKrx7GpH.jpg') }}" alt="logo" width="300">
 					</div>		
 				@endif
 				<div class="row py-3">

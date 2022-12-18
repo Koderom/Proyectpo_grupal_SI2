@@ -51,6 +51,7 @@
                                     <th>{{ $hojaconsulta->expediente->paciente->persona->nombre}}</th>
                                     <th>{{ $hojaconsulta->consulta->cita->id }}</th>
                                     <th>
+                                        
                                         <form action="{{route('receta.store',['hojaconsultaid'=>$hojaconsulta->id,'expedienteid'=>$hojaconsulta->expediente->id])}}"
                                             method="post">
                                             @csrf
@@ -65,6 +66,7 @@
                                             <a href="#"
                                                 class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a-->
                                         </form>
+
                                     </th>
                                     </td>
                                 </tr>
