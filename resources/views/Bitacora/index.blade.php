@@ -14,7 +14,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <tr>
-                        <th>ID</th>
+                        <th>IDs</th>
                         <th>Objeto</th>
                         <th>Entidad</th>
                         <th>Accion</th>
