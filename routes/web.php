@@ -88,7 +88,7 @@ Route::controller(agendaController::class)->group(function(){
     Route::get('/agenda/create/{doctor}','create')->name('agenda.create');
     Route::post('/agenda/store/{doctor}','store')->name('agenda.store');
     Route::get('/agenda/ver-cupos/{doctor}/{agenda}','verCupos')->name('agenda.ver-cupos');
-    
+
 });
 
 Route::controller(citaController::class)->group(function(){
@@ -147,7 +147,7 @@ Route::controller(quirofanoController::class)->group(function(){
     Route::get('quirofano/index', 'index')->name('quirofano.index');
     Route::get('quirofano/create','create')->name('quirofano.create');
     Route::post('quirofano/store','store')->name('quirofano.store');
-    Route::get('quirofano/show/{sala}', 'show')->name('quirofano.show');    
+    Route::get('quirofano/show/{sala}', 'show')->name('quirofano.show');
 });
 Route::controller(reservaQuirofanoController::class)->group(function(){
     Route::get('reservarQuirofano/create','create')->name('reservarQuirofano.create');
@@ -209,11 +209,11 @@ Route::post('/login-user', [UserController::class, 'login']);
 Route::middleware('auth')->group(function(){
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     //Route::post('/logout',[UserController::class,'logout'])->name('logout');
- 
+
     //Route::get('/menu', [UserController::class, 'menu'])->name("menu");
 
     // Gestionar Usuario
-    Route::get('/usuario', [UserController::class, 'index'])->name('usuario.index');  
+    Route::get('/usuario', [UserController::class, 'index'])->name('usuario.index');
     //Route::post('usuario.store', [UserController::class, 'store'])->name('usuario.store');
     Route::get('usuario.show/{usuario}',[UserController::class,'show'])->name('usuario.show');
     Route::get('usuario.edit/{usuario}', [UserController::class, 'edit'])->name('usuario.edit');
@@ -222,42 +222,42 @@ Route::middleware('auth')->group(function(){
 
     //Personal administrativo
     Route::get('/administrativo', [administrativoController::class, 'index'])->name('administrativo.index');
-    Route::get('administrativo.create', [administrativoController::class, 'create'])->name('administrativo.create');   
+    Route::get('administrativo.create', [administrativoController::class, 'create'])->name('administrativo.create');
     Route::post('administrativo.store', [administrativoController::class, 'store'])->name('administrativo.store');
     Route::get('administrativo.show/{administrativo}', [administrativoController::class, 'show'])->name('administrativo.show');
     Route::get('administrativo.edit/{administrativo}', [administrativoController::class, 'edit'])->name('administrativo.edit');
     Route::put('administrativo.update/{administrativo}', [administrativoController::class, 'update'])->name('administrativo.update');
     Route::delete('administrativo.destroy/{administrativo}', [administrativoController::class, 'destroy'])->name('administrativo.destroy');
-  
+
     //Gestionar paciente
     Route::get('/paciente', [pacienteController::class, 'index'])->name('paciente.index');
-    Route::get('paciente.create', [pacienteController::class, 'create'])->name('paciente.create');   
+    Route::get('paciente.create', [pacienteController::class, 'create'])->name('paciente.create');
     Route::post('paciente.store', [pacienteController::class, 'store'])->name('paciente.store');
     Route::get('paciente.show/{paciente}', [pacienteController::class, 'show'])->name('paciente.show');
     Route::get('paciente.edit/{paciente}', [pacienteController::class, 'edit'])->name('paciente.edit');
-    Route::put('paciente.update/{paciente}', [pacienteController::class, 'update'])->name('paciente.update'); 
+    Route::put('paciente.update/{paciente}', [pacienteController::class, 'update'])->name('paciente.update');
     Route::delete('paciente.destroy/{paciente}', [pacienteController::class, 'destroy'])->name('paciente.destroy');
 
     //Consulta
     Route::get('/consulta', [consultaController::class, 'index'])->name('consulta.index');
     Route::post('consulta.store/{doctorid}/{citaid}', [consultaController::class, 'store'])->name('consulta.store');
-    
-    
+
+
     //Hoja de consulta
     Route::get('/hojaconsulta', [hojaConsultaController::class, 'index'])->name('hojaconsulta.index');
     Route::get('/hojaconsulta.create/{consulta}', [hojaConsultaController::class, 'create'])->name('hojaconsulta.create');//cambiar a hoja de consulta
     Route::post('hojaconsulta.store', [hojaConsultaController::class, 'store'])->name('hojaconsulta.store');
-    Route::get('hojaconsulta.show/{consulta}',[hojaConsultaController::class,'show'])->name('hojaconsulta.show');      
-    
+    Route::get('hojaconsulta.show/{consulta}',[hojaConsultaController::class,'show'])->name('hojaconsulta.show');
+
     //receta
     Route::post('receta.store/{hojaconsultaid}/{expedienteid}', [recetaController::class, 'store'])->name('receta.store');
-    
-    //Medicamento-receta 
-    Route::get('medicamentoReceta/{receta}', [medicamentoRecetaController::class, 'index'])->name('receta.medicamento.index'); 
+
+    //Medicamento-receta
+    Route::get('medicamentoReceta/{receta}', [medicamentoRecetaController::class, 'index'])->name('receta.medicamento.index');
     Route::post('medicamentoReceta.store', [medicamentoRecetaController::class, 'store'])->name('receta.medicamento.store');
     //Medicamento
     Route::post('medicamento.store',[medicamentoController::class,'store'])->name('medicamento.store');
-    
+
 });
  //Gestionar Doctores
  Route::get('/doctores', [doctorController::class, 'index'])->name('doctores.index');
@@ -277,4 +277,6 @@ Route::middleware('auth')->group(function(){
  Route::DELETE('/especialidad/{id}/destroy',[especialidadController::class, 'destroy'])->name('especialidad.destroy');
  Route::get('/especialidad/{id}/edit',[especialidadController::class, 'edit'])->name('especialidad.edit');
  Route::put('/especialidad/{especialidad}/update',[especialidadController::class, 'update'])->name('especialidad.update');
- 
+
+ //rutas de pruebas
+ Route::get('res', [pacienteController::class, 'resultados_index'])->name('paciente.res');
