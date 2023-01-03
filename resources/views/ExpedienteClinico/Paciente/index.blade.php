@@ -49,9 +49,16 @@ Expediente Clinico de:
                   @endforeach
                 </td>
                 <td>
-                  <a href="{{Storage::url($documentacion->path)}}" target="_black">ver</a>
-                  <form action="{{route('documentacion.destroy',['documentacion'=>$documentacion])}}"></form>
-                </td>
+                  <div class="d-flex">
+                      <a class="btn btn-sm btn-success" href="{{route('documentacion.download',['documentacion'=>$documentacion])}}" target="_black"><i class="fas fa-download"></i></a>
+                      {{-- <a class="btn btn-sm btn-success" href="{{Storage::url($documentacion->path)}}" target="_black"><i class="fas fa-download"></i></a> --}}
+                      <form action="{{route('documentacion.destroy',['documentacion'=>$documentacion])}}" method="POST">
+                          @method('delete')
+                          @csrf
+                          <button class="btn btn-sm btn-danger mx-1"><i class="fas fa-trash"></i></button>
+                      </form>
+                  </div>
+              </td>
               </tr>
           @endforeach
           </tbody>

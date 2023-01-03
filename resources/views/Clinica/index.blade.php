@@ -20,41 +20,10 @@
 					</div>		
 				@endif
 				<div class="row py-3">
-					<button class="btn btn-secondary" id="btn_conf"><i class="fas fa-cog"></i> Configurar</button>	
-				</div>
-				<div class="row-12" id=formulario>
-					<form action="{{route('clinica.store')}}" enctype="multipart/form-data" method="POST">
-						@csrf
-						@method('post')
-						<h3>Configuración</h3>
-						<div class="form-group">
-							<label for="nombre">Nombre del establecimiento: </label>
-							<input type="text" id="nombre" name="nombre" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="">Logo del establecimiento</label>
-							<div class="custom-file">
-								<input type="file" name="logo" id="logo" class="custom-file-input">
-								<label for="logo" class="custom-file-label" data-browse="Buscar">Seleccionar archivo</label>
-							</div>
-						</div>
-						<button type="submit" class="btn btn-primary">Guardar cambios</button>
-					</form>
+					<a class="btn btn-secondary" href="{{route('clinica.create')}}"><i class="fas fa-cog"></i> Configurar</a>	
 				</div>
 			</div>
 		</div>
 	</div>  
 </div>
-<script>
-	const btnConf = document.querySelector('#btn_conf');
-	function btnConfHandle(event){
-		const formulario = document.querySelector('#formulario');
-		if(formulario.style.display != 'none'){
-			document.querySelector('#formulario').style.display = 'none';
-		}else{
-			document.querySelector('#formulario').style.display = 'block';	
-		}
-	}
-	btnConf.addEventListener('click', btnConfHandle);
-</script>
 @endsection

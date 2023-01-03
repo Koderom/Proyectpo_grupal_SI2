@@ -111,7 +111,7 @@
                         <a class="collapse-item" href="{{route('documentacion.index')}}">Documentacion</a>
                         @endcan
                         
-                        @can('ver.historial-clinico')
+                        {{-- @can('ver.historial-clinico')
                         <a class="collapse-item" href="{{asset('/historial;')}}">Historial Clinico</a>
                         @endcan
                         
@@ -121,7 +121,7 @@
                         
                         @can('ver.receta')
                         <a class="collapse-item" href="{{asset('/recetas')}}">Recetas</a>
-                        @endcan
+                        @endcan --}}
                         
                         
                     </div>
@@ -222,10 +222,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
                         @can('ver.reportes')
-                        <a class="collapse-item" href="{{asset('/reporte_personal')}}">Reportes del personal</a>
-                        @endcan
-                        @can('ver.reportes')
-                        <a class="collapse-item" href="{{asset('/reporte_atencion')}}">Reportes de atencion</a>
+                        <a class="collapse-item" href="{{route('reporte.index')}}">Reportes personalizados</a>
                         @endcan
                         <form action="{{asset('logout')}}" method="POST">
                             {{ csrf_field() }}

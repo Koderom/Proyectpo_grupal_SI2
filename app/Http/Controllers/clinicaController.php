@@ -12,7 +12,11 @@ class clinicaController extends Controller
 {
     public function index(){
         $clinica = clinica::first();
+        if($clinica == null) return view('Clinica.create');
         return view('Clinica.index',['clinica'=>$clinica]);
+    }
+    public function create(){
+        return view('Clinica.create');
     }
     public function store(Request $request){
         $request->validate([

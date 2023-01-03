@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Reportes @endsection
+@section('header')Reportes personalizados @endsection
 
 @section('content')
 @include('components.flash_alerts')
@@ -11,7 +11,7 @@
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex">
-      <h6 class="m-0 font-weight-bold text-primary">Reportes</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Crear Reporte</h6>
     </div>
     <div class="card-body">
       <div>
@@ -42,6 +42,10 @@
               <div class="form-inline my-3">
                 <label for="">Titulo del reporte</label>
                 <input type="text" name="titulo" class="form-control mx-2">
+              </div>
+              <div class="form-group">
+                <label for="">Parrafo de comentario:</label>
+                <input type="textarea" class="form-control" name="comentario">
               </div>
               <div class="form-inline my-3">
                 <label for="">Cantidad de filas a mostrar</label>

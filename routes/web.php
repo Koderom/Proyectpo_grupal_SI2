@@ -171,6 +171,7 @@ Route::controller(tipoInternacionController::class)->group(function(){
 });
 Route::controller(clinicaController::class)->group(function(){
     Route::get('clinica/index', 'index')->name('clinica.index');
+    Route::get('clinica/create', 'create')->name('clinica.create');
     Route::post('clinica/store','store')->name('clinica.store');
 });
 Route::controller(expedienteController::class)->group(function(){
@@ -183,9 +184,11 @@ Route::controller(historialClinicoController::class)->group(function(){
 Route::controller(documentacionController::class)->group(function(){
     Route::get('documentacion/index','index')->name('documentacion.index');
     Route::get('documentacion/create','index')->name('documentacion.create');
+    Route::post('documentacion/modal-create','createDocumento')->name('documento.modal.create');
     Route::get('documentacion/paciente/create/{paciente}','create')->name('documentacion.paciente.create');
-    Route::post('documentacion/paciente/create/{paciente}','store')->name('documentacion.paciente.store');
+    Route::post('documentacion/paciente/store/{paciente}','store')->name('documentacion.paciente.store');
     Route::delete('documentacion/destroy/{documentacion}','destroy')->name('documentacion.destroy');
+    Route::get('documentacion/download/{documentacion}','download')->name('documentacion.download');
 });
 Route::controller(reporteController::class)->group(function(){
     Route::get('reporte/index','index')->name('reporte.index');
