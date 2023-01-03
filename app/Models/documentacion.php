@@ -23,4 +23,7 @@ class documentacion extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function rolDocumento(){
+        return $this->hasMany(rolDocumento::class);
+    }
 }

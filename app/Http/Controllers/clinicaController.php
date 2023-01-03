@@ -15,7 +15,11 @@ class clinicaController extends Controller
             return view('Clinica.index',['clinica'=>null]);
         }
         $clinica = clinica::first();
+        if($clinica == null) return view('Clinica.create');
         return view('Clinica.index',['clinica'=>$clinica]);
+    }
+    public function create(){
+        return view('Clinica.create');
     }
     public function store(Request $request){
         $request->validate([

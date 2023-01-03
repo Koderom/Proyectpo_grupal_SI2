@@ -21,10 +21,12 @@
     }
     .titulo{
       padding: 0;
-      margin: 0;
+      margin: 1rem auto;
+      text-align: center;
     }
     .logo{
       display: inline-block;
+      
     }
     .titulos-encabezado{
       max-width: max-content;
@@ -41,7 +43,7 @@
       font-size: 20px;
     }
     table{
-      margin: 1rem;
+      margin: 5rem 1rem;
       width: 90%;
       border-collapse: collapse;
     }
@@ -56,6 +58,13 @@
       font: bold;
       border: 1px solid;
       background: rgb(157, 207, 228);
+    }
+    .comentario{
+      font-size: 12px;
+      margin-left: 1rem;
+    }
+    .text{
+      font-size: 12px;
     }
   </style>
   <title>Document</title>
@@ -75,6 +84,13 @@
     @endif
   </header>
   <main>
+    @if ($formulario->comentario != null)
+      <strong class="text">Comentario: </strong>
+      <br>
+      <p class="comentario">  
+        {{$formulario->comentario}}
+      </p>
+    @endif
     <table>
       <thead>
         <tr>
@@ -93,6 +109,14 @@
         @endforeach
       </tbody>
     </table>
+    <footer>
+      <span class="text"><Strong>Reporte creado el: </Strong>{{$myTime->toDateTimeString()}}</span><br>
+      <span class="text"><Strong>Por: </Strong>
+        {{Auth::user()->persona->nombre}}
+        {{Auth::user()->persona->apellido_paterno}}
+        {{Auth::user()->persona->apellido_materno}}
+      </span><br>
+    </footer>
   </main>
 </body>
 </html>

@@ -13,8 +13,8 @@ Expediente Clinico:
 <div class="container">
   <div class="card o-hidden border-0 shadow-lg" style="border-radius: 3rem">
     <div class="card-body">
-      <h3>Registra nuevo archivo</h3>
-      {{ csrf_field() }}
+      <h3>Registrar nuevo archivo</h3>
+      {{ csrf_field() }} 
       @if ($errors->any())
         <div class="alert alert-danger">
           <ul>
@@ -41,7 +41,7 @@ Expediente Clinico:
                 <label>Etiquetas:</label>
                 <div class="my-2">
                   @foreach ($Etiquetas as $etiqueta)
-                      <label for="etiqueta_{{$etiqueta->descripcion}}"" class="p-1 badge badge-pill badge-warning">
+                      <label for="etiqueta_{{$etiqueta->descripcion}}"" class="p-1 badge badge-warning">
                         {{$etiqueta->descripcion}}
                         <input type="checkbox" id="etiqueta_{{$etiqueta->descripcion}}" name="etiquetas[]" value="{{$etiqueta->id}}">
                       </label>
@@ -53,6 +53,18 @@ Expediente Clinico:
                   <button type="button" class="bnt btn-sm btn-info" id="btn-addTag">añadir</button>
                 </div>
                 <div id="tag-container" class="my-2"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="">Bloquear para:</label>
+                <div class="my-2">
+                  @foreach ($Roles as $rol)
+                    <label for="rol_{{$rol->name}}"" class="p-1 badge badge-secondary">
+                      {{$rol->name}}
+                      <input type="checkbox" id="rol_{{$rol->name}}" name="rol[]" value="{{$rol->id}}">
+                    </label>
+                  @endforeach
+                </div>
               </div>
             </form>
           </div>

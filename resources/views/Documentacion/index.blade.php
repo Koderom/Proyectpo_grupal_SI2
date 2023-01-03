@@ -17,9 +17,18 @@
             <div>
                 <form action="">
                     <div class="form-inline">
-                        <label for="">Buscar:</label>
-                        <input type="text" name="nombre" class="form-control mx-2" placeholder="Nombre">
-                        <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+                        <label>Filtrar por:</label>
+                        <select name="filtrar" id="" class="form-control m-2">
+                            @foreach ($Filtros as $filtro)
+                                @if ($filtro == $filtrado_por)
+                                    <option value="{{$filtro}}" selected>{{$filtro}}</option>        
+                                @else
+                                    <option value="{{$filtro}}">{{$filtro}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <input type="text" name="texto_buscar" class="form-control m-2" placeholder="Buscar..." value="{{old('texto_buscar')}}">
+                        <button class="btn btn-sm btn-primary mx-2 my-1"><i class="fas fa-search"></i> Buscar</button>
                     </div>
                 </form>
             </div>
@@ -28,6 +37,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Cod expediente</th>
                             <th>Nombre</th>
                             <th>Fecha de registro</th>
                             <th>Etiquetas</th>
@@ -41,6 +51,7 @@
                           
                             <tr>
                                 <td scope="col">{{$documento->id}}</td>
+                                <td>{{$documento->expediente->codigo_registro}}</td>
                                 <td>{{$documento->nombre}}</td>
                                 <td>{{$documento->fecha_registro}}</td>
                                 <td>
@@ -59,7 +70,14 @@
                                   {{$documento->expediente->paciente->persona->apellido_materno}}
                                 </td>
                                 <td>
-                                    opciones
+                                    <div class="d-flex">
+                                        <a class="btn btn-sm btn-success" href="{{Storage::url($documento->path)}}" target="_black"><i class="fas fa-download"></i></a>
+                                        <form action="{{route('documentacion.destroy',['documentacion'=>$documento])}}" method="POST">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-sm btn-danger mx-1"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

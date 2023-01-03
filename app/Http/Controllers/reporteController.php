@@ -6,11 +6,12 @@ use App\Models\clinica;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Exception;
 
 class reporteController extends Controller
 {
-    private $Tablas = ['users','personas','doctors','administrativos','pacientes'];
+    private $Tablas = ['users','personas','doctors','administrativos','pacientes','bitacoras','citas','cupos','especialidades','recetas','salas','turnos','turno_doctor'];
 
     public function index(){
         return view('Reporte.index',[
@@ -56,12 +57,15 @@ class reporteController extends Controller
                 }
             }
             //generar pdf
+            $mytime = Carbon::now('America/La_Paz');
             $Columnas = collect($tablaContenido->first())->keys();
             $pdf = Pdf::loadView('Reporte.pdfGenerate',[
                 'tablaContenido' => $tablaContenido,
                 'Columnas' => $Columnas,
                 'titulo' => $request->titulo,
-                'clinica' => clinica::first()
+                'clinica' => clinica::first(),
+                'formulario' => $request,
+                'myTime' => $mytime
             ]);
             return $pdf->download();
         // }catch(Exception $e){

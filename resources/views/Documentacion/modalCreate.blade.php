@@ -14,12 +14,14 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="">
+        <form action="{{route('documento.modal.create')}}" method="POST" id="modal-doc">
+          @method('post')
+          @csrf
           <div class="form-inline">
             <label for="">Pacientes:</label>
-            <select name="" id="" class="form-control mx-1">
+            <select name="paciente" class="form-control mx-1">
               @foreach ($Pacientes as $paciente)
-                <option value="">
+                <option value="{{$paciente->id}}">
                   {{$paciente->persona->nombre}}
                   {{$paciente->persona->apellido_paterno}}
                   {{$paciente->persona->apellido_materno}}
@@ -31,7 +33,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Continuar</button>
+        <button type="submit" class="btn btn-primary" form="modal-doc">Continuar</button>
       </div>
     </div>
   </div>
