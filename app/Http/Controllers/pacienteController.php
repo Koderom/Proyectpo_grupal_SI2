@@ -9,15 +9,30 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
- 
+
 use Illuminate\Support\Facades\DB;
 
 class pacienteController extends Controller
 {
     public function index()
-    { 
+    {
         $pacientes = paciente::all();
+        // dd($pacientes);
         return view('gestionar_paciente.index',['pacientes'=>$pacientes]);
+    }
+
+
+    public function resultados_index(Request $r)
+    {
+        $pas = paciente::get();
+        $pacientes = paciente::join('personas as p', 'p.id','=','pacientes.persona_id')
+        ->where('p.id','=',$r->id_paciente)->first();
+
+        $expedientes= expediente::join('hoja_consultas as h','h.expediente_id','=','expedientes.id')
+        ->where('expedientes.paciente_id','=',$r->id_paciente)->first();
+
+        // dd($pas);
+        return view('gestionar_resultados.index', compact('pacientes', 'expedientes','pas'));
     }
 
     //crear
@@ -46,7 +61,7 @@ class pacienteController extends Controller
             'codigo_registro'=>'unique:expedientes',
 
         ]);
-        
+
         $persona = new persona();
         $persona->ci = $request->ci;
         $persona->nombre = $request->nombre;
@@ -59,7 +74,7 @@ class pacienteController extends Controller
         $persona->direccion = $request->direccion;
         $persona->tipo = $request->tipo;
         $persona->save();
-        
+
         $user = new User();
         $user->persona_id = $persona->id;
         $user->name = $request->name;
@@ -73,7 +88,7 @@ class pacienteController extends Controller
         $paciente->save();
         $user->save();
 
-        $mytime= Carbon::now('America/La_Paz'); 
+        $mytime= Carbon::now('America/La_Paz');
         $fechaActual = $mytime->toDateString();
 
         $expediente = new expediente();
@@ -86,17 +101,17 @@ class pacienteController extends Controller
     public function show($persona_id){
         $persona = persona::find($persona_id);
         $paciente = paciente::all();
-        $user = User::all(); 
+        $user = User::all();
         $persona->load('paciente');
         $persona->load('user');
        return view('gestionar_paciente.show', compact('persona'));
     }
 
     public function edit($persona_id)
-    { 
+    {
       $persona = persona::find($persona_id);
       $paciente = paciente::all();
-      $user = User::all(); 
+      $user = User::all();
       $persona->load('paciente');
       $persona->load('user');
      return view('gestionar_paciente.edit', compact('persona'));
@@ -104,7 +119,7 @@ class pacienteController extends Controller
 
 
 
-    
+
     public function update(Request $request, $persona_id)
     {
         $request->validate([
@@ -147,7 +162,7 @@ class pacienteController extends Controller
         $persona->direccion = $request->direccion;
         $persona->tipo = $request->tipo;
         $persona->update();
-        
+
         $user = User::where('persona_id',$persona_id)->first();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -160,7 +175,7 @@ class pacienteController extends Controller
         $user->update();
         return redirect()->route('paciente.index');
     }
-    
+
     public function destroy($persona_id)
     {
         try{

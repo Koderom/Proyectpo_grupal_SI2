@@ -71,7 +71,7 @@
                                         <input type="date" class="form-control form-control-user" id="exampleInputEmail"
                                         name="proxima_consulta"  value="{{ old('proxima_consulta') }}">
                                     </div>
-                                    <div class="col-sm-6">
+                                    <!--div class="col-sm-6">
                                         <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#exampleModalCenterTitle"
                                         style="background-color:#1cc88a; margin: 15px 10px; padding: 10px 40px; border-radius: 12px; font-size: large;">
                                         <span>
@@ -80,7 +80,7 @@
                                               Recetar
                                         </button>
 
-                                    </div>
+                                    </div-->
                                     
                                 </div>
 

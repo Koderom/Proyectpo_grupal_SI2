@@ -27,10 +27,13 @@ class consultaController extends Controller
         $doctor = $personaUsuario->doctor;
         $agenda = agenda::where('fecha','=',$fechaActual)->where('doctor_id','=',$doctor->id)->first();
         /*validar si el doctor no tiene citas*/
+       
         if($agenda == null) $agenda = agenda::where('doctor_id','=',$doctor->id)->first();
        // $Cupos = cupo::where('agenda_id','=',$agenda->id)->orderBy('id')->get();
         $Citas = cita::where('doctor_id','=',$doctor->id)->where('fecha_cita','=',$fechaActual)->orderBy('hora_cita')->get();
-     return view('consulta.index',['doctor'=>$doctor, 'agenda'=>$agenda, 'Citas'=>$Citas, 'fechaActual'=>$fechaActual]);     
+        $cantCita = cita::where('doctor_id','=',$doctor->id)->where('fecha_cita','=',$fechaActual)->count();
+        $consultas = consulta::all()->where('doctor_id','=',$doctor->id);
+        return view('consulta.index',['doctor'=>$doctor, 'agenda'=>$agenda, 'Citas'=>$Citas, 'fechaActual'=>$fechaActual,'cantCita'=>$cantCita,'consultas'=>$consultas]);     
     }
 
     public function store(Request $request, $doctorid, $citaid)

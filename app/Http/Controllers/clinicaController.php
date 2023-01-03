@@ -11,6 +11,9 @@ use function PHPUnit\Framework\returnSelf;
 class clinicaController extends Controller
 {
     public function index(){
+        if (clinica::count()==0) {
+            return view('Clinica.index',['clinica'=>null]);
+        }
         $clinica = clinica::first();
         if($clinica == null) return view('Clinica.create');
         return view('Clinica.index',['clinica'=>$clinica]);

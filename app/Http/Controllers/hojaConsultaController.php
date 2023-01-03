@@ -51,11 +51,10 @@ class hojaConsultaController extends Controller
     }
 
 //ver hoja de consulta
- /*public function show($hojaconsulta_id)
+ public function show($hojaconsulta_id)
  {
     $hojaconsulta= hoja_consulta::find($hojaconsulta_id);
-    return view('Hoja_de_consulta.show', $hojaconsulta);
+    return view('Hoja_de_consulta.show', $hojaconsulta,['hojaconsulta'=>$hojaconsulta]);
  }
-*/
 
 }

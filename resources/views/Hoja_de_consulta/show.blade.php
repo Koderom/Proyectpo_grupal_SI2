@@ -30,24 +30,30 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
+
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <h4 class="col-auto">Medico: <strong>{{$consulta->doctor->persona->nombre}}</strong></h4>
-                                        <input name="doctor_id" type="hidden" id="doctor_id" value={{$consulta->doctor->id}}>
+                                        <h4 class="col-auto">Medico: <strong>{{Auth::user()->persona->nombre}}
+                                            {{Auth::user()->persona->apellido_paterno}}
+                                            {{Auth::user()->persona->apellido_materno}} -
+                                            {{Auth::user()->name}}</strong></h4>
+
+                                        <input name="doctor_id" type="hidden" id="doctor_id" value={{$hojaconsulta->consulta->doctor->id}}>
                                     </div>
+
                                     <div class="col-sm-6">
-                                        <h4 class="col-auto">Numero de cita: <strong>{{$consulta->cita->id}}</strong></h4>
+                                        <h4 class="col-auto">Numero de cita: <strong>{{$hojaconsulta->consulta->cita->id}}</strong></h4>
                                     </div>  
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <h4 class="col-auto">Paciente: <strong>{{$consulta->cita->paciente->persona->nombre}}</strong></h4>
-                                        <input name="cita_id" type="hidden" id="cita_id" value={{$consulta->cita->id}}>
+                                        <h4 class="col-auto">Paciente: <strong>{{$hojaconsulta->consulta->cita->paciente->persona->nombre}}</strong></h4>
+                                        <input name="cita_id" type="hidden" id="cita_id" value={{$hojaconsulta->consulta->cita->id}}>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="fecha_agendar">Motivo de consulta:</label>
-                                        <textarea class="form-control"  type="text" name="motivo" id="motivo" disabled>{{$consulta->cita->motivo}}</textarea>   
-                                        <input name="consulta_id" type="hidden" id="consultaid" value={{($consulta->id)}}>
-                                <input name="expediente_id" type="hidden" id="expedienteid" value={{$consulta->cita->paciente->expediente->id}}>
+                                        <textarea class="form-control"  type="text" name="motivo" id="motivo" disabled>{{$hojaconsulta->consulta->cita->motivo}}</textarea>   
+                                        <input name="consulta_id" type="hidden" id="consultaid"  value={{($hojaconsulta->consulta_id)}}>
+                                <input name="expediente_id" type="hidden" id="expedienteid" value={{$hojaconsulta->expediente_id}}>
                                 
                                     </div>  
                                 </div>
@@ -55,21 +61,21 @@
                                 
                                 <div class="form-group">
                                     <label for="fecha_agendar">Sintomas:</label>
-                                    <textarea class="form-control"  type="text" name="sintomas" id="motivo" value="{{old('sintomas')}}"></textarea>                                     
+                                    <textarea class="form-control"  type="text" name="sintomas" id="motivo" disabled value="">{{$hojaconsulta->sintomas}}</textarea>                                     
                                 </div>
                                 <div class="form-group ">
                                     <label for="fecha_agendar">Impresion diagnostica:</label>
-                                     <textarea class="form-control"  type="text" name="impresion_diagnostica" id="motivo" value="{{old('impresion_diagnostica')}}"></textarea>
+                                     <textarea class="form-control"  type="text" name="impresion_diagnostica" id="motivo" disabled>{{$hojaconsulta->impresion_diagnostica}}</textarea>
                                 </div> 
                                <div class="form-group ">
                                     <label for="fecha_agendar">Indicaciones medicas:</label>
-                                    <textarea class="form-control"  type="text" name="indicaciones_medica" id="motivo" value="{{old('indicaciones_medica')}}"></textarea>
+                                    <textarea class="form-control"  type="text" name="indicaciones_medica" id="indicaciones_medica" disabled value="">{{$hojaconsulta->indicaciones_medica}}</textarea>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="fecha_agendar">Proxima consulta:</label>
                                         <input type="date" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="proxima_consulta"  value="{{ old('proxima_consulta') }}">
+                                        name="proxima_consulta"  value="{{ $hojaconsulta->proxima_consulta }}" disabled>
                                     </div>
                                     <div class="col-sm-6">
                                         <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#exampleModalCenterTitle"
@@ -77,7 +83,7 @@
                                         <span>
                                             <i class="fa fa-plus " style="color: #f8f8f8"></i>
                                         </span>
-                                              Recetar
+                                              Receta
                                         </button>
 
                                     </div>
@@ -89,7 +95,7 @@
                                         <input type="submit" form="HojaConsulta" class="btn btn-facebook btn-user btn-block" value="Aceptar">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <a href="#"
+                                        <a href="{{route('consulta.index')}}"
                                             class="btn btn-primary btn-user btn-block">
                                             Cancelar
                                         </a>
