@@ -8,6 +8,7 @@ use App\Models\expediente;
 use App\Models\hoja_consulta;
 use App\Models\paciente;
 use App\Models\persona;
+use App\Models\receta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,17 +16,18 @@ class hojaConsultaController extends Controller
 {
     //
     public function index()
-    { 
+    {   $personaUsuario = Auth::user()->persona;
+        $doctor = $personaUsuario->doctor;
         $hojaconsultas = hoja_consulta::all();
-        return view('Hoja_de_consulta.index',['hojaconsultas'=>$hojaconsultas]);
+        $recetas = receta::all();
+        return view('Hoja_de_consulta.index',['hojaconsultas'=>$hojaconsultas,'doctor'=>$doctor,'recetas'=>$recetas]);
     }
     public function create(consulta $consulta)
-    { //return $consulta;
-    //    $personaUsuario = Auth::user()->persona;
-    //     $doctor = $personaUsuario->doctor;
+    { 
+    //return $consulta; 
     //     $consulta = consulta::where('doctor_id','=',$doctor->id)->orderBy('id', 'desc')->first();
     //     $citaactual = cita::where('id','=', $consulta->cita_id)->first();
-    //    $pacienteCita= paciente::where('id','=',$citaactual->paciente_id)->get();
+    //     $pacienteCita= paciente::where('id','=',$citaactual->paciente_id)->get();
     //     $datosPaciente= persona::where('id','=',$pacienteCita[0]->persona_id)->get(); 
     //     $expediente = expediente::where('id','=',$datosPaciente[0]->id)->get();
         return view('Hoja_de_consulta.create',['consulta'=>$consulta]);
