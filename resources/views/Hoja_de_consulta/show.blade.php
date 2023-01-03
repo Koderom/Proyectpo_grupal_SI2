@@ -77,16 +77,6 @@
                                         <input type="date" class="form-control form-control-user" id="exampleInputEmail"
                                         name="proxima_consulta"  value="{{ $hojaconsulta->proxima_consulta }}" disabled>
                                     </div>
-                                    <!--div class="col-sm-6">
-                                        <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#exampleModalCenterTitle"
-                                        style="background-color:#1cc88a; margin: 15px 10px; padding: 10px 40px; border-radius: 12px; font-size: large;">
-                                        <span>
-                                            <i class="fa fa-plus " style="color: #f8f8f8"></i>
-                                        </span>
-                                              Receta
-                                        </button>
-
-                                    </div-->
                                     
                                 </div>
 

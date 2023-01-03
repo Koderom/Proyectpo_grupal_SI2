@@ -111,21 +111,12 @@
                         <a class="collapse-item" href="{{route('documentacion.index')}}">Documentacion</a>
                         @endcan
                         
-                        {{-- @can('ver.historial-clinico')
-                        <a class="collapse-item" href="{{asset('/historial;')}}">Historial Clinico</a>
-                        @endcan
-                        
                         @can('ver.hoja-de-consulta')
                         <a class="collapse-item" href="{{asset('/consulta')}}">Consulta</a>
                         @endcan
                         @can('ver.hoja-de-consulta')
                         <a class="collapse-item" href="{{asset('/hojaconsulta')}}">Hojas de Consultas</a>
                         @endcan
-                        @can('ver.receta')
-                        <a class="collapse-item" href="{{asset('/recetas')}}">Recetas</a>
-                        @endcan --}}
-                        
-                        
                     </div>
                 </div>
             </li>
@@ -330,7 +321,7 @@
                                     @yield('usuario')
                                 </span >
                                 <img class="img-profile rounded-cir{cle"
-                                    src="{{asset('/adminTemplate/img/sesion.png')}}">
+                                    src="{{asset('/adminTemplate/img/1.jpg')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

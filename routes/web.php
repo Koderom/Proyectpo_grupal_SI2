@@ -254,10 +254,13 @@ Route::middleware('auth')->group(function(){
 
     //receta
     Route::post('receta.store/{hojaconsultaid}/{expedienteid}', [recetaController::class, 'store'])->name('receta.store');
+    
+
 
     //Medicamento-receta
     Route::get('medicamentoReceta/{receta}', [medicamentoRecetaController::class, 'index'])->name('receta.medicamento.index');
     Route::post('medicamentoReceta.store', [medicamentoRecetaController::class, 'store'])->name('receta.medicamento.store');
+    Route::get('medicamentoReceta.show/{hojaconsulta_id}',[medicamentoRecetaController::class, 'show'])->name('receta.medicamento.show');
     //Medicamento
     Route::post('medicamento.store',[medicamentoController::class,'store'])->name('medicamento.store');
 

@@ -64,7 +64,7 @@
                                         </form>
                                         @foreach ($recetas as $receta)
                                             @if ($receta->hoja_consulta_id==$hojaconsulta->id)
-                                                <a href="#" id="{{$i}}" class="dropdown-item btn btn-info btn-sm cursor-pointer"><i class="fas fa-eye "></i> Ver receta</a>         
+                                                <a href="{{ route('receta.medicamento.show',['hojaconsulta_id'=>$hojaconsulta->id]) }}" id="{{$i}}" class="dropdown-item btn btn-info btn-sm cursor-pointer"><i class="fas fa-eye "></i> Ver receta</a>         
                                                     <script>
                                                         verConsulta=!!document.getElementById({{$i}});
                                                         if (verConsulta==true) {

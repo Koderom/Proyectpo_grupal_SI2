@@ -30,4 +30,12 @@ class medicamentoRecetaController extends Controller
         $medicamentoreceta->save();
         return  redirect()->route('receta.medicamento.index',[$medicamentoreceta->receta_id]);
     }
+    
+    //ver receta
+    public function show($hojaconsulta_id)
+    {
+        $receta= receta::find($hojaconsulta_id);
+        $medicamentos = medicamento::all();
+        return view('Medicamento_Receta.show', $receta,['receta'=>$receta, 'medicamentos'=>$medicamentos]);
+    }
 }
