@@ -22,19 +22,25 @@ class pacienteController extends Controller
     }
 
 
-    public function resultados_index(Request $r)
+
+    public function resultados_index()
     {
-        $pas = paciente::get();
-        $pacientes = paciente::join('personas as p', 'p.id','=','pacientes.persona_id')
-        ->where('p.id','=',$r->id_paciente)->first();
+        $cipas = Request('ci');
+        $var = persona::where('ci',$cipas)->first();
 
-        $expedientes= expediente::join('hoja_consultas as h','h.expediente_id','=','expedientes.id')
-        ->where('expedientes.paciente_id','=',$r->id_paciente)->first();
+        $pacientes = db::table('personas as p')
+        ->join('pacientes as pa','pa.persona_id','p.id')
+        ->join('expedientes as exp','exp.paciente_id','pa.id')
+        // ->join('hoja_consultas as h','h.expediente_id','exp.id')
+        ->where('p.ci','=',$cipas)
+        // ->select('p.*','exp.codigo_registro','exp.fecha_registro','h.sintomas','h.indicaciones_medica','h.proxima_consulta','h.impresion_diagnostica')
+        ->first();
 
-        // dd($pas);
-        return view('gestionar_resultados.index', compact('pacientes', 'expedientes','pas'));
+        // dd($pacientes);
+        return view('gestionar_resultados.index', compact('pacientes'));
     }
 
+    
     //crear
     public function create()
     {
