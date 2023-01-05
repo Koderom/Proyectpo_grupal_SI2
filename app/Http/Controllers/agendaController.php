@@ -55,7 +55,11 @@ class agendaController extends Controller
         $existeAgenda = agenda::where('doctor_id',$doctor->id)->where('fecha',$fechaParaAgendar->toDateString())->get();
         if(!$existeAgenda->isEmpty()) return "El doctor ya tiene una agenda para este dia";
         $turno = turno::where('id',$existeDia->first()->turno_id)->first();
-        if($turno->hora_inicio >= $request->input('hora_inicio')) return "El horario de comienzo de atencion es menor al horario de ingreso del doctor";
+        $fechaComodin =  $hoy->toDateString();
+
+        $fechaInicioTurno = Carbon::createFromFormat('Y-m-d H:i:s.u', $fechaComodin.' '.$turno->hora_inicio.'.000000');
+        $fechaInicioTurno2 = Carbon::createFromFormat('Y-m-d H:i:s.u', $fechaComodin.' '.$request->input('hora_inicio').':00.000000');
+        if($fechaInicioTurno->greaterThan($fechaInicioTurno2)) return "El horario de comienzo de atencion es menor al horario de ingreso del doctor";
         $hora_ini = Carbon::createFromTimeString($turno->hora_inicio);
         $hora_fn = Carbon::createFromTimeString($turno->hora_fin);
         if($hora_ini->greaterThan($hora_fn)) $hora_fn->addDay(1);
