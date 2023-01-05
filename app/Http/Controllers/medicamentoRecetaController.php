@@ -56,8 +56,14 @@ class medicamentoRecetaController extends Controller
                 'clinica' => clinica::first(),
                 'mytime' => $mytime
             ]);
-            //return view('Medicamento_Receta.pdfGenerate',['clinica'=>$clinica, 'medicamentos'=> $medicamentos,'receta'=> $receta,'mytime'=> $mytime,]);
-            
             return $pdf->download();
+            //return view('Medicamento_Receta.pdfGenerate',['clinica'=>$clinica, 'medicamentos'=> $medicamentos,'receta'=> $receta,'mytime'=> $mytime]);
+            
+    }
+    public function destroy($medrec_id){
+        return $medrec_id;
+        $medicamentoreceta=medicamento_receta::findOrFail($medrec_id);
+        $medicamentoreceta->delete();
+        return  redirect()->route('receta.medicamento.index',[$medicamentoreceta->receta_id]);
     }
 }

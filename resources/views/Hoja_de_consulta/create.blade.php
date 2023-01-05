@@ -81,20 +81,20 @@
                                         </button>
 
                                     </div-->
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="submit" form="HojaConsulta" class="btn btn-facebook btn-user btn-block" style="margin: 32px 0px;" value="Aceptar">
+                                        </div>
                                     
+                                        <!--div class="col-sm-6 mb-3 mb-sm-0">
+                                            <a href="#"
+                                                class="btn btn-primary btn-user btn-block">
+                                                Cancelar
+                                            </a>
+                                        </div-->
+                                       
                                 </div>
 
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="submit" form="HojaConsulta" class="btn btn-facebook btn-user btn-block" value="Aceptar">
-                                    </div>
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <a href="#"
-                                            class="btn btn-primary btn-user btn-block">
-                                            Cancelar
-                                        </a>
-                                    </div>
-                                </div>
+                               
                             </form>
                             <hr>
                         </div>

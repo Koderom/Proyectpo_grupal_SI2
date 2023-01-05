@@ -96,6 +96,10 @@
     .paciente{
       font-size: 20px;
     }
+    .texto{
+      font-size: 18px;
+      padding: 10px 0;
+    }
   </style>
   <title>Receta</title>
 </head>

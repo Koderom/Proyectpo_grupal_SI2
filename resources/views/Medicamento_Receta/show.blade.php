@@ -38,7 +38,7 @@
                     @foreach ($receta->medicamentoReceta as $medrec)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td>{{$medrec->medicamento->descripcion}}</td>
+                        <td>{{$medrec->medicamento->descripcion}}-{{$medrec->medicamento->cantidad_por_unidad}}</td>
                         <td>{{$medrec->dosis}}</td>
                         <td>{{$medrec->frecuencia}}</td>
                         <td>{{$medrec->cantidad_total}}</td>
@@ -47,10 +47,6 @@
                                 method="post">
                                 @csrf
                                 @method('delete')
-                                <a href="#"
-                                    class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
-                                <a href="#"
-                                    class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
                                 <button form='acciones' class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
                                     onclick="return confirm('¿ESTA SEGURO QUE DESEA ELIMINAR?')" value="Borrar">
                                 </button>
@@ -60,6 +56,16 @@
                     @endforeach
                 </table>
             </div>
+        </div>
+        <div class="a">
+            <form action="{{route('receta.medicamento.pdfGenerate',['receta_id'=>$receta->id])}}" id="generarPDF" method="get">
+                @method('get')
+                @csrf
+                <button type="submit" class="btn btn-sm btn-light float-right"
+                style="background-color:#f6c23e; margin: 0px 10px; padding: 10px 40px; border-radius: 12px; font-size: large;">
+                <span><i class="fas fa-download fa-sm text-white-50"></i></span>Generar PDF
+                </button>
+            </form>
         </div>
         <div class="">
             <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#exampleModalCenterTitle"
