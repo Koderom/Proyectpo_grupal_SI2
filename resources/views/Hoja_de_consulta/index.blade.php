@@ -44,6 +44,7 @@
                             @endphp
 
                             @foreach ($hojaconsultas as $hojaconsulta)
+                                @if ($hojaconsulta->consulta->doctor->id==$doctor->id)                                
                                 <tr>
                                     <td>{{ $i++ }}</td>
                                     <th>{{ $hojaconsulta->id }}</th>
@@ -51,28 +52,34 @@
                                     <th>{{ $hojaconsulta->expediente->paciente->persona->nombre}}</th>
                                     <th>{{ $hojaconsulta->consulta->cita->id }}</th>
                                     <th>
-                                        
                                         <form action="{{route('receta.store',['hojaconsultaid'=>$hojaconsulta->id,'expedienteid'=>$hojaconsulta->expediente->id])}}"
                                             method="post">
                                             @csrf
                                             <button class="btn btn-sm btn-light float-right" data-toggle="modal"
-                                            style="background-color:#71a1d3d9;   border-radius: 12px;" id="">
+                                            style="background-color:#71a1d3d9;   border-radius: 12px;" id="consultabutton{{$i}}">
                                             <span>
                                                 <i class="fa fa-plus " style="color: #f8f8f8"></i>
                                             </span>Agregar receta
                                             </button>
-                                            <!--a href="#"
-                                                class="btn btn-info btn-sm fas fa-eye cursor-pointer"></a>
-                                            <a href="#"
-                                                class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a-->
                                         </form>
-
+                                        @foreach ($recetas as $receta)
+                                            @if ($receta->hoja_consulta_id==$hojaconsulta->id)
+                                                <a href="{{ route('receta.medicamento.show',['hojaconsulta_id'=>$hojaconsulta->id]) }}" id="{{$i}}" class="dropdown-item btn btn-info btn-sm cursor-pointer"><i class="fas fa-eye "></i> Ver receta</a>         
+                                                    <script>
+                                                        verConsulta=!!document.getElementById({{$i}});
+                                                        if (verConsulta==true) {
+                                                        button = document.getElementById('consultabutton'+{{$i}});
+                                                        button.style.display='none';
+                                                        }
+                                                    </script>
+                                            @endif
+                                        @endforeach
                                     </th>
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
                         </tbody>
-
                     </table>
                 </div>
             </div>

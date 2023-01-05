@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
- 
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,23 +71,23 @@
                         @can('ver.usuario')
                         <a class="collapse-item" href="{{asset('/usuario')}}">Usuario</a>
                         @endcan
-                        
+
                         @can('ver.roles')
                         <a class="collapse-item" href="{{route('roles.index')}}">Roles y permiso</a>
                         @endcan
-                        
+
                         @can('ver.administrativo')
                         <a class="collapse-item" href="{{asset('/administrativo')}}">Personal Administrativo</a>
                         @endcan
-                        
+
                         @can('ver.medico')
                         <a class="collapse-item" href="{{asset('/doctores')}}">Medico</a>
                         @endcan
-                        
+
                         @can('ver.paciente')
                         <a class="collapse-item" href="{{asset('/paciente')}}">Paciente</a>
                         @endcan
-                        
+
                         @can('ver.bitacora')
                         <a class="collapse-item" href="{{route('bitacora.index')}}">Bitacora</a>
                         @endcan
@@ -110,22 +110,13 @@
                         @can('ver.documentacion')
                         <a class="collapse-item" href="{{route('documentacion.index')}}">Documentacion</a>
                         @endcan
-                        
-                        {{-- @can('ver.historial-clinico')
-                        <a class="collapse-item" href="{{asset('/historial;')}}">Historial Clinico</a>
-                        @endcan
-                        
+
                         @can('ver.hoja-de-consulta')
                         <a class="collapse-item" href="{{asset('/consulta')}}">Consulta</a>
                         @endcan
                         @can('ver.hoja-de-consulta')
                         <a class="collapse-item" href="{{asset('/hojaconsulta')}}">Hojas de Consultas</a>
                         @endcan
-                        @can('ver.receta')
-                        <a class="collapse-item" href="{{asset('/recetas')}}">Recetas</a>
-                        @endcan --}}
-                        
-                        
                     </div>
                 </div>
             </li>
@@ -139,37 +130,37 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
-                        
-                        
+
+
                         @can('ver.agenda')
                         <a class="collapse-item" href="{{route('agenda.index')}}">Agenda</a>
                         @endcan
-                        
+
                         @can('ver.reservar cita')
                         <a class="collapse-item" href="{{route('cita.paciente.reservar')}}">Resevar Cita</a>
                         @endcan
-                        
+
                         @can('ver.mis-citas')
                         <a class="collapse-item" href="{{route('cita.paciente.verCitas')}}">Mis citas</a>
                         @endcan
-                        
+
                         @can('ver.mis-agendas')
                         <a class="collapse-item" href="{{route('cita.medico.verAgenda')}}">Mi agenda</a>
                         @endcan
-                        
+
                         {{-- @can('ver.turnos')
                         <a class="collapse-item" href="{{asset('/Horario')}}">Horarios</a>
                         @endcan --}}
-                        
+
                         @can('ver.turnos')
                         <a class="collapse-item" href="{{route('turno.index')}}">Turnos</a>
                         @endcan
-                        
+
                         @can('ver.especialidades')
                         <a class="collapse-item" href="{{asset('/especialidad')}}">Especialidades</a>
                         @endcan
-                        
-                        
+
+
                     </div>
                 </div>
             </li>
@@ -183,16 +174,16 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
-                        
+
                         @can('ver.sectores')
                         <a class="collapse-item" href="{{route('sector.index')}}">Sectores</a>
                         <a class="collapse-item" href="{{route('sala.index')}}">Salas</a>
                         @endcan
-                        
+
                         @can('ver.quirofano')
                         <a class="collapse-item" href="{{route('quirofano.index')}}">Quirofano</a>
                         @endcan
-                        
+
                         @can('ver.consultorio')
                         <a class="collapse-item" href="{{route('consultorio.index')}}">Consultorio</a>
                         @endcan
@@ -200,7 +191,7 @@
                         @can('ver.internacion')
                         <a class="collapse-item" href="{{route('internacion.index')}}">Internacion</a>
                         @endcan
-                        
+
 
                     </div>
                 </div>
@@ -225,6 +216,9 @@
                         <h6 class="collapse-header">Gestionar:</h6>
                         @can('ver.reportes')
                         <a class="collapse-item" href="{{route('reporte.index')}}">Reportes personalizados</a>
+                        @endcan
+                        @can('ver.reportes')
+                        <a class="collapse-item" href="{{route('paciente.res')}}">Resultados Paciente</a>
                         @endcan
                         <form action="{{asset('logout')}}" method="POST">
                             {{ csrf_field() }}
@@ -282,7 +276,7 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        
+
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -318,7 +312,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     @php
-                                        $roles = Auth::user()->roles;    
+                                        $roles = Auth::user()->roles;
                                     @endphp
                                     @foreach ($roles as $rol)
                                         {{$rol->name}}
@@ -330,7 +324,7 @@
                                     @yield('usuario')
                                 </span >
                                 <img class="img-profile rounded-cir{cle"
-                                    src="{{asset('/adminTemplate/img/sesion.png')}}">
+                                    src="{{asset('/adminTemplate/img/1.jpg')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
